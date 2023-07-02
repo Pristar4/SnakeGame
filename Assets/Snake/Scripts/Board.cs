@@ -1,31 +1,41 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Board {
-    private TileType[,] _tiles;
+namespace Snake.Scripts {
+    public class Board {
+        private readonly TileType[,] _tiles;
 
-    public Board(int width, int height) {
-        _tiles = new TileType[width, height];
+        public Board(int width, int height) {
+            _tiles = new TileType[width, height];
 
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                _tiles[x, y] = TileType.NONE;
+            for (int y = 0; y < height; y++) {
+                for (int x = 0; x < width; x++) {
+                    _tiles[x, y] = TileType.None;
+                }
             }
+
+            var playerPos = new Vector2Int(Random.Range(0, width), Random.Range(0, height));
+            var foodPos = new Vector2Int(Random.Range(0, width), Random.Range(0, height));
+
+
+            _tiles[playerPos.x, playerPos.y] = TileType.Snake;
+
+            if (_tiles[foodPos.x, foodPos.y] == TileType.None) {
+                _tiles[foodPos.x, foodPos.y] = TileType.Food;
+            } 
         }
 
-        var playerPos = new Vector2Int(Random.Range(0, width), Random.Range(0, height));
-        var foodPos = new Vector2Int(Random.Range(0, width), Random.Range(0, height));
+        public int Width => _tiles.GetLength(0);
+        public int Height => _tiles.GetLength(1);
 
-
-        _tiles[playerPos.x, playerPos.y] = TileType.SNAKE;
-
-        if (_tiles[foodPos.x, foodPos.y] == TileType.NONE) {
-            _tiles[foodPos.x, foodPos.y] = TileType.FOOD;
+        public TileType GetTileType(int x, int y) {
+            return _tiles[x, y];
         }
     }
-}
 
-enum TileType {
-    NONE,
-    FOOD,
-    SNAKE,
+    public enum TileType {
+        None,
+        Food,
+        Snake,
+    }
 }
