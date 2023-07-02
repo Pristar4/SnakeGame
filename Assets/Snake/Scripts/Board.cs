@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Snake.Scripts {
@@ -30,6 +29,16 @@ namespace Snake.Scripts {
 
         public TileType GetTileType(int x, int y) {
             return _tiles[x, y];
+        }
+
+        public void SpawnFood() {
+            var x = Random.Range(0, Width);
+            var y = Random.Range(0, Height);
+
+            if (_tiles[x, y] == TileType.None) {
+                _tiles[x, y] = TileType.Food;
+            }
+            
         }
     }
 

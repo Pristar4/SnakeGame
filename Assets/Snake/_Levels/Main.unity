@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00dc3780db0dd3649b249f26a5ff02d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _boardDisplay: {fileID: 203348080}
+  boardDisplay: {fileID: 203348080}
   width: 10
   height: 10
   wantsToDrawBoard: 1

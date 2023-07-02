@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Snake.Scripts {
     class SpriteBoardDisplay : BoardDisplay {
@@ -9,12 +7,13 @@ namespace Snake.Scripts {
         [SerializeField] private Material noneMaterial;
         [SerializeField] private Material foodMaterial;
         [SerializeField] private Material snakeMaterial;
-        private TileDisplay[,] _tileDisplays = null;
+        private TileDisplay[,] _tileDisplays;
 
         #region IBoardDisplay implementation
 
         public override void DrawBoard(Board board) {
             CompareBoardAndTileDisplays(board);
+            
 
             for (int y = 0; y < board.Height; y++) {
                 for (int x = 0; x < board.Width; x++) {
@@ -32,7 +31,9 @@ namespace Snake.Scripts {
                             tileDisplay.ChangeMaterial(snakeMaterial);
                             break;
                         default:
-                            throw new ArgumentOutOfRangeException();
+                            // throw argument exception for invalid tile type
+                            throw new ArgumentOutOfRangeException("TileType is not valid",innerException: null);
+                            
                     }
                 }
             }
