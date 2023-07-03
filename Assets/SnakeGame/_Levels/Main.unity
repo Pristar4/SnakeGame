@@ -215,10 +215,9 @@ MonoBehaviour:
   boardDisplay: {fileID: 203348080}
   width: 25
   height: 25
-  wantsToDrawBoard: 1
-  turnDuration: 1
-  snakeControllers: []
-  snakeNumber: 1
+  turnDuration: 0.1
+  snakes: []
+  snakeNumber: 2
   snakeControllerPrefab: {fileID: 5176623454189848404, guid: a79d362b88669644798048710e8d66f0, type: 3}
 --- !u!1 &1563848681
 GameObject:
