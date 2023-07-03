@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Snake.Scripts {
+namespace SnakeGame.Scripts {
     public abstract class BoardDisplay: MonoBehaviour {
         public abstract void DrawBoard(Board board);
 

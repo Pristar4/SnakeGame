@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Snake.Scripts {
+namespace SnakeGame.Scripts {
     public class Board {
         private readonly TileType[,] _tiles;
 
@@ -21,7 +21,7 @@ namespace Snake.Scripts {
 
             if (_tiles[foodPos.x, foodPos.y] == TileType.None) {
                 _tiles[foodPos.x, foodPos.y] = TileType.Food;
-            } 
+            }
         }
 
         public int Width => _tiles.GetLength(0);
@@ -38,7 +38,33 @@ namespace Snake.Scripts {
             if (_tiles[x, y] == TileType.None) {
                 _tiles[x, y] = TileType.Food;
             }
-            
+        }
+
+        public void UpdateBoard(Snake snakeControllerSnake) {
+            for (int y = 0; y < Height; y++) {
+                for (int x = 0; x < Width; x++) {
+                    if (_tiles[x, y] == TileType.Snake) {
+                        _tiles[x, y] = TileType.None;
+                    }
+                }
+            }
+
+            for (int i = 0; i < snakeControllerSnake.Length; i++) {
+                var bodyPart = snakeControllerSnake.Body[i];
+
+                // Check boundaries before updating the board
+                if (bodyPart.x >= 0 && bodyPart.x < Width && bodyPart.y >= 0 && bodyPart.y < Height) {
+                    _tiles[bodyPart.x, bodyPart.y] = TileType.Snake;
+                } else {
+                    Debug.Log("Snake out of bounds");
+
+                    // make the snake appear on the other side of the board
+                }
+            }
+        }
+
+        public bool IsOutOfBounds(Vector2Int nextPosition) {
+            return nextPosition.x < 0 || nextPosition.x >= Width || nextPosition.y < 0 || nextPosition.y >= Height;
         }
     }
 
@@ -46,5 +72,6 @@ namespace Snake.Scripts {
         None,
         Food,
         Snake,
+        Wall,
     }
 }

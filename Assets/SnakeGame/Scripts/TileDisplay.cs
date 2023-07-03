@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Snake.Scripts {
+namespace SnakeGame.Scripts {
     [RequireComponent(typeof(SpriteRenderer))]
     public class TileDisplay : MonoBehaviour {
         [SerializeField]

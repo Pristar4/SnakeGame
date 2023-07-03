@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Snake.Scripts {
+namespace SnakeGame.Scripts {
     class SpriteBoardDisplay : BoardDisplay {
         [SerializeField] private TileDisplay tileDisplayPrefab;
         [SerializeField] private Material noneMaterial;
@@ -40,7 +40,14 @@ namespace Snake.Scripts {
         }
 
         public override void ClearBoard(Board board) {
-            throw new NotImplementedException();
+            CompareBoardAndTileDisplays(board);
+            
+            for (int y = 0; y < board.Height; y++) {
+                for (int x = 0; x < board.Width; x++) {
+                    var tileDisplay = _tileDisplays[x, y];
+                    tileDisplay.ChangeMaterial(noneMaterial);
+                }
+            }
         }
 
         #endregion

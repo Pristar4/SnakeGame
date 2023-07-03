@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Snake.Scripts
+namespace SnakeGame.Scripts
 {
     public class ColorChanger : MonoBehaviour
     {
