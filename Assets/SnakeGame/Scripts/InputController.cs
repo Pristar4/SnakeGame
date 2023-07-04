@@ -28,7 +28,6 @@ namespace SnakeGame.Scripts {
                 nextDirection = right;
             }
 
-
             return nextDirection;
         }
     }
