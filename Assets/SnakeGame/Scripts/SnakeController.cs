@@ -31,21 +31,22 @@ namespace SnakeGame.Scripts {
             Snake.Direction = NextDirection; // Update the direction of the Snake
         }
 
-        public void Move(Board board, Snake snake) {
+        public void Move(Board board, Snake snake, bool wrapIsEnabled) {
             var nextPosition = snake.Position + NextDirection;
 
-
-            if (nextPosition.x < 0 || nextPosition.x >= board.Width || nextPosition.y < 0 ||
-                nextPosition.y >= board.Height) {
-                // make the snake wrap around the board
-                if (nextPosition.x < 0) {
-                    snake.Position = new Vector2Int(board.Width - 1, snake.Position.y);
-                } else if (nextPosition.x >= board.Width) {
-                    snake.Position = new Vector2Int(0, snake.Position.y);
-                } else if (nextPosition.y < 0) {
-                    snake.Position = new Vector2Int(snake.Position.x, board.Height - 1);
-                } else if (nextPosition.y >= board.Height) {
-                    snake.Position = new Vector2Int(snake.Position.x, 0);
+            if (wrapIsEnabled) {
+                if (nextPosition.x < 0 || nextPosition.x >= board.Width || nextPosition.y < 0 ||
+                    nextPosition.y >= board.Height) {
+                    // make the snake wrap around the board
+                    if (nextPosition.x < 0) {
+                        snake.Position = new Vector2Int(board.Width - 1, snake.Position.y);
+                    } else if (nextPosition.x >= board.Width) {
+                        snake.Position = new Vector2Int(0, snake.Position.y);
+                    } else if (nextPosition.y < 0) {
+                        snake.Position = new Vector2Int(snake.Position.x, board.Height - 1);
+                    } else if (nextPosition.y >= board.Height) {
+                        snake.Position = new Vector2Int(snake.Position.x, 0);
+                    }
                 }
             } else {
                 snake.Position = nextPosition;
@@ -69,6 +70,7 @@ namespace SnakeGame.Scripts {
                 // make the snake wrap around the board
 
                 Debug.Log("Collision with wall");
+                Snake.Die();
                 return;
             }
 

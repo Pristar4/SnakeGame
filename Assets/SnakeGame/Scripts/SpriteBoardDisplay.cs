@@ -57,6 +57,7 @@ namespace SnakeGame.Scripts {
 
         public override void DrawBoard(Board board) {
             CompareBoardAndTileDisplays(board);
+            
 
 
             for (int y = 0; y < board.Height; y++) {
