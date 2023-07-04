@@ -49,7 +49,8 @@ namespace SnakeGame.Scripts {
 
                 var inputDirection = InputController.HandleInput(snake.Snake.Direction, player.inputSchemer);
 
-                snake.NextDirection = inputDirection;
+                if (inputDirection != Vector2Int.zero)
+                    snake.NextDirection = inputDirection;
             }
 
 
