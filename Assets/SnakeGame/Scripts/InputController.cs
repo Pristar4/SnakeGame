@@ -14,7 +14,8 @@ namespace SnakeGame.Scripts {
             var left = Vector2Int.left;
             var right = Vector2Int.right;
 
-            Vector2Int nextDirection = default;
+            // default direction is the current direction
+            Vector2Int nextDirection = currentDirection;
 
             if (Keyboard.current[inputSchemer.UpKey].wasPressedThisFrame && currentDirection != down) {
                 nextDirection = up;
