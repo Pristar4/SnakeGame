@@ -2,56 +2,18 @@
 using UnityEngine;
 
 namespace SnakeGame.Scripts {
-    class SpriteBoardDisplay : BoardDisplay {
+    internal class SpriteBoardDisplay : BoardDisplay {
+        #region Serialized Fields
+
         [SerializeField] private TileDisplay tileDisplayPrefab;
         [SerializeField] private Material noneMaterial;
         [SerializeField] private Material foodMaterial;
         [SerializeField] private Material snakeMaterial;
-        private TileDisplay[,] _tileDisplays;
-
-        #region IBoardDisplay implementation
-
-        public override void DrawBoard(Board board) {
-            CompareBoardAndTileDisplays(board);
-            
-
-            for (int y = 0; y < board.Height; y++) {
-                for (int x = 0; x < board.Width; x++) {
-                    var tileType = board.GetTileType(x, y);
-                    var tileDisplay = _tileDisplays[x, y];
-
-                    switch (tileType) {
-                        case TileType.None:
-                            tileDisplay.ChangeMaterial(noneMaterial);
-                            break;
-                        case TileType.Food:
-                            tileDisplay.ChangeMaterial(foodMaterial);
-                            break;
-                        case TileType.Snake:
-                            tileDisplay.ChangeMaterial(snakeMaterial);
-                            break;
-                        default:
-                            // throw argument exception for invalid tile type
-                            throw new ArgumentOutOfRangeException("TileType is not valid",innerException: null);
-                            
-                    }
-                }
-            }
-        }
-
-        public override void ClearBoard(Board board) {
-            CompareBoardAndTileDisplays(board);
-            
-            for (int y = 0; y < board.Height; y++) {
-                for (int x = 0; x < board.Width; x++) {
-                    var tileDisplay = _tileDisplays[x, y];
-                    tileDisplay.ChangeMaterial(noneMaterial);
-                }
-            }
-        }
 
         #endregion
-        
+
+        private TileDisplay[,] _tileDisplays;
+
 
         private TileDisplay CreateTileDisplay(Vector3 position) {
             var tileDisplay = Instantiate(tileDisplayPrefab, transform);
@@ -90,5 +52,47 @@ namespace SnakeGame.Scripts {
                 CreateTileDisplays(board.Width, board.Height);
             }
         }
+
+        #region IBoardDisplay implementation
+
+        public override void DrawBoard(Board board) {
+            CompareBoardAndTileDisplays(board);
+
+
+            for (int y = 0; y < board.Height; y++) {
+                for (int x = 0; x < board.Width; x++) {
+                    var tileType = board.GetTileType(x, y);
+                    var tileDisplay = _tileDisplays[x, y];
+
+                    switch (tileType) {
+                        case TileType.None:
+                            tileDisplay.ChangeMaterial(noneMaterial);
+                            break;
+                        case TileType.Food:
+                            tileDisplay.ChangeMaterial(foodMaterial);
+                            break;
+                        case TileType.Snake:
+                            tileDisplay.ChangeMaterial(snakeMaterial);
+                            break;
+                        default:
+                            // throw argument exception for invalid tile type
+                            throw new ArgumentOutOfRangeException("TileType is not valid", innerException: null);
+                    }
+                }
+            }
+        }
+
+        public override void ClearBoard(Board board) {
+            CompareBoardAndTileDisplays(board);
+
+            for (int y = 0; y < board.Height; y++) {
+                for (int x = 0; x < board.Width; x++) {
+                    var tileDisplay = _tileDisplays[x, y];
+                    tileDisplay.ChangeMaterial(noneMaterial);
+                }
+            }
+        }
+
+        #endregion
     }
 }

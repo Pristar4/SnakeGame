@@ -4,6 +4,7 @@ using UnityEngine;
 namespace SnakeGame.Scripts {
     public class Board {
         private readonly TileType[,] _tiles;
+
         public Board(int width, int height) {
             _tiles = new TileType[width, height];
 

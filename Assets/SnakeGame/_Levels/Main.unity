@@ -219,6 +219,11 @@ MonoBehaviour:
   snakes: []
   snakeNumber: 2
   snakeControllerPrefab: {fileID: 5176623454189848404, guid: a79d362b88669644798048710e8d66f0, type: 3}
+  players:
+  - snakeId: 0
+    inputSchemer: {fileID: 11400000, guid: 892832864e8092948b7a24eab06bfcad, type: 2}
+  - snakeId: 1
+    inputSchemer: {fileID: 11400000, guid: e400d8b9556fa484b8c239de033811c0, type: 2}
 --- !u!1 &1563848681
 GameObject:
   m_ObjectHideFlags: 0

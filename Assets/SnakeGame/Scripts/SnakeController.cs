@@ -1,51 +1,38 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace SnakeGame.Scripts {
     public class SnakeController : MonoBehaviour {
-        [SerializeField] private Vector2Int _nextDirection;
+        #region Serialized Fields
 
-        public SnakeController
-                InitializeSnakeProperties(Vector2Int position, Vector2Int direction, int length, int id) {
+        [SerializeField] private Vector2Int nextDirection;
+
+        #endregion
+
+
+        public Snake Snake { get; private set; }
+        public Vector2Int NextDirection
+        {
+            get => nextDirection;
+            set => nextDirection = value;
+        }
+
+        public void InitializeSnakeProperties(Vector2Int position, Vector2Int direction, int length, int id) {
             Debug.Log("SnakeController InitializeSnakeProperties");
             Snake = new Snake(position, direction, length, id, new Vector2Int[length]);
-            _nextDirection = direction;
+            NextDirection = direction;
 
             for (int i = 0; i < length; i++) {
                 Snake.Body[i] = position - direction * i;
             }
-
-            return this;
         }
 
 
-        public Snake Snake { get; private set; }
-
-
-        public void HandleInputControls() {
-            var up = Vector2Int.up;
-            var down = Vector2Int.down;
-            var left = Vector2Int.left;
-            var right = Vector2Int.right;
-            var currentDirection = Snake.Direction;
-
-
-
-            if (Keyboard.current.upArrowKey.wasPressedThisFrame && currentDirection != down) {
-                _nextDirection = up;
-            } else if (Keyboard.current.downArrowKey.wasPressedThisFrame && currentDirection != up) {
-                _nextDirection = down;
-            } else if (Keyboard.current.leftArrowKey.wasPressedThisFrame && currentDirection != right) {
-                _nextDirection = left;
-            } else if (Keyboard.current.rightArrowKey.wasPressedThisFrame && currentDirection != left) {
-                _nextDirection = right;
-            }
+        public void FinalizeDirection() {
+            Snake.Direction = NextDirection; // Update the direction of the Snake
         }
-
 
         public void Move(Board board, Snake snake) {
-            Snake.Direction = _nextDirection; // Update the direction of the Snake
-            var nextPosition = snake.Position + _nextDirection;
+            var nextPosition = snake.Position + NextDirection;
 
 
             if (nextPosition.x < 0 || nextPosition.x >= board.Width || nextPosition.y < 0 ||

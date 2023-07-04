@@ -1,10 +1,17 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 namespace SnakeGame.Scripts {
     public class Snake {
         [SerializeField] private Vector2Int _direction;
+
+
+        public Snake(Vector2Int position, Vector2Int direction, int length, int id, Vector2Int[] body) {
+            Position = position;
+            Direction = direction;
+            Length = length;
+            Id = id;
+            Body = body;
+        }
 
         public Vector2Int Position { get; set; }
         public Vector2Int Direction
@@ -20,15 +27,6 @@ namespace SnakeGame.Scripts {
 
         public bool IsAlive { get; set; } = true;
 
-
-        public Snake(Vector2Int position, Vector2Int direction, int length, int id, Vector2Int[] body) {
-            Position = position;
-            Direction = direction;
-            Length = length;
-            Id = id;
-            Body = body;
-        }
-
         public void Grow() {
             Length++;
             var newBody = new Vector2Int[Length];
@@ -41,7 +39,7 @@ namespace SnakeGame.Scripts {
             Body = newBody;
         }
 
-      
+
         public void Die() {
             IsAlive = false;
         }

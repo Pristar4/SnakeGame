@@ -1,46 +1,49 @@
 ﻿using UnityEngine;
 
-namespace SnakeGame.Scripts
-{
-    public class ColorChanger : MonoBehaviour
-    {
-        public enum ColorOption
-        {
+namespace SnakeGame.Scripts {
+    public class ColorChanger : MonoBehaviour {
+        #region ColorOption enum
+
+        public enum ColorOption {
             Red,
             Green,
-            Blue
+            Blue,
         }
 
-        public ColorOption colorOption; // The color option you want to apply to the sprite
+        #endregion
 
-        private SpriteRenderer _spriteRenderer;
+        #region Serialized Fields
+
+        public ColorOption colorOption; // The color option you want to apply to the sprite
 
         public Material redMaterial;
         public Material greenMaterial;
         public Material blueMaterial;
 
-        private void Start()
-        {
+        #endregion
+
+        private SpriteRenderer _spriteRenderer;
+
+        #region Event Functions
+
+        private void Start() {
             _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        public void ChangeColor()
-        {
-            Material newMaterial = GetMaterialFromColorOption(colorOption);
-            if (newMaterial != null)
-            {
+        #endregion
+
+        public void ChangeColor() {
+            var newMaterial = GetMaterialFromColorOption(colorOption);
+
+            if (newMaterial != null) {
                 _spriteRenderer.material = newMaterial;
-            }
-            else
-            {
+            } else {
                 Debug.LogError("Invalid color option!");
             }
         }
 
-        private Material GetMaterialFromColorOption(ColorOption color)
-        {
-            switch (color)
-            {
+        private Material GetMaterialFromColorOption(ColorOption color) {
+            switch (color) {
                 case ColorOption.Red:
                     return redMaterial;
                 case ColorOption.Green:

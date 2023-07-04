@@ -3,8 +3,11 @@
 namespace SnakeGame.Scripts {
     [RequireComponent(typeof(SpriteRenderer))]
     public class TileDisplay : MonoBehaviour {
-        [SerializeField]
-        private SpriteRenderer spriteRenderer;
+        #region Serialized Fields
+
+        [SerializeField] private SpriteRenderer spriteRenderer;
+
+        #endregion
 
         #region Event Functions
 

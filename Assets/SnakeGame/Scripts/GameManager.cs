@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SnakeGame.Scripts {
@@ -16,6 +18,8 @@ namespace SnakeGame.Scripts {
         [SerializeField] private int snakeNumber = 2;
         [SerializeField] private GameObject snakeControllerPrefab;
 
+        [SerializeField] private List<Player> players;
+
         #endregion
 
         private Board _board;
@@ -26,7 +30,7 @@ namespace SnakeGame.Scripts {
         private void Start() {
             _board = new Board(width, height);
             snakes = new SnakeController[snakeNumber];
-            CreateSnakeControllers();
+            CreateSnakeControllers(snakeNumber);
 
             // food
             _board.FoodPositions.Add(_board.SpawnFood());
@@ -34,8 +38,20 @@ namespace SnakeGame.Scripts {
 
         private void Update() {
             _currentTimer += Time.deltaTime;
-            // handle input
-            snakes[0].HandleInputControls();
+
+            foreach (var player in players) {
+                if (snakes.Length <= player.snakeId) {
+                    Debug.LogError("Player snake id is out of range");
+                    continue;
+                }
+
+                var snake = snakes[player.snakeId];
+
+                var inputDirection = InputController.HandleInput(snake.Snake.Direction, player.inputSchemer);
+
+                snake.NextDirection = inputDirection;
+            }
+
 
             if (_currentTimer < turnDuration) return;
             _currentTimer = 0;
@@ -44,9 +60,11 @@ namespace SnakeGame.Scripts {
             // check for collisions
             foreach (var snakeController in snakes) {
                 if (IsSnakeAlive(snakeController)) {
+                    snakeController.FinalizeDirection();
                     snakeController.CheckCollisions(_board);
                 }
             }
+
             _board.ClearBoard();
             _board.DrawFood(_board.FoodPositions);
 
@@ -63,8 +81,8 @@ namespace SnakeGame.Scripts {
 
         #endregion
 
-        private void CreateSnakeControllers() {
-            for (int i = 0; i < snakeNumber; i++) {
+        private void CreateSnakeControllers(int number) {
+            for (int i = 0; i < number; i++) {
                 var snakeControllerObj = Instantiate(snakeControllerPrefab);
                 var snakeController = snakeControllerObj.GetComponent<SnakeController>();
 
@@ -79,5 +97,15 @@ namespace SnakeGame.Scripts {
         private static bool IsSnakeAlive(SnakeController snakeController) {
             return snakeController.Snake.IsAlive;
         }
+    }
+
+    [Serializable]
+    public struct Player {
+        #region Serialized Fields
+
+        public int snakeId;
+        public InputSchemer inputSchemer;
+
+        #endregion
     }
 }
