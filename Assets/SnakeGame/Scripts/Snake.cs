@@ -37,11 +37,14 @@ namespace SnakeGame.Scripts {
 
             newBody[Length - 1] = Body[Length - 2];
             Body = newBody;
+            Score++;
         }
 
 
         public void Die() {
             IsAlive = false;
+            Debug.Log("Snake " + Id + " died");
+            
         }
     }
 }

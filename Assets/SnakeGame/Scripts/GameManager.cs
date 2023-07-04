@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Cinemachine;
+using TMPro;
 using UnityEngine;
 
 namespace SnakeGame.Scripts {
@@ -7,7 +9,9 @@ namespace SnakeGame.Scripts {
         #region Serialized Fields
 
         [SerializeField] private BoardDisplay boardDisplay;
+        [Range(5, 100)] 
         [SerializeField] private int width = 10;
+        [Range(5, 100)] 
         [SerializeField] private int height = 10;
 
         [Tooltip("The time in seconds between each move")] [SerializeField]
@@ -20,6 +24,13 @@ namespace SnakeGame.Scripts {
 
         [SerializeField] private List<Player> players;
 
+        [Header("Cinemachine")] [SerializeField]
+        private  CinemachineVirtualCamera virtualCamera;
+        
+        
+        [SerializeField] private TMP_Text player1ScoreText;
+        [SerializeField] private TMP_Text player2ScoreText;
+
         #endregion
 
         private Board _board;
@@ -29,6 +40,7 @@ namespace SnakeGame.Scripts {
 
         private void Start() {
             _board = new Board(width, height);
+            virtualCamera.m_Lens.OrthographicSize = Mathf.Max(width, height) / 2f;
             snakes = new SnakeController[snakeNumber];
             CreateSnakeControllers(snakeNumber);
 
@@ -78,6 +90,9 @@ namespace SnakeGame.Scripts {
 
             // draw the board
             boardDisplay.DrawBoard(_board);
+            //update score
+            player1ScoreText.text = "Player 1 Score: "+ snakes[0].Snake.Score;
+            player2ScoreText.text = "Player 2 Score: "+ snakes[1].Snake.Score;
         }
 
         #endregion
