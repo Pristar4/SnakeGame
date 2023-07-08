@@ -168,6 +168,16 @@ MonoBehaviour:
   noneMaterial: {fileID: 2100000, guid: 8d03a3a4db1fe3441a7e2710bc1aadf4, type: 2}
   foodMaterial: {fileID: 2100000, guid: 5add81d8b16c4cb4783ff46d1aedd96b, type: 2}
   snakeMaterial: {fileID: 2100000, guid: e896db5c14b6d7144a23fdcbd8a12c11, type: 2}
+  player1Material: {fileID: 2100000, guid: f1ccb4e26f4b2d2448be8284854842de, type: 2}
+  player2Material: {fileID: 2100000, guid: db35a20142e71164e8b31839f491c003, type: 2}
+  player3Material: {fileID: 2100000, guid: f07605e9ad9967640ad71245fdefaf56, type: 2}
+  player4Material: {fileID: 2100000, guid: 228c776025e88c44bbedb5887ae5010d, type: 2}
+  player5Material: {fileID: 2100000, guid: 149aa55ba557bab40a8de46c8efc975d, type: 2}
+  player6Material: {fileID: 2100000, guid: 92ec15dde1de1b44397e274ff9d5b2cd, type: 2}
+  player7Material: {fileID: 2100000, guid: 8c554ad25fbb2e046abbfc69f93bb4e7, type: 2}
+  player8Material: {fileID: 2100000, guid: 88d56487595167f47967f5dfe34f6c49, type: 2}
+  player9Material: {fileID: 2100000, guid: bf1fa418dbc388449911fc305701e03e, type: 2}
+  player10Material: {fileID: 2100000, guid: 6179b896aa70d5846a21dcaea752a7f8, type: 2}
 --- !u!1 &264101532
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +354,7 @@ MonoBehaviour:
   height: 25
   turnDuration: 0.1
   snakes: []
-  snakeNumber: 2
+  snakeNumber: 1
   snakeControllerPrefab: {fileID: 5176623454189848404, guid: a79d362b88669644798048710e8d66f0, type: 3}
   players:
   - snakeId: 0
@@ -392,7 +402,7 @@ MonoBehaviour:
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 0}
-  m_InferenceDevice: 2
+  m_InferenceDevice: 1
   m_BehaviorType: 1
   m_BehaviorName: SnakeAi
   TeamId: 0

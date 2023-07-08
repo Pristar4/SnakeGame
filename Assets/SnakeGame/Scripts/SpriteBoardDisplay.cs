@@ -9,6 +9,19 @@ namespace SnakeGame.Scripts {
         [SerializeField] private Material noneMaterial;
         [SerializeField] private Material foodMaterial;
         [SerializeField] private Material snakeMaterial;
+        
+        [Header("Snake Materials")]
+        [SerializeField] private Material player1Material;
+        [SerializeField] private Material player2Material;
+        [SerializeField] private Material player3Material;
+        [SerializeField] private Material player4Material;
+        [SerializeField] private Material player5Material;
+        [SerializeField] private Material player6Material;
+        [SerializeField] private Material player7Material;
+        [SerializeField] private Material player8Material;
+        [SerializeField] private Material player9Material;
+        [SerializeField] private Material player10Material;
+        
 
         #endregion
 
@@ -57,15 +70,15 @@ namespace SnakeGame.Scripts {
 
         public override void DrawBoard(Board board) {
             CompareBoardAndTileDisplays(board);
-            
+
 
 
             for (int y = 0; y < board.Height; y++) {
                 for (int x = 0; x < board.Width; x++) {
-                    var tileType = board.GetTileType(x, y);
+                    var tile = board.GetTile(x, y);
                     var tileDisplay = _tileDisplays[x, y];
 
-                    switch (tileType) {
+                    switch (tile.Type) {
                         case TileType.None:
                             tileDisplay.ChangeMaterial(noneMaterial);
                             break;
@@ -73,7 +86,7 @@ namespace SnakeGame.Scripts {
                             tileDisplay.ChangeMaterial(foodMaterial);
                             break;
                         case TileType.Snake:
-                            tileDisplay.ChangeMaterial(snakeMaterial);
+                            tileDisplay.ChangeMaterial(GetSnakeMaterial(tile.Snake));
                             break;
                         default:
                             // throw argument exception for invalid tile type
@@ -81,6 +94,33 @@ namespace SnakeGame.Scripts {
                     }
                 }
             }
+        }
+
+        private Material GetSnakeMaterial(Snake tileSnake) {
+            switch (tileSnake.Color) {
+                case SnakeColor.Player1:
+                    return player1Material;
+                case SnakeColor.Player2:
+                    return player2Material;
+                case SnakeColor.Player3:
+                    return player3Material;
+                case SnakeColor.Player4:
+                    return player4Material;
+                case SnakeColor.Player5:
+                    return player5Material;
+                case SnakeColor.Player6:
+                    return player6Material;
+                case SnakeColor.Player7:
+                    return player7Material;
+                case SnakeColor.Player8:
+                    return player8Material;
+                case SnakeColor.Player9:
+                    return player9Material;
+                case SnakeColor.Player10:
+                    return player10Material;
+            }
+
+            return snakeMaterial;
         }
 
         public override void ClearBoard(Board board) {

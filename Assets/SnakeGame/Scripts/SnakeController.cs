@@ -18,7 +18,8 @@ namespace SnakeGame.Scripts {
 
         public void InitializeSnakeProperties(Vector2Int position, Vector2Int direction, int length, int id) {
             Debug.Log("SnakeController InitializeSnakeProperties");
-            Snake = new Snake(position, direction, length, id, new Vector2Int[length]);
+            Snake = new Snake(position, direction, length, id, new Vector2Int[length],
+                              (SnakeColor)id); // caution id has to be in range of 0 , 9
             NextDirection = direction;
 
             for (int i = 0; i < length; i++) {
@@ -34,9 +35,9 @@ namespace SnakeGame.Scripts {
         public void Move(Board board, Snake snake, bool wrapIsEnabled) {
             var nextPosition = snake.Position + NextDirection;
 
-            if (wrapIsEnabled) {
-                if (nextPosition.x < 0 || nextPosition.x >= board.Width || nextPosition.y < 0 ||
-                    nextPosition.y >= board.Height) {
+            if (nextPosition.x < 0 || nextPosition.x >= board.Width || nextPosition.y < 0 ||
+                nextPosition.y >= board.Height) {
+                if (wrapIsEnabled) {
                     // make the snake wrap around the board
                     if (nextPosition.x < 0) {
                         snake.Position = new Vector2Int(board.Width - 1, snake.Position.y);
@@ -74,7 +75,7 @@ namespace SnakeGame.Scripts {
                 return;
             }
 
-            var nextTileType = board.GetTileType(nextPosition.x, nextPosition.y);
+            var nextTileType = board.GetTile(nextPosition.x, nextPosition.y).Type;
 
             switch (nextTileType) {
                 case TileType.Snake:

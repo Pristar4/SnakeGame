@@ -46,8 +46,7 @@ namespace SnakeGame.Scripts {
 
             // food
             for (int i = 0; i < foodCount; i++) {
-            _board.FoodPositions.Add(_board.SpawnFood());
-                
+                _board.FoodPositions.Add(_board.SpawnFood());
             }
         }
 
@@ -62,7 +61,7 @@ namespace SnakeGame.Scripts {
 
             foreach (var player in players) {
                 if (snakes.Length <= player.snakeId) {
-                    Debug.LogError("Player snake id is out of range");
+                    Debug.Log("<color=red>Player snake id is out of range</color>");
                     continue;
                 }
 
@@ -99,9 +98,15 @@ namespace SnakeGame.Scripts {
 
             // draw the board
             boardDisplay.DrawBoard(_board);
+
             //update score
-            player1ScoreText.text = "Player 1 Score: " + snakes[0].Snake.Score;
-            player2ScoreText.text = "Player 2 Score: " + snakes[1].Snake.Score;
+            if (snakes.Length > 0) {
+                player1ScoreText.text = "Player 1 Score: " + snakes[0].Snake.Score;
+            }
+
+            if (snakes.Length > 1) {
+                player2ScoreText.text = "Player 2 Score: " + snakes[1].Snake.Score;
+            }
         }
 
         #endregion

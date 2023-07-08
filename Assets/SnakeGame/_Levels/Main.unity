@@ -168,6 +168,16 @@ MonoBehaviour:
   noneMaterial: {fileID: 2100000, guid: 8d03a3a4db1fe3441a7e2710bc1aadf4, type: 2}
   foodMaterial: {fileID: 2100000, guid: 5add81d8b16c4cb4783ff46d1aedd96b, type: 2}
   snakeMaterial: {fileID: 2100000, guid: e896db5c14b6d7144a23fdcbd8a12c11, type: 2}
+  player1Material: {fileID: 2100000, guid: f1ccb4e26f4b2d2448be8284854842de, type: 2}
+  player2Material: {fileID: 2100000, guid: db35a20142e71164e8b31839f491c003, type: 2}
+  player3Material: {fileID: 2100000, guid: f07605e9ad9967640ad71245fdefaf56, type: 2}
+  player4Material: {fileID: 2100000, guid: 228c776025e88c44bbedb5887ae5010d, type: 2}
+  player5Material: {fileID: 2100000, guid: 149aa55ba557bab40a8de46c8efc975d, type: 2}
+  player6Material: {fileID: 0}
+  player7Material: {fileID: 0}
+  player8Material: {fileID: 0}
+  player9Material: {fileID: 0}
+  player10Material: {fileID: 0}
 --- !u!1 &352996083
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,19 +327,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boardDisplay: {fileID: 203348080}
-  width: 10
-  height: 10
+  width: 25
+  height: 25
   turnDuration: 0.1
-  snakes: []
+  snakes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   snakeNumber: 2
   snakeControllerPrefab: {fileID: 5176623454189848404, guid: a79d362b88669644798048710e8d66f0, type: 3}
   players:
   - snakeId: 0
     inputSchemer: {fileID: 11400000, guid: 892832864e8092948b7a24eab06bfcad, type: 2}
+  - snakeId: 1
+    inputSchemer: {fileID: 11400000, guid: e400d8b9556fa484b8c239de033811c0, type: 2}
   virtualCamera: {fileID: 1159006802}
   player1ScoreText: {fileID: 991293984}
   player2ScoreText: {fileID: 1776048084}
-  wrapIsEnabled: 0
+  wrapIsEnabled: 1
   foodCount: 1
 --- !u!1 &667033751
 GameObject:

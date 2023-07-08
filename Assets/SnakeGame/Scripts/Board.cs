@@ -3,14 +3,15 @@ using UnityEngine;
 
 namespace SnakeGame.Scripts {
     public class Board {
-        private readonly TileType[,] _tiles;
+        private readonly Tile[,] _tiles;
+
 
         public Board(int width, int height) {
-            _tiles = new TileType[width, height];
+            _tiles = new Tile[width, height];
 
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
-                    _tiles[x, y] = TileType.None;
+                    _tiles[x, y] = new Tile(TileType.None);
                 }
             }
 
@@ -18,10 +19,10 @@ namespace SnakeGame.Scripts {
             var foodPos = new Vector2Int(Random.Range(0, width), Random.Range(0, height));
 
 
-            _tiles[playerPos.x, playerPos.y] = TileType.Snake;
+            _tiles[playerPos.x, playerPos.y].Type = TileType.Snake;
 
-            if (_tiles[foodPos.x, foodPos.y] == TileType.None) {
-                _tiles[foodPos.x, foodPos.y] = TileType.Food;
+            if (_tiles[foodPos.x, foodPos.y].Type == TileType.None) {
+                _tiles[foodPos.x, foodPos.y].Type = TileType.Food;
             }
         }
 
@@ -29,7 +30,7 @@ namespace SnakeGame.Scripts {
         public int Height => _tiles.GetLength(1);
         public List<Vector2Int> FoodPositions { get; set; } = new();
 
-        public TileType GetTileType(int x, int y) {
+        public Tile GetTile(int x, int y) {
             return _tiles[x, y];
         }
 
@@ -37,20 +38,24 @@ namespace SnakeGame.Scripts {
             int x = Random.Range(0, Width);
             int y = Random.Range(0, Height);
 
-            if (_tiles[x, y] == TileType.None) {
-                _tiles[x, y] = TileType.Food;
+            if (_tiles[x, y].Type == TileType.None) {
+                _tiles[x, y].Type = TileType.Food;
             }
 
             return new Vector2Int(x, y);
         }
 
-        public void DrawSnake(Snake snakeControllerSnake) {
-            for (int i = 0; i < snakeControllerSnake.Length; i++) {
-                var bodyPart = snakeControllerSnake.Body[i];
+        public void DrawSnake(Snake snake) {
+            for (int i = 0; i < snake.Length; i++) {
+                var bodyPart = snake.Body[i];
+
+
 
                 // Check boundaries before updating the board
                 if (bodyPart.x >= 0 && bodyPart.x < Width && bodyPart.y >= 0 && bodyPart.y < Height) {
-                    _tiles[bodyPart.x, bodyPart.y] = TileType.Snake;
+                    var currentTile = _tiles[bodyPart.x, bodyPart.y];
+                    currentTile.Type = TileType.Snake;
+                    currentTile.Snake = snake;
                 } else {
                     Debug.Log("Snake out of bounds");
 
@@ -62,7 +67,7 @@ namespace SnakeGame.Scripts {
         public void ClearBoard() {
             for (int y = 0; y < Height; y++) {
                 for (int x = 0; x < Width; x++) {
-                    _tiles[x, y] = TileType.None;
+                    _tiles[x, y].Type = TileType.None;
                 }
             }
         }
@@ -73,7 +78,7 @@ namespace SnakeGame.Scripts {
 
         public void DrawFood(List<Vector2Int> foodPositions) {
             foreach (var pos in foodPositions) {
-                _tiles[pos.x, pos.y] = TileType.Food;
+                _tiles[pos.x, pos.y].Type = TileType.Food;
             }
         }
     }
@@ -83,5 +88,14 @@ namespace SnakeGame.Scripts {
         Food,
         Snake,
         Wall,
+    }
+    public class Tile {
+        public TileType Type { get; set; }
+        public Snake Snake { get; set; }
+
+        public Tile(TileType type, Snake snake = null) {
+            Type = type;
+            Snake = snake;
+        }
     }
 }
