@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SnakeGame.Scripts {
@@ -9,9 +10,9 @@ namespace SnakeGame.Scripts {
         [SerializeField] private Material noneMaterial;
         [SerializeField] private Material foodMaterial;
         [SerializeField] private Material snakeMaterial;
-        
-        [Header("Snake Materials")]
-        [SerializeField] private Material player1Material;
+
+        [Header("Snake Materials")] [SerializeField]
+        private Material player1Material;
         [SerializeField] private Material player2Material;
         [SerializeField] private Material player3Material;
         [SerializeField] private Material player4Material;
@@ -21,9 +22,13 @@ namespace SnakeGame.Scripts {
         [SerializeField] private Material player8Material;
         [SerializeField] private Material player9Material;
         [SerializeField] private Material player10Material;
-        
+
+        [Header("Visuals")] [SerializeField] private GameObject snakeDirectionPrefab;
 
         #endregion
+
+        private readonly Dictionary<Snake, GameObject> _snakeDirections = new();
+        private readonly List<GameObject> _snakeHeads = new();
 
         private TileDisplay[,] _tileDisplays;
 
@@ -66,13 +71,37 @@ namespace SnakeGame.Scripts {
             }
         }
 
+        private void SnakeDirectionCompare(Board board) {
+            if (_snakeDirections.Count != board.Snakes.Length) {
+                Reset();
+
+                foreach (var snake in board.Snakes) {
+                    var obj = Instantiate(snakeDirectionPrefab, transform);
+                    _snakeDirections.Add(snake, obj);
+                }
+            }
+        }
+
+        public override void Reset() {
+            foreach (var obj in _snakeDirections.Values) {
+                Destroy(obj);
+            }
+
+            _snakeDirections.Clear();
+        }
+
         #region IBoardDisplay implementation
 
         public override void DrawBoard(Board board) {
             CompareBoardAndTileDisplays(board);
 
 
+            if (board.Snakes != null) {
+                SnakeDirectionCompare(board);
+                SnakeDirectionUpdate();
+            }
 
+            // create new snake direction displays if there are more snakes than snake direction displays
             for (int y = 0; y < board.Height; y++) {
                 for (int x = 0; x < board.Width; x++) {
                     var tile = board.GetTile(x, y);
@@ -95,6 +124,41 @@ namespace SnakeGame.Scripts {
                 }
             }
         }
+
+        private void SnakeDirectionUpdate() {
+            foreach (var entity in _snakeDirections) {
+                int positionY = entity.Key.Position.y;
+                int positionX = entity.Key.Position.x;
+                var tilePosition = _tileDisplays[positionX, positionY].transform.position;
+
+                entity.Value.transform.position = tilePosition + new Vector3(0, 0, -1);
+
+
+
+                //rotation 
+                Quaternion rotation;
+
+                switch (entity.Key.DirectionEnum) {
+                    case SnakeDirection.Up:
+                        rotation = Quaternion.Euler(0, 0, 0);
+                        break;
+                    case SnakeDirection.Down:
+                        rotation = Quaternion.Euler(0, 0, 180);
+                        break;
+                    case SnakeDirection.Left:
+                        rotation = Quaternion.Euler(0, 0, 90);
+                        break;
+                    case SnakeDirection.Right:
+                        rotation = Quaternion.Euler(0, 0, -90);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+                entity.Value.transform.localRotation = rotation;
+            }
+        }
+
 
         private Material GetSnakeMaterial(Snake tileSnake) {
             switch (tileSnake.Color) {
@@ -135,5 +199,11 @@ namespace SnakeGame.Scripts {
         }
 
         #endregion
+    }
+    public enum SnakeDirection {
+        Up,
+        Down,
+        Left,
+        Right,
     }
 }

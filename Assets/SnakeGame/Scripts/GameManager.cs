@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace SnakeGame.Scripts {
     public class GameManager : MonoBehaviour {
@@ -15,8 +16,6 @@ namespace SnakeGame.Scripts {
         [Tooltip("The time in seconds between each move")] [SerializeField]
         private float turnDuration = 1;
 
-        [SerializeField] private SnakeController[] snakes;
-
         [SerializeField] private int snakeNumber = 2;
         [SerializeField] private GameObject snakeControllerPrefab;
 
@@ -28,13 +27,15 @@ namespace SnakeGame.Scripts {
 
         [SerializeField] private TMP_Text player1ScoreText;
         [SerializeField] private TMP_Text player2ScoreText;
+        [SerializeField] private bool wrapIsEnabled;
+        [SerializeField] private int foodCount = 1;
 
         #endregion
 
         private Board _board;
         private float _currentTimer;
-        [SerializeField] private bool wrapIsEnabled;
-        [SerializeField] private int foodCount = 1;
+
+        [SerializeField] private SnakeController[] snakes;
 
         #region Event Functions
 
@@ -53,9 +54,9 @@ namespace SnakeGame.Scripts {
         private void Update() {
             _currentTimer += Time.deltaTime;
 
-            if (!IsSnakeAlive(snakes[0])) {
+            if (!IsSnakeAlive(_board.Snakes[0])) {
                 //reload the scene
-                UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+                SceneManager.LoadScene(0);
             }
 
 
@@ -65,9 +66,9 @@ namespace SnakeGame.Scripts {
                     continue;
                 }
 
-                var snake = snakes[player.snakeId];
+                var snake = _board.Snakes[0];
 
-                var inputDirection = InputController.HandleInput(snake.Snake.Direction, player.inputSchemer);
+                var inputDirection = InputController.HandleInput(snake.Direction, player.inputSchemer);
 
                 if (inputDirection != Vector2Int.zero)
                     snake.NextDirection = inputDirection;
@@ -80,8 +81,8 @@ namespace SnakeGame.Scripts {
 
             // check for collisions
             foreach (var snakeController in snakes) {
-                if (IsSnakeAlive(snakeController)) {
-                    snakeController.FinalizeDirection();
+                if (IsSnakeAlive(_board.Snakes[0])) {
+                    snakeController.FinalizeDirection(_board.Snakes[0]);
                     snakeController.CheckCollisions(_board);
                 }
             }
@@ -90,9 +91,9 @@ namespace SnakeGame.Scripts {
             _board.DrawFood(_board.FoodPositions);
 
             foreach (var snakeController in snakes) {
-                if (IsSnakeAlive(snakeController)) {
-                    snakeController.Move(_board, snakeController.Snake, wrapIsEnabled);
-                    _board.DrawSnake(snakeController.Snake);
+                if (IsSnakeAlive(_board.Snakes[0])) {
+                    snakeController.Move(_board, _board.Snakes[0], wrapIsEnabled);
+                    _board.DrawSnake(_board.Snakes[0]);
                 }
             }
 
@@ -101,11 +102,11 @@ namespace SnakeGame.Scripts {
 
             //update score
             if (snakes.Length > 0) {
-                player1ScoreText.text = "Player 1 Score: " + snakes[0].Snake.Score;
+                player1ScoreText.text = "Player 1 Score: " + _board.Snakes[0].Score;
             }
 
             if (snakes.Length > 1) {
-                player2ScoreText.text = "Player 2 Score: " + snakes[1].Snake.Score;
+                player2ScoreText.text = "Player 2 Score: " + _board.Snakes[1].Score;
             }
         }
 
@@ -120,12 +121,12 @@ namespace SnakeGame.Scripts {
                 startSpawnPosition += Vector2Int.right * i * 10;
 
                 snakes[i] = snakeController;
-                snakeController.InitializeSnakeProperties(startSpawnPosition, Vector2Int.up, 5, i);
+                SnakeController.InitializeSnakeBody(_board.Snakes[0], startSpawnPosition, Vector2Int.up, 5);
             }
         }
 
-        private static bool IsSnakeAlive(SnakeController snakeController) {
-            return snakeController.Snake.IsAlive;
+        private static bool IsSnakeAlive(Snake snake) {
+            return snake.IsAlive;
         }
     }
 

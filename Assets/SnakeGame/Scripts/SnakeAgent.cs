@@ -5,176 +5,175 @@ using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 namespace SnakeGame.Scripts {
     public class SnakeAgent : Agent {
         #region Serialized Fields
 
         [SerializeField] private BoardDisplay boardDisplay;
+
         [Range(5, 100)] [SerializeField] private int width = 10;
         [Range(5, 100)] [SerializeField] private int height = 10;
 
-        [Tooltip("The time in seconds between each move")] [SerializeField]
-        private float turnDuration = 1;
-
-        [SerializeField] private SnakeController[] snakes;
-
-        [SerializeField] private int snakeNumber = 2;
-        [SerializeField] private GameObject snakeControllerPrefab;
 
         [SerializeField] private List<Player> players;
 
 
-
         [SerializeField] private TMP_Text scoreText;
+        [SerializeField] private TMP_Text highScoreText;
+        [SerializeField] private bool wrapIsEnabled;
+        [SerializeField] private int foodCount = 1;
+        [SerializeField] private Board board;
+        [SerializeField] private int numberOfSnakes = 1;
+        [SerializeField] private int startSize = 1;
 
         #endregion
 
-        private Board _board;
         private float _currentTimer;
-        [SerializeField] private bool wrapIsEnabled;
-        [SerializeField] private int foodCount = 1;
+        private int _highScore;
+
+
+        private SnakeController _snakeController;
+
+        #region Event Functions
 
         private void Start() {
-            _board = new Board(width, height);
-            snakes = new SnakeController[snakeNumber];
-            CreateSnakeControllers(snakeNumber);
+            InitializeGame();
+        }
+
+        #endregion
+
+        private void InitializeGame() {
+            _snakeController = new SnakeController();
+            var snakes = _snakeController.CreateSnakes(width, height, numberOfSnakes, startSize);
+
+            if (board != null) {
+                board.Snakes = snakes;
+                board.Reset(snakes, width, height);
+                boardDisplay.Reset();
+            } else {
+                board = new Board(width, height, snakes);
+            }
+
 
             // food
             for (int i = 0; i < foodCount; i++) {
-                _board.FoodPositions.Add(_board.SpawnFood());
-                
+                board.FoodPositions.Add(board.SpawnFood());
             }
         }
 
 
         public override void OnEpisodeBegin() {
             Debug.Log("Episode Begin");
-        }
-        
-        private void Update() {
-            _currentTimer += Time.deltaTime;
-
-            if (!IsSnakeAlive(snakes[0])) {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                
-                
-            }
-
-
-            foreach (var player in players) {
-                if (snakes.Length <= player.snakeId) {
-                    Debug.LogError("Player snake id is out of range");
-                    continue;
-                }
-
-                var snake = snakes[player.snakeId];
-
-                var inputDirection = InputController.HandleInput(snake.Snake.Direction, player.inputSchemer);
-
-                if (inputDirection != Vector2Int.zero)
-                    snake.NextDirection = inputDirection;
-            }
-
-
-            if (_currentTimer < turnDuration) return;
-            _currentTimer = 0;
-
-
-            // check for collisions
-            foreach (var snakeController in snakes) {
-                if (IsSnakeAlive(snakeController)) {
-                    snakeController.FinalizeDirection();
-                    snakeController.CheckCollisions(_board);
-                }
-            }
-
-            _board.ClearBoard();
-            _board.DrawFood(_board.FoodPositions);
-
-            foreach (var snakeController in snakes) {
-                if (IsSnakeAlive(snakeController)) {
-                    snakeController.Move(_board, snakeController.Snake, wrapIsEnabled);
-                    _board.DrawSnake(snakeController.Snake);
-                }
-            }
-
-            // draw the board
-            boardDisplay.DrawBoard(_board);
-            //update score
-            scoreText.text = "Player 1 Score: " + snakes[0].Snake.Score;
+            InitializeGame();
         }
 
-        private static bool IsSnakeAlive(SnakeController snakeController) {
-            return snakeController.Snake.IsAlive;
-        }
 
-        private void CreateSnakeControllers(int number) {
-            for (int i = 0; i < number; i++) {
-                var snakeControllerObj = Instantiate(snakeControllerPrefab);
-                var snakeController = snakeControllerObj.GetComponent<SnakeController>();
-
-                var startSpawnPosition = new Vector2Int(width / 2, height / 2);
-                startSpawnPosition += Vector2Int.right * i * 10;
-
-                snakes[i] = snakeController;
-                snakeController.InitializeSnakeProperties(startSpawnPosition, Vector2Int.up, 5, i);
-            }
+        private static bool IsSnakeAlive(Snake snake) {
+            return snake.IsAlive;
         }
 
 
         public override void CollectObservations(VectorSensor sensor) {
-            Debug.Log("Collecting Observations");
-            var testVector = new Vector2Int(0, 0);
-            sensor.AddObservation(testVector);
-          
+            if (board.Snakes.Length > 0) {
+                sensor.AddObservation(board.Snakes[0].Direction);
+                sensor.AddObservation(board.Snakes[0].Position);
+                sensor.AddObservation(board.FoodPositions[0]);
+                var array = board.GetBoardAsArray();
+
+                for (int i = 0; i < array.Length; i++) {
+                    sensor.AddObservation(array[i]);
+                }
+            } else {
+                sensor.AddObservation(Vector2.zero);
+                sensor.AddObservation(Vector2.zero);
+                sensor.AddObservation(Vector2.zero);
+
+                var array = board.GetBoardAsArray();
+
+                for (int i = 0; i < array.Length; i++) {
+                    sensor.AddObservation(-1);
+                }
+            }
+
+            // 1d array of the board
+            // var boardArray = _board.GetBoardArray();
         }
 
         public override void OnActionReceived(ActionBuffers actions) {
-            Debug.Log("Action Received");
+            // Debug.Log("Action Received");
             // up = 0, right = 1, down = 2, left = 3
-            var action = actions.DiscreteActions[0];
+            int action = actions.DiscreteActions[0];
+
+            if (board.Snakes.Length == 0) {
+                return;
+            }
+
+            var snake = board.Snakes[0];
+
+
+
+            Debug.Log(action);
 
             switch (action) {
                 case 0:
-                    snakes[0].NextDirection = new Vector2Int(0, 1);
+                    snake.NextDirection = new Vector2Int(0, 1);
                     break;
                 case 1:
-                    snakes[0].NextDirection = new Vector2Int(1, 0);
+                    snake.NextDirection = new Vector2Int(1, 0);
                     break;
                 case 2:
-                    snakes[0].NextDirection = new Vector2Int(0, -1);
+                    snake.NextDirection = new Vector2Int(0, -1);
                     break;
                 case 3:
-                    snakes[0].NextDirection = new Vector2Int(-1, 0);
+                    snake.NextDirection = new Vector2Int(-1, 0);
                     break;
             }
 
-            snakes[0].FinalizeDirection();
-            snakes[0].CheckCollisions(_board);
+            _snakeController.FinalizeDirection(snake);
+            _snakeController.CheckCollisions(board);
 
-            snakes[0].Move(_board, snakes[0].Snake, false);
-            _board.DrawSnake(snakes[0].Snake);
+            _snakeController.Move(board, board.Snakes[0], false);
 
-            if (snakes[0].Snake.IsAlive) {
-                AddReward(0.1f);
-            } else {
-                AddReward(-1f);
-                EndEpisode();
+            board.ClearBoard();
+            board.DrawFood(board.FoodPositions);
+
+            if (IsSnakeAlive(snake)) {
+                board.DrawSnake(board.Snakes[0]);
+                // show direction
             }
 
-            _board.ClearBoard();
-            _board.DrawFood(_board.FoodPositions);
 
-            boardDisplay.DrawBoard(_board);
+            boardDisplay.DrawBoard(board);
+
+            // update high score if current score is higher
+            if (board.Snakes[0].Score > _highScore) {
+                _highScore = snake.Score;
+            }
+
+            highScoreText.text = "High Score: " + _highScore;
 
 
-            scoreText.text = "Player 1 Score: " + snakes[0].Snake.Score;
+            scoreText.text = "Score: " + board.Snakes[0].Score;
+
+            if (board.Snakes[0].AteFood) {
+                Debug.Log("Reward : " + 10f);
+                AddReward(10f);
+                board.Snakes[0].AteFood = false;
+            }
+
+            if (IsSnakeAlive(snake)) {
+                Debug.Log("Reward : " + -0.01f);
+                AddReward(-0.01f);
+            } else if (!IsSnakeAlive(snake)) {
+                Debug.Log("Reward : " + -5f);
+                AddReward(-10f);
+                EndEpisode();
+            }
         }
 
         public override void Heuristic(in ActionBuffers actionsOut) {
-            Debug.Log("Heuristic");
+            // Debug.Log("Heuristic");
             // wasd controls
 
             var discreteActionsOut = actionsOut.DiscreteActions;

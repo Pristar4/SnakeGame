@@ -330,11 +330,8 @@ MonoBehaviour:
   width: 25
   height: 25
   turnDuration: 0.1
-  snakes:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  snakeNumber: 2
+  snakes: []
+  snakeNumber: 1
   snakeControllerPrefab: {fileID: 5176623454189848404, guid: a79d362b88669644798048710e8d66f0, type: 3}
   players:
   - snakeId: 0
