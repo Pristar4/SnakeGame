@@ -32,6 +32,18 @@ namespace SnakeGame.Scripts {
 
         private TileDisplay[,] _tileDisplays;
 
+        #region Event Functions
+
+        public override void Reset() {
+            foreach (var obj in _snakeDirections.Values) {
+                Destroy(obj);
+            }
+
+            _snakeDirections.Clear();
+        }
+
+        #endregion
+
 
         private TileDisplay CreateTileDisplay(Vector3 position) {
             var tileDisplay = Instantiate(tileDisplayPrefab, transform);
@@ -80,14 +92,6 @@ namespace SnakeGame.Scripts {
                     _snakeDirections.Add(snake, obj);
                 }
             }
-        }
-
-        public override void Reset() {
-            foreach (var obj in _snakeDirections.Values) {
-                Destroy(obj);
-            }
-
-            _snakeDirections.Clear();
         }
 
         #region IBoardDisplay implementation
@@ -152,7 +156,7 @@ namespace SnakeGame.Scripts {
                         rotation = Quaternion.Euler(0, 0, -90);
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException();
+                        throw new ArgumentOutOfRangeException("SnakeDirection is not valid", innerException: null);
                 }
 
                 entity.Value.transform.localRotation = rotation;

@@ -19,7 +19,6 @@ namespace SnakeGame.Scripts {
 
         public void ChangeMaterial(Material material) {
             spriteRenderer.material = material;
-            
         }
     }
 }
