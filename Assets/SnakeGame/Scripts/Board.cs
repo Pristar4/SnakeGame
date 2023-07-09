@@ -154,13 +154,14 @@ namespace SnakeGame.Scripts {
 
         public void Reset(Snake[] snakes, int width, int height) {
             
-            FoodPositions = new List<Vector2Int>();
-            _tiles = new Tile[width, height];
+            FoodPositions.Clear(); // No need to instantiate a new list, Clear old list instead
             Snakes = snakes;
 
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
-                    _tiles[x, y] = new Tile(TileType.None);
+                    _tiles[x, y].Type = TileType.None;
+                    _tiles[x, y].Snake = null; // Assuming Snake=null is same as new Tile()
+                    
                 }
             }
 
