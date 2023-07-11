@@ -27,8 +27,9 @@ namespace SnakeGame.Scripts {
         [SerializeField] private int numberOfSnakes = 1;
         [SerializeField] private int startSize = 1;
         [SerializeField] private bool isDisplayOn;
-
         #endregion
+        private float currentReward;
+
 
         private readonly Vector2Int[] _actionDirections = {
             new(0, 1),
@@ -42,6 +43,11 @@ namespace SnakeGame.Scripts {
         private int _highScore;
         private float _previousDistance;
         private SnakeController _snakeController;
+        public float PreviousDistance
+        {
+            get => _previousDistance;
+            set => _previousDistance = value;
+        }
 
         #region Event Functions
 
@@ -119,7 +125,7 @@ namespace SnakeGame.Scripts {
             if (board.Snakes.Length > 0) {
                 sensor.AddObservation(board.Snakes[0].Direction);
                 sensor.AddObservation(board.Snakes[0].Position);
-                sensor.AddObservation(_previousDistance);
+                sensor.AddObservation(PreviousDistance);
                 int[] array = board.GetBoardAsArray();
 
                 for (int i = 0; i < array.Length; i++) {
@@ -136,7 +142,6 @@ namespace SnakeGame.Scripts {
                     sensor.AddObservation(-1);
                 }
             }
-
         }
 
         public override void OnActionReceived(ActionBuffers actions) {
@@ -201,15 +206,14 @@ namespace SnakeGame.Scripts {
 
             var snakeNewPosition = board.Snakes[0].Position;
             // Distance Reward
-            _previousDistance = Vector2.Distance(snakeNewPosition, previousFoodPosition);
-
+            PreviousDistance = Vector2.Distance(snakeNewPosition, previousFoodPosition);
             if (board.FoodPositions.Count > 0) {
                 currentFoodPosition = board.FoodPositions[0];
                 // Calculate Euclidean distance
                 float currentDistance = Vector2.Distance(snakeNewPosition, currentFoodPosition);
 
                 // Define the reward
-                float reward = Mathf.Log((lengthAtTimeStep + _previousDistance)
+                float reward = Mathf.Log((lengthAtTimeStep + PreviousDistance)
                                          / (lengthAtTimeStep + currentDistance));
 
                 // Apply the reward

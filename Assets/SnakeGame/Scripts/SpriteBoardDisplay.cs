@@ -1,15 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace SnakeGame.Scripts {
     internal class SpriteBoardDisplay : BoardDisplay {
         #region Serialized Fields
 
+        [SerializeField] private SnakeAgent snakeAgent;
+
+
         [SerializeField] private TileDisplay tileDisplayPrefab;
         [SerializeField] private Material noneMaterial;
         [SerializeField] private Material foodMaterial;
         [SerializeField] private Material snakeMaterial;
+        [SerializeField] Material foodDistanceMaterial;
+        [SerializeField] private Gradient rewardGradient;
+
 
         [Header("Snake Materials")] [SerializeField]
         private Material player1Material;
@@ -105,25 +112,65 @@ namespace SnakeGame.Scripts {
                 SnakeDirectionUpdate();
             }
 
-            // create new snake direction displays if there are more snakes than snake direction displays
-            for (int y = 0; y < board.Height; y++) {
-                for (int x = 0; x < board.Width; x++) {
-                    var tile = board.GetTile(x, y);
-                    var tileDisplay = _tileDisplays[x, y];
+            if (board.Snakes != null) {
+                var snakePos = new Vector2(board.Snakes[0].Position.x, board.Snakes[0].Position.y);
+                var foodPos = new Vector2(board.FoodPositions[0].x, board.FoodPositions[0].y);
+                int numInterpolationPoints = Math.Max(board.Width, board.Height);
+                HashSet<Vector2Int> highlightedTiles = new HashSet<Vector2Int>();
 
-                    switch (tile.Type) {
-                        case TileType.None:
-                            tileDisplay.ChangeMaterial(noneMaterial);
-                            break;
-                        case TileType.Food:
-                            tileDisplay.ChangeMaterial(foodMaterial);
-                            break;
-                        case TileType.Snake:
-                            tileDisplay.ChangeMaterial(GetSnakeMaterial(tile.Snake));
-                            break;
-                        default:
-                            // throw argument exception for invalid tile type
-                            throw new ArgumentOutOfRangeException("TileType is not valid", innerException: null);
+                for (int i = 0; i < numInterpolationPoints; i++) {
+                    float t = (float)i / (numInterpolationPoints - 1);
+                    Vector2 interpolatedPos = Vector2.Lerp(snakePos, foodPos, t);
+                    Vector2Int gridPos = Vector2Int.RoundToInt(interpolatedPos);
+                    highlightedTiles.Add(gridPos);
+                }
+
+                var previousDistance = Vector2.Distance(snakePos, foodPos);
+
+                for (int y = 0; y < board.Height; y++) {
+                    for (int x = 0; x < board.Width; x++) {
+                        var tile = board.GetTile(x, y);
+                        var tileDisplay = _tileDisplays[x, y];
+
+                        switch (tile.Type) {
+                            case TileType.None:
+                                var snakeLength = board.Snakes[0].Length;
+                                // currentDistance between the current tile and the food
+                                var currentDistance = Vector2.Distance(new Vector2(x, y), foodPos);
+
+                                float reward = Mathf.Log((snakeLength + previousDistance)
+                                                         / (snakeLength + currentDistance));
+                                float clampedReward = Mathf.Clamp01((reward + 1) /
+                                                                    2);
+
+                                var c = Color.Lerp(foodDistanceMaterial.color, Color.black, (clampedReward + 1) / 2f);
+
+                                if (board.FoodPositions.Count != 0) {
+                                    var blendedColor = Color.Lerp(Color.green, Color.black, clampedReward);
+
+                                    if (highlightedTiles.Contains(new Vector2Int(x, y))) {
+                                        tileDisplay.ChangeMaterial(foodDistanceMaterial);
+                                        tileDisplay.SetColor(blendedColor);
+                                    } else {
+                                        tileDisplay.ChangeMaterial(noneMaterial);
+                                    }
+                                } else {
+                                    tileDisplay.ChangeMaterial(noneMaterial);
+                                }
+
+                                previousDistance = Vector2.Distance(new Vector2(x, y), snakePos);
+                                break;
+                            case TileType.Food:
+                                tileDisplay.ChangeMaterial(foodMaterial);
+                                break;
+                            case TileType.Snake:
+                                tileDisplay.ChangeMaterial(GetSnakeMaterial(tile.Snake));
+                                break;
+                            default:
+                                // throw argument exception for invalid tile type
+                                throw new ArgumentOutOfRangeException(
+                                        "TileType is not valid", innerException: null);
+                        }
                     }
                 }
             }
