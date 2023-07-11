@@ -27,7 +27,9 @@ namespace SnakeGame.Scripts {
         [SerializeField] private int numberOfSnakes = 1;
         [SerializeField] private int startSize = 1;
         [SerializeField] private bool isDisplayOn;
+
         #endregion
+
         private float currentReward;
 
 
@@ -37,7 +39,7 @@ namespace SnakeGame.Scripts {
             new(0, -1),
             new(-1, 0),
         };
-        private Vector2Int _lastInputDirection = Vector2Int.up; // keeps track of the last input direction
+        private Vector2Int _inputDirection = Vector2Int.up; // keeps track of the last input direction
 
         private float _currentTimer;
         private int _highScore;
@@ -68,13 +70,14 @@ namespace SnakeGame.Scripts {
                 tempDirection = new Vector2Int(-1, 0);
             }
 
-            if (tempDirection != Vector2Int.zero) _lastInputDirection = tempDirection;
+            if (tempDirection != Vector2Int.zero) _inputDirection = tempDirection;
         }
 
         #endregion
 
         private int ActionIndexForDirection(Vector2Int direction) {
             int index = Array.IndexOf(_actionDirections, direction);
+
 
             if (index == -1) {
                 Debug.LogError("Invalid direction");
@@ -126,6 +129,7 @@ namespace SnakeGame.Scripts {
                 sensor.AddObservation(board.Snakes[0].Direction);
                 sensor.AddObservation(board.Snakes[0].Position);
                 sensor.AddObservation(PreviousDistance);
+                sensor.AddObservation(board.FoodPositions[0]);
                 int[] array = board.GetBoardAsArray();
 
                 for (int i = 0; i < array.Length; i++) {
@@ -144,25 +148,20 @@ namespace SnakeGame.Scripts {
             }
         }
 
+        private Vector2Int RotateClockwise(Vector2Int direction) {
+            return new Vector2Int(direction.y, -direction.x);
+        }
+
+        private Vector2Int RotateCounterClockwise(Vector2Int direction) {
+            return new Vector2Int(-direction.y, direction.x);
+        }
+
         public override void OnActionReceived(ActionBuffers actions) {
-            // up = 0, right = 1, down = 2, left = 3
             int action = actions.DiscreteActions[0];
 
             if (board.Snakes.Length == 0) {
                 return;
             }
-
-            // check if the direction is opposite of the current direction and if so print a warning:
-            var backDirection = board.Snakes[0].Direction * -1;
-            var actionDirection = GetDirectionFromAction(action);
-
-
-            if (backDirection == actionDirection
-               ) {
-                Debug.LogWarning("<color=red>You are going in the opposite direction!</color>");
-                
-            }
-
 
             var snake = board.Snakes[0];
             int lengthAtTimeStep = snake.Length;
@@ -173,7 +172,18 @@ namespace SnakeGame.Scripts {
                 previousFoodPosition = currentFoodPosition;
             }
 
-            snake.NextDirection = GetDirectionFromAction(action);
+            switch (action) {
+                case 0: //turn left
+                    snake.NextDirection = RotateCounterClockwise(snake.Direction);
+                    break;
+                case 1: //go straight, no need to change the direction
+                    snake.NextDirection = snake.Direction;
+                    break;
+                case 2: //turn right
+                    snake.NextDirection = RotateClockwise(snake.Direction);
+                    break;
+            }
+
             _snakeController.FinalizeDirection(snake);
             _snakeController.CheckCollisions(board);
 
@@ -207,6 +217,7 @@ namespace SnakeGame.Scripts {
             var snakeNewPosition = board.Snakes[0].Position;
             // Distance Reward
             PreviousDistance = Vector2.Distance(snakeNewPosition, previousFoodPosition);
+
             if (board.FoodPositions.Count > 0) {
                 currentFoodPosition = board.FoodPositions[0];
                 // Calculate Euclidean distance
@@ -217,7 +228,7 @@ namespace SnakeGame.Scripts {
                                          / (lengthAtTimeStep + currentDistance));
 
                 // Apply the reward
-                AddReward(reward);
+                // AddReward(reward);
             }
 
 
@@ -226,6 +237,8 @@ namespace SnakeGame.Scripts {
                 AddReward(10f);
                 board.Snakes[0].AteFood = false;
             }
+
+            AddReward(-0.001f);
 
             if (!IsSnakeAlive(snake)) {
                 Debug.Log("Dead : " + -10f);
@@ -236,8 +249,28 @@ namespace SnakeGame.Scripts {
 
         public override void Heuristic(in ActionBuffers actionsOut) {
             Debug.Log("Heuristic");
+            Vector2Int currentDirection = board.Snakes[0].Direction;
+            int relativeDirection = GetRelativeDirection(currentDirection, _inputDirection);
             var discreteActionsOut = actionsOut.DiscreteActions;
-            discreteActionsOut[0] = ActionIndexForDirection(_lastInputDirection);
+            discreteActionsOut[0] = relativeDirection;
+        }
+
+        private int GetRelativeDirection(Vector2Int currentDirection, Vector2Int inputDirection) {
+            var clockwiseDirection = RotateClockwise(currentDirection);
+            var counterClockwiseDirection = RotateCounterClockwise(currentDirection);
+        
+
+
+
+            if (inputDirection == counterClockwiseDirection)
+                return 0; // turn left
+            if (inputDirection == currentDirection)
+                return 1; // go straight
+            if (inputDirection == clockwiseDirection)
+                return 2; // turn right
+            
+
+            return 1;
         }
     }
 }

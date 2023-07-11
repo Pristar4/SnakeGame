@@ -38,6 +38,7 @@ namespace SnakeGame.Scripts {
         private readonly List<GameObject> _snakeHeads = new();
 
         private TileDisplay[,] _tileDisplays;
+        [SerializeField] private bool isShowingReward = false;
 
         #region Event Functions
 
@@ -113,19 +114,9 @@ namespace SnakeGame.Scripts {
             }
 
             if (board.Snakes != null) {
-                var snakePos = new Vector2(board.Snakes[0].Position.x, board.Snakes[0].Position.y);
-                var foodPos = new Vector2(board.FoodPositions[0].x, board.FoodPositions[0].y);
-                int numInterpolationPoints = Math.Max(board.Width, board.Height);
-                HashSet<Vector2Int> highlightedTiles = new HashSet<Vector2Int>();
-
-                for (int i = 0; i < numInterpolationPoints; i++) {
-                    float t = (float)i / (numInterpolationPoints - 1);
-                    Vector2 interpolatedPos = Vector2.Lerp(snakePos, foodPos, t);
-                    Vector2Int gridPos = Vector2Int.RoundToInt(interpolatedPos);
-                    highlightedTiles.Add(gridPos);
-                }
-
-                var previousDistance = Vector2.Distance(snakePos, foodPos);
+                var snakePos = new Vector2Int(board.Snakes[0].Position.x, board.Snakes[0].Position.y);
+                var foodPos = new Vector2Int(board.FoodPositions[0].x, board.FoodPositions[0].y);
+                int rewardRadius = 10;
 
                 for (int y = 0; y < board.Height; y++) {
                     for (int x = 0; x < board.Width; x++) {
@@ -134,23 +125,17 @@ namespace SnakeGame.Scripts {
 
                         switch (tile.Type) {
                             case TileType.None:
-                                var snakeLength = board.Snakes[0].Length;
-                                // currentDistance between the current tile and the food
-                                var currentDistance = Vector2.Distance(new Vector2(x, y), foodPos);
+                                if (isShowingReward) {
+                                    var currentTilePos = new Vector2Int(x, y);
+                                    float distanceToSnake = Vector2Int.Distance(currentTilePos, snakePos);
+                                    float distanceToFood = Vector2Int.Distance(currentTilePos, foodPos);
 
-                                float reward = Mathf.Log((snakeLength + previousDistance)
-                                                         / (snakeLength + currentDistance));
-                                float clampedReward = Mathf.Clamp01((reward + 1) /
-                                                                    2);
+                                    if (distanceToSnake <= rewardRadius) {
+                                        var rewardMaterial = new Material(foodDistanceMaterial) {
+                                            color = rewardGradient.Evaluate(1f - (distanceToFood / rewardRadius))
+                                        };
 
-                                var c = Color.Lerp(foodDistanceMaterial.color, Color.black, (clampedReward + 1) / 2f);
-
-                                if (board.FoodPositions.Count != 0) {
-                                    var blendedColor = Color.Lerp(Color.green, Color.black, clampedReward);
-
-                                    if (highlightedTiles.Contains(new Vector2Int(x, y))) {
-                                        tileDisplay.ChangeMaterial(foodDistanceMaterial);
-                                        tileDisplay.SetColor(blendedColor);
+                                        tileDisplay.ChangeMaterial(rewardMaterial);
                                     } else {
                                         tileDisplay.ChangeMaterial(noneMaterial);
                                     }
@@ -158,7 +143,6 @@ namespace SnakeGame.Scripts {
                                     tileDisplay.ChangeMaterial(noneMaterial);
                                 }
 
-                                previousDistance = Vector2.Distance(new Vector2(x, y), snakePos);
                                 break;
                             case TileType.Food:
                                 tileDisplay.ChangeMaterial(foodMaterial);
@@ -166,8 +150,8 @@ namespace SnakeGame.Scripts {
                             case TileType.Snake:
                                 tileDisplay.ChangeMaterial(GetSnakeMaterial(tile.Snake));
                                 break;
+                            case TileType.Wall:
                             default:
-                                // throw argument exception for invalid tile type
                                 throw new ArgumentOutOfRangeException(
                                         "TileType is not valid", innerException: null);
                         }

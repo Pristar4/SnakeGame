@@ -51,8 +51,8 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   boardDisplay: {fileID: 0}
-  width: 25
-  height: 25
+  width: 8
+  height: 8
   players:
   - snakeId: 0
     inputSchemer: {fileID: 11400000, guid: 892832864e8092948b7a24eab06bfcad, type: 2}
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 630
+    VectorObservationSize: 71
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
