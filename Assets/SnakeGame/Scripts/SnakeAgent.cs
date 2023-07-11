@@ -126,6 +126,8 @@ namespace SnakeGame.Scripts {
 
 
         public override void CollectObservations(VectorSensor sensor) {
+            const int view = 5; // Define view size as per your needs
+
             // Assuming that there is always at least one snake and one food in the game
             var snake = board.Snakes[0];
             var food = board.FoodPositions[0];
@@ -134,10 +136,10 @@ namespace SnakeGame.Scripts {
             Vector2 directionToFood = (food - snake.Position);
             // Normalize directionToFood
             directionToFood = directionToFood.normalized;
-            
 
-                    // Add the direction to the food (2 floats)
-                    sensor.AddObservation(directionToFood);
+
+            // Add the direction to the food (2 floats)
+            sensor.AddObservation(directionToFood);
 
             // Check for immediate dangers: front, left, right relative to the snake's current direction
             var forwardPosition = snake.Position + snake.Direction;
@@ -148,21 +150,51 @@ namespace SnakeGame.Scripts {
             sensor.AddObservation(IsPositionSafe(forwardPosition));
             sensor.AddObservation(IsPositionSafe(leftPosition));
             sensor.AddObservation(IsPositionSafe(rightPosition));
+
+            // Assuming that there is always at least one snake in the game
+            var snakeHeadPosition = board.Snakes[0].Position;
+
+            // Position of the top left corner of the window
+            var windowStart = snakeHeadPosition - new Vector2Int(view / 2, view / 2);
+
+            // Loop over each cell in the window
+            for (int i = 0; i < view; i++) {
+                for (int j = 0; j < view; j++) {
+                    var cellPos = windowStart + new Vector2Int(i, j);
+                    var tile = board.GetTile(i, j);
+
+                    int cellValue;
+
+                    if (cellPos.x < 0 || cellPos.y < 0 || cellPos.x >= board.Width || cellPos.y >= board.Height) {
+                        // Cell is out of bounds
+                        cellValue = -1;
+                    } else if (tile.Type == TileType.Snake) {
+                        // Cell is occupied by the snake
+                        cellValue = 1;
+                    } else if (tile.Type == TileType.Food) {
+                        // Cell contains food
+                        cellValue = 2;
+                    } else {
+                        // Cell is empty
+                        cellValue = 0;
+                    }
+
+                    sensor.AddObservation(cellValue);
+                }
+            }
         }
 
         private bool IsPositionSafe(Vector2Int position) {
             // Define the condition for the position to be safe. The following is just a basic example.
             // You might need to add more conditions or modify it according to your game rules.
-    
+
             // Check if out of bounds
             if (position.x < 0 || position.y < 0 || position.x >= width || position.y >= height)
                 return false;
 
             // Check if would collide with the snake
-            foreach (var snake in board.Snakes)
-            {
+            foreach (var snake in board.Snakes) {
                 if (snake.Body.Contains(position)) {
-                    
                     return false;
                 }
             }
@@ -187,12 +219,11 @@ namespace SnakeGame.Scripts {
             }
 
             var snake = board.Snakes[0];
-            int lengthAtTimeStep = snake.Length;
-            Vector2 currentFoodPosition, previousFoodPosition = Vector2.zero;
+            Vector2 FoodPosition, previousFoodPosition = Vector2.zero;
 
             if (board.FoodPositions.Count > 0) {
-                currentFoodPosition = board.FoodPositions[0];
-                previousFoodPosition = currentFoodPosition;
+                FoodPosition = board.FoodPositions[0];
+                previousFoodPosition = FoodPosition;
             }
 
             switch (action) {
@@ -237,21 +268,35 @@ namespace SnakeGame.Scripts {
             scoreText.text = "Score: " + board.Snakes[0].Score;
 
 
-            var snakeNewPosition = board.Snakes[0].Position;
             // Distance Reward
-            PreviousDistance = Vector2.Distance(snakeNewPosition, previousFoodPosition);
+            const int rewardRadius = 4;
 
             if (board.FoodPositions.Count > 0) {
-                currentFoodPosition = board.FoodPositions[0];
-                // Calculate Euclidean distance
-                float currentDistance = Vector2.Distance(snakeNewPosition, currentFoodPosition);
+                var currentTilePos = snake.Position;
+                    FoodPosition = board.FoodPositions[0];
+                     
+                    //Euclidean distance to food from current position
+                float currentDistance = Vector2.Distance(currentTilePos, FoodPosition);
+                    // Normalize the current distance, max distance will be the sqrt of (height^2 + width^2)
+                float normalizedCurrentDistance = currentDistance /
+                                                  Mathf.Sqrt((board.Width * board.Width) +
+                                                             (board.Height * board.Height));
 
-                // Define the reward
-                float reward = Mathf.Log((lengthAtTimeStep + PreviousDistance)
-                                         / (lengthAtTimeStep + currentDistance));
+                if (normalizedCurrentDistance <= rewardRadius) {
+                    // Compute the reward based on the Normalized current distance
+                    // float reward = Mathf.Log((snake.Length + PreviousDistance) / (snake.Length + currentDistance));
 
-                // Apply the reward
-                // AddReward(reward);
+
+                    // Define the reward
+                    float reward = Mathf.Log((snake.Length + PreviousDistance)
+                                             / (snake.Length + normalizedCurrentDistance));
+
+                    // Debug.Log("Distance Reward:" + reward);
+
+                    // Apply the reward
+                    // AddReward(reward);
+                    PreviousDistance = currentDistance;
+                }
             }
 
 
@@ -261,7 +306,7 @@ namespace SnakeGame.Scripts {
                 board.Snakes[0].AteFood = false;
             }
 
-            AddReward(-0.001f);
+            AddReward(-0.1f);
 
             if (!IsSnakeAlive(snake)) {
                 Debug.Log("Dead : " + -10f);
@@ -270,8 +315,9 @@ namespace SnakeGame.Scripts {
             }
         }
 
+
         public override void Heuristic(in ActionBuffers actionsOut) {
-            Debug.Log("Heuristic");
+            // Debug.Log("Heuristic");
             Vector2Int currentDirection = board.Snakes[0].Direction;
             int relativeDirection = GetRelativeDirection(currentDirection, _inputDirection);
             var discreteActionsOut = actionsOut.DiscreteActions;
@@ -281,7 +327,7 @@ namespace SnakeGame.Scripts {
         private int GetRelativeDirection(Vector2Int currentDirection, Vector2Int inputDirection) {
             var clockwiseDirection = RotateClockwise(currentDirection);
             var counterClockwiseDirection = RotateCounterClockwise(currentDirection);
-        
+
 
 
 
@@ -291,7 +337,7 @@ namespace SnakeGame.Scripts {
                 return 1; // go straight
             if (inputDirection == clockwiseDirection)
                 return 2; // turn right
-            
+
 
             return 1;
         }

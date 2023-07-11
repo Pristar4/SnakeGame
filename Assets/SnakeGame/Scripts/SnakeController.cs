@@ -104,6 +104,7 @@ namespace SnakeGame.Scripts {
 
             for (int i = 0; i < numberOfSnakes; i++) {
                 var startSpawnPosition = new Vector2Int(Random.Range(0, width), Random.Range(0, height));
+                // var startSpawnPosition = new Vector2Int(0, 0);
                 var startDirection = Vector2Int.up;
                 snakeArray[i] = CreateSnake(startSpawnPosition, startDirection, startSize, i);
             }
