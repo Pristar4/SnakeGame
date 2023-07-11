@@ -50,7 +50,9 @@ namespace SnakeGame.Scripts {
         {
             get => _previousDistance;
             set => _previousDistance = value;
-        }
+        } 
+            
+        
 
         #region Event Functions
 
@@ -107,6 +109,8 @@ namespace SnakeGame.Scripts {
                 board = new Board(width, height, snakes);
             }
 
+            PreviousDistance = float.PositiveInfinity;
+
 
             // food
             for (int i = 0; i < foodCount; i++) {
@@ -139,7 +143,7 @@ namespace SnakeGame.Scripts {
 
 
             // Add the direction to the food (2 floats)
-            sensor.AddObservation(directionToFood);
+            sensor.AddObservation(food);
 
             // Check for immediate dangers: front, left, right relative to the snake's current direction
             var forwardPosition = snake.Position + snake.Direction;
@@ -285,6 +289,9 @@ namespace SnakeGame.Scripts {
                 if (normalizedCurrentDistance <= rewardRadius) {
                     // Compute the reward based on the Normalized current distance
                     // float reward = Mathf.Log((snake.Length + PreviousDistance) / (snake.Length + currentDistance));
+                    
+                    
+                    
 
 
                     // Define the reward
@@ -297,6 +304,16 @@ namespace SnakeGame.Scripts {
                     // AddReward(reward);
                     PreviousDistance = currentDistance;
                 }
+
+                if (currentDistance < PreviousDistance) {
+                    AddReward(0.01f);
+                    Debug.Log("Closer :" + 0.01f);
+
+                } else if (currentDistance > PreviousDistance) {
+                    AddReward(-0.01f);
+                    Debug.Log("Further :" + -0.01f);
+                }
+                PreviousDistance = currentDistance;
             }
 
 
