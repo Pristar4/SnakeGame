@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
@@ -125,27 +126,49 @@ namespace SnakeGame.Scripts {
 
 
         public override void CollectObservations(VectorSensor sensor) {
-            if (board.Snakes.Length > 0) {
-                sensor.AddObservation(board.Snakes[0].Direction);
-                sensor.AddObservation(board.Snakes[0].Position);
-                sensor.AddObservation(PreviousDistance);
-                sensor.AddObservation(board.FoodPositions[0]);
-                int[] array = board.GetBoardAsArray();
+            // Assuming that there is always at least one snake and one food in the game
+            var snake = board.Snakes[0];
+            var food = board.FoodPositions[0];
 
-                for (int i = 0; i < array.Length; i++) {
-                    sensor.AddObservation(array[i]);
-                }
-            } else {
-                sensor.AddObservation(Vector2.zero);
-                sensor.AddObservation(Vector2.zero);
-                sensor.AddObservation(Vector2.zero);
+            // Calculate direction to the food relative to the snake's heading
+            Vector2 directionToFood = (food - snake.Position);
+            // Normalize directionToFood
+            directionToFood = directionToFood.normalized;
+            
 
-                int[] array = board.GetBoardAsArray();
+                    // Add the direction to the food (2 floats)
+                    sensor.AddObservation(directionToFood);
 
-                for (int i = 0; i < array.Length; i++) {
-                    sensor.AddObservation(-1);
+            // Check for immediate dangers: front, left, right relative to the snake's current direction
+            var forwardPosition = snake.Position + snake.Direction;
+            var leftPosition = snake.Position + RotateCounterClockwise(snake.Direction);
+            var rightPosition = snake.Position + RotateClockwise(snake.Direction);
+
+            // Check if next positions are inside the board and not occupied by the snake's body
+            sensor.AddObservation(IsPositionSafe(forwardPosition));
+            sensor.AddObservation(IsPositionSafe(leftPosition));
+            sensor.AddObservation(IsPositionSafe(rightPosition));
+        }
+
+        private bool IsPositionSafe(Vector2Int position) {
+            // Define the condition for the position to be safe. The following is just a basic example.
+            // You might need to add more conditions or modify it according to your game rules.
+    
+            // Check if out of bounds
+            if (position.x < 0 || position.y < 0 || position.x >= width || position.y >= height)
+                return false;
+
+            // Check if would collide with the snake
+            foreach (var snake in board.Snakes)
+            {
+                if (snake.Body.Contains(position)) {
+                    
+                    return false;
                 }
             }
+
+            // If passed both conditions, the position is safe.
+            return true;
         }
 
         private Vector2Int RotateClockwise(Vector2Int direction) {
