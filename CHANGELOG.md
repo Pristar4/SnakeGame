@@ -1,4 +1,4 @@
-﻿# Changelog
+# Changelog
 
 
 ## [Unreleased](https://github.com/Pristar4/SnakeGame/compare/v0.1.0-alpha...HEAD)
