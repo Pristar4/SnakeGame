@@ -1,0 +1,30 @@
+{
+  "count": 1,
+  "self": 0.15764409999999998,
+  "total": 0.1611676,
+  "children": {
+    "InitializeActuators": {
+      "count": 1,
+      "self": 0.0010065999999999999,
+      "total": 0.0010065999999999999,
+      "children": null
+    },
+    "InitializeSensors": {
+      "count": 1,
+      "self": 0.0010134,
+      "total": 0.0010134,
+      "children": null
+    }
+  },
+  "gauges": {},
+  "metadata": {
+    "timer_format_version": "0.1.0",
+    "start_time_seconds": "1689122862",
+    "unity_version": "2023.1.3f1",
+    "command_line_arguments": "C:\\Program Files\\Unity\\Hub\\Editor\\2023.1.3f1\\Editor\\Unity.exe -projectpath C:\\Users\\felix\\SnakeGame -useHub -hubIPC -cloudEnvironment production",
+    "communication_protocol_version": "1.5.0",
+    "com.unity.ml-agents_version": "2.3.0-exp.3",
+    "scene_name": "InitTestScene638247268610573678",
+    "end_time_seconds": "1689122862"
+  }
+}
