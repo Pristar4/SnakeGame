@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['wall_0',['Wall',['../namespace_snake_game_1_1_scripts.html#a17f90812441fe7911e589bbb135cf509a94e8a499539d1a472f3b5dbbb85508c0',1,'SnakeGame::Scripts']]],
-  ['width_1',['Width',['../class_snake_game_1_1_scripts_1_1_board.html#ac14764e0b564dc85644d825eb4823dd8',1,'SnakeGame::Scripts::Board']]]
+  ['up_0',['Up',['../namespace_snake_game_1_1_scripts.html#a950b53731a12289a3f1f4539c71576baa258f49887ef8d14ac268c92b02503aaa',1,'SnakeGame::Scripts']]],
+  ['upkey_1',['UpKey',['../class_snake_game_1_1_scripts_1_1_input_schemer.html#a2407dba696e174792fe723a119dae7e2',1,'SnakeGame::Scripts::InputSchemer']]]
 ];

@@ -9,15 +9,20 @@
 
 [//]: # ([![LinkedIn][linkedin-shield]][linkedin-url])
 
-
-![Logo](images/logo.png)
 <!-- PROJECT LOGO -->
 <br />
-<div align="center">
-  <a href="https://github.com/Pristar4/SnakeGame">
-    <img src="img/logo.png" alt="Logo" width="80" height="80">
-  </a>
 
+<div align="center">
+<div class="title_logo">
+
+  <a href="https://github.com/Pristar4/SnakeGame">
+
+[//]: # (This is for the doxygen)
+[//]: # (![logo]&#40;images/logo.png&#41;)
+<img src="images/logo.png" alt="Logo" width="80" height="80">
+
+  </a>
+</div>
 <h3 align="center">SnakeGame - AI Edition</h3>
 
   <p align="center">
@@ -68,8 +73,10 @@
 
 ## About The Project
 
-[![Example training with tensorboard and mlagents][product-screenshot]](https://github.com/Pristar4//images/product-screenshot.png)
-![product-screenshot.png](images%2Fproduct-screenshot.png)
+<div class="title_screenshot">
+
+![Example training with tensorboard and mlagents](img/screenshot.png)
+</div>
 
 This project is about making a sophisticated AI that can play the classic Snake Game efficiently.
 The goal was not only to cultivate the AI's ability to survive in the game, but also to potentially
@@ -134,7 +141,8 @@ Perform the following steps to set up and run the project:
    ```
    tensorboard --logdir results
    ```
-7. Enter the Play mode in the Unity editor in the AI scene under ``SnakeGame\Assets\SnakeGame\_Levels\AI``.
+7. Enter the Play mode in the Unity editor in the AI scene
+   under ``SnakeGame\Assets\SnakeGame\_Levels\AI``.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

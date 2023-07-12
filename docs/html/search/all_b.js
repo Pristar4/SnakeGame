@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['onactionreceived_0',['OnActionReceived',['../class_snake_game_1_1_scripts_1_1_snake_agent.html#abfc4636521e4cfcd150ae0be288386e6',1,'SnakeGame::Scripts::SnakeAgent']]],
-  ['onepisodebegin_1',['OnEpisodeBegin',['../class_snake_game_1_1_scripts_1_1_snake_agent.html#ac48fcb72958f7c2ad6a97b07edcdfa40',1,'SnakeGame::Scripts::SnakeAgent']]]
+  ['nextdirection_0',['NextDirection',['../class_snake_game_1_1_scripts_1_1_snake.html#a5e1f7e7a7601994cc9952a57d4ac8d36',1,'SnakeGame::Scripts::Snake']]],
+  ['none_1',['None',['../namespace_snake_game_1_1_scripts.html#a17f90812441fe7911e589bbb135cf509a6adf97f83acf6453d4a6a4b1070f3754',1,'SnakeGame::Scripts']]]
 ];

@@ -1,10 +1,15 @@
 var searchData=
 [
-  ['random_0',['Random',['../_board_8cs.html#a832e8f52fca5a678819ec96269dcb532',1,'Board.cs']]],
-  ['readme_2emd_1',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
-  ['red_2',['Red',['../class_snake_game_1_1_scripts_1_1_color_changer.html#aa92da33133a221a449da7108e021c319aee38e4d5dd68c4e440825018d549cb47',1,'SnakeGame::Scripts::ColorChanger']]],
-  ['redmaterial_3',['redMaterial',['../class_snake_game_1_1_scripts_1_1_color_changer.html#a2286267a5e33c36da34e113d0744241f',1,'SnakeGame::Scripts::ColorChanger']]],
-  ['reset_4',['Reset',['../class_snake_game_1_1_scripts_1_1_board.html#ae388b42c0337124268ef4356c61b8d34',1,'SnakeGame.Scripts.Board.Reset()'],['../class_snake_game_1_1_scripts_1_1_board_array.html#afe3fa956793a0af610f871248ae54655',1,'SnakeGame.Scripts.BoardArray.Reset()'],['../class_snake_game_1_1_scripts_1_1_board_display.html#a53cc71dd05a75839cc45b1e2af9bfa6c',1,'SnakeGame.Scripts.BoardDisplay.Reset()']]],
-  ['right_5',['Right',['../namespace_snake_game_1_1_scripts.html#a950b53731a12289a3f1f4539c71576baa92b09c7c48c520c3c55e497875da437c',1,'SnakeGame::Scripts']]],
-  ['rightkey_6',['RightKey',['../class_snake_game_1_1_scripts_1_1_input_schemer.html#ac1197a67daad3c2f2ca5801797bf4db0',1,'SnakeGame::Scripts::InputSchemer']]]
+  ['player_0',['Player',['../struct_snake_game_1_1_scripts_1_1_player.html',1,'SnakeGame::Scripts']]],
+  ['player1_1',['Player1',['../namespace_snake_game_1_1_scripts.html#a4b0cbd6c4b84620b237597f7beefc9f9aa77da55027d2fa0d53b7aa0b161daca7',1,'SnakeGame::Scripts']]],
+  ['player10_2',['Player10',['../namespace_snake_game_1_1_scripts.html#a4b0cbd6c4b84620b237597f7beefc9f9a511e206233642d4b36422ddb61513ee0',1,'SnakeGame::Scripts']]],
+  ['player2_3',['Player2',['../namespace_snake_game_1_1_scripts.html#a4b0cbd6c4b84620b237597f7beefc9f9a35e6584330a7de7edeb92b4bf44b1aad',1,'SnakeGame::Scripts']]],
+  ['player3_4',['Player3',['../namespace_snake_game_1_1_scripts.html#a4b0cbd6c4b84620b237597f7beefc9f9a845e86c189dcfe5942981ea77d86ac50',1,'SnakeGame::Scripts']]],
+  ['player4_5',['Player4',['../namespace_snake_game_1_1_scripts.html#a4b0cbd6c4b84620b237597f7beefc9f9a46debe0cee201fca70ca4ff963d8aa4b',1,'SnakeGame::Scripts']]],
+  ['player5_6',['Player5',['../namespace_snake_game_1_1_scripts.html#a4b0cbd6c4b84620b237597f7beefc9f9a8da5877f8aaf7acc8cf2164ff9119410',1,'SnakeGame::Scripts']]],
+  ['player6_7',['Player6',['../namespace_snake_game_1_1_scripts.html#a4b0cbd6c4b84620b237597f7beefc9f9a14352dc5d05b3af20f7002f23fd036bf',1,'SnakeGame::Scripts']]],
+  ['player7_8',['Player7',['../namespace_snake_game_1_1_scripts.html#a4b0cbd6c4b84620b237597f7beefc9f9ac95aa59c703f2cb1c9954f3d93ab92d6',1,'SnakeGame::Scripts']]],
+  ['player8_9',['Player8',['../namespace_snake_game_1_1_scripts.html#a4b0cbd6c4b84620b237597f7beefc9f9a02aa35a16b7e51973a8b03b1b45fb135',1,'SnakeGame::Scripts']]],
+  ['player9_10',['Player9',['../namespace_snake_game_1_1_scripts.html#a4b0cbd6c4b84620b237597f7beefc9f9a4d9a1ddaaa0b871a958212739c98c6c4',1,'SnakeGame::Scripts']]],
+  ['position_11',['Position',['../class_snake_game_1_1_scripts_1_1_snake.html#ac00fafa62ff22405bad16c477c5cd79e',1,'SnakeGame::Scripts::Snake']]]
 ];
