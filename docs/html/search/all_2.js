@@ -12,5 +12,7 @@ var searchData=
   ['coloroption_9',['colorOption',['../class_snake_game_1_1_scripts_1_1_color_changer.html#a020a857f4313c1c1037a110ff19497a4',1,'SnakeGame::Scripts::ColorChanger']]],
   ['containsposition_10',['ContainsPosition',['../class_snake_game_1_1_scripts_1_1_snake.html#ab666177e354aac439691665a2d841778',1,'SnakeGame::Scripts::Snake']]],
   ['createsnake_11',['CreateSnake',['../class_snake_game_1_1_scripts_1_1_snake_controller.html#a6d7d8714b286eb85dbfa2cae187c563d',1,'SnakeGame::Scripts::SnakeController']]],
-  ['createsnakes_12',['CreateSnakes',['../class_snake_game_1_1_scripts_1_1_snake_controller.html#af7e49b0ba82443fcb0efac4434ae4bd2',1,'SnakeGame::Scripts::SnakeController']]]
+  ['createsnakes_12',['CreateSnakes',['../class_snake_game_1_1_scripts_1_1_snake_controller.html#af7e49b0ba82443fcb0efac4434ae4bd2',1,'SnakeGame::Scripts::SnakeController']]],
+  ['customization_13',['Customization',['../md_docs_2customization.html',1,'']]],
+  ['customization_2emd_14',['customization.md',['../customization_8md.html',1,'']]]
 ];

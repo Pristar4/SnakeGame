@@ -10,12 +10,16 @@
 [//]: # ([![LinkedIn][linkedin-shield]][linkedin-url])
 
 
-![Logo](images/logo.png)
+<div class="title_logo">
+
+![logo](images/logo.png)
+</div>
 <!-- PROJECT LOGO -->
 <br />
+
 <div align="center">
   <a href="https://github.com/Pristar4/SnakeGame">
-    <img src="img/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">SnakeGame - AI Edition</h3>
@@ -68,8 +72,10 @@
 
 ## About The Project
 
-[![Example training with tensorboard and mlagents][product-screenshot]](https://github.com/Pristar4//images/product-screenshot.png)
-![product-screenshot.png](images%2Fproduct-screenshot.png)
+<div class="title_screenshot">
+
+![Example training with tensorboard and mlagents](img/screenshot.png)
+</div>
 
 This project is about making a sophisticated AI that can play the classic Snake Game efficiently.
 The goal was not only to cultivate the AI's ability to survive in the game, but also to potentially

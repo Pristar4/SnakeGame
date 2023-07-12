@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['snakegame_0',['SnakeGame',['../index.html',1,'']]]
+  ['customization_0',['Customization',['../md_docs_2customization.html',1,'']]]
 ];
