@@ -1,7 +1,10 @@
-﻿using System;
+﻿#region
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+
+#endregion
 
 namespace SnakeGame.Scripts {
     internal class SpriteBoardDisplay : BoardDisplay {
@@ -14,7 +17,7 @@ namespace SnakeGame.Scripts {
         [SerializeField] private Material noneMaterial;
         [SerializeField] private Material foodMaterial;
         [SerializeField] private Material snakeMaterial;
-        [SerializeField] Material foodDistanceMaterial;
+        [SerializeField] private Material foodDistanceMaterial;
         [SerializeField] private Gradient rewardGradient;
 
 
@@ -31,6 +34,7 @@ namespace SnakeGame.Scripts {
         [SerializeField] private Material player10Material;
 
         [Header("Visuals")] [SerializeField] private GameObject snakeDirectionPrefab;
+        [SerializeField] private bool isShowingReward;
 
         #endregion
 
@@ -38,7 +42,6 @@ namespace SnakeGame.Scripts {
         private readonly List<GameObject> _snakeHeads = new();
 
         private TileDisplay[,] _tileDisplays;
-        [SerializeField] private bool isShowingReward = false;
 
         #region Event Functions
 
@@ -68,7 +71,8 @@ namespace SnakeGame.Scripts {
 
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
-                    var tilePos = new Vector3(x, y, 0) - new Vector3(width, height, 0) / 2f + Vector3.one / 2f;
+                    var tilePos = new Vector3(x, y, 0) - new Vector3(width, height, 0) / 2f +
+                                  Vector3.one / 2f;
                     _tileDisplays[x, y] = CreateTileDisplay(tilePos);
                 }
             }
@@ -114,7 +118,8 @@ namespace SnakeGame.Scripts {
             }
 
             if (board.Snakes != null) {
-                var snakePos = new Vector2Int(board.Snakes[0].Position.x, board.Snakes[0].Position.y);
+                var snakePos =
+                        new Vector2Int(board.Snakes[0].Position.x, board.Snakes[0].Position.y);
                 var foodPos = new Vector2Int(board.FoodPositions[0].x, board.FoodPositions[0].y);
                 int rewardRadius = 10;
 
@@ -127,12 +132,15 @@ namespace SnakeGame.Scripts {
                             case TileType.None:
                                 if (isShowingReward) {
                                     var currentTilePos = new Vector2Int(x, y);
-                                    float distanceToSnake = Vector2Int.Distance(currentTilePos, snakePos);
-                                    float distanceToFood = Vector2Int.Distance(currentTilePos, foodPos);
+                                    float distanceToSnake =
+                                            Vector2Int.Distance(currentTilePos, snakePos);
+                                    float distanceToFood =
+                                            Vector2Int.Distance(currentTilePos, foodPos);
 
                                     if (distanceToSnake <= rewardRadius) {
                                         var rewardMaterial = new Material(foodDistanceMaterial) {
-                                            color = rewardGradient.Evaluate(1f - (distanceToFood / rewardRadius))
+                                            color = rewardGradient.Evaluate(
+                                                    1f - distanceToFood / rewardRadius),
                                         };
 
                                         tileDisplay.ChangeMaterial(rewardMaterial);
@@ -187,7 +195,8 @@ namespace SnakeGame.Scripts {
                         rotation = Quaternion.Euler(0, 0, -90);
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException("SnakeDirection is not valid", innerException: null);
+                        throw new ArgumentOutOfRangeException(
+                                "SnakeDirection is not valid", innerException: null);
                 }
 
                 entity.Value.transform.localRotation = rotation;

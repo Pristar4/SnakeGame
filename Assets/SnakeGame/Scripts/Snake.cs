@@ -1,5 +1,9 @@
-﻿using System;
+﻿#region
+
+using System;
 using UnityEngine;
+
+#endregion
 
 namespace SnakeGame.Scripts {
     [Serializable]
@@ -17,7 +21,8 @@ namespace SnakeGame.Scripts {
 
         #endregion
 
-        public Snake(Vector2Int position, Vector2Int direction, int length, int id, Vector2Int[] body,
+        public Snake(Vector2Int position, Vector2Int direction, int length, int id,
+                     Vector2Int[] body,
                      SnakeColor color) {
             Position = position;
             Direction = direction;
@@ -82,9 +87,15 @@ namespace SnakeGame.Scripts {
         public int Score { get; set; }
 
         public bool IsAlive { get; set; } = true;
-        public SnakeColor Color => color;
+        public SnakeColor Color
+        {
+            get => color;
+        }
         public bool AteFood { get; set; }
-        public Vector3 Head => new(Position.x, Position.y, 0);
+        public Vector3 Head
+        {
+            get => new(Position.x, Position.y, 0);
+        }
         public Vector2Int NextDirection
         {
             get => nextDirection;

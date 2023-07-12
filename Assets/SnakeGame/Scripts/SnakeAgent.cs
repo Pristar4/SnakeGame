@@ -19,45 +19,44 @@ namespace SnakeGame.Scripts {
         [SerializeField] private BoardDisplay boardDisplay;
         [Range(5, 100)] [SerializeField] private int width = 10;
         [Range(5, 100)] [SerializeField] private int height = 10;
-        [SerializeField] private List<Player> players;
         [SerializeField] private TMP_Text scoreText;
         [SerializeField] private TMP_Text highScoreText;
-        [SerializeField] private bool wrapIsEnabled;
         [SerializeField] private int foodCount = 1;
         [SerializeField] private Board board;
         [SerializeField] private int numberOfSnakes = 1;
         [SerializeField] private int startSize = 1;
         [SerializeField] private bool isDisplayOn;
 
+        [Range(1, 10)] [SerializeField] private int maxPathLength = 5;
+
         #endregion
 
-        private float currentReward;
-
-
-        private readonly Vector2Int[] _actionDirections = {
+        private readonly Vector2Int[] _directions = {
             new(0, 1),
             new(1, 0),
             new(0, -1),
             new(-1, 0),
         };
-        private Vector2Int _inputDirection = Vector2Int.up; // keeps track of the last input direction
+        private int[] _actionLongestPathArray;
+
+        private float _currentReward;
 
         private float _currentTimer;
         private int _highScore;
-        private float _previousDistance;
+        private Vector2Int
+                _inputDirection = Vector2Int.up; // keeps track of the last input direction
+        private int _longestPath;
+        private bool _shouldRecalculatePaths = true;
         private SnakeController _snakeController;
-        public float PreviousDistance
-        {
-            get => _previousDistance;
-            set => _previousDistance = value;
-        } 
-            
-        
+
+        private float PreviousDistance { get; set; }
 
         #region Event Functions
 
         private void Start() {
             InitializeGame();
+            _actionLongestPathArray = new int[3];
+            _shouldRecalculatePaths = true;
         }
 
         private void Update() {
@@ -74,49 +73,15 @@ namespace SnakeGame.Scripts {
             }
 
             if (tempDirection != Vector2Int.zero) _inputDirection = tempDirection;
+
+            if (_shouldRecalculatePaths) {
+                CalculateLongestPathsForAllDirections();
+
+                _shouldRecalculatePaths = false;
+            }
         }
 
         #endregion
-
-        private int ActionIndexForDirection(Vector2Int direction) {
-            int index = Array.IndexOf(_actionDirections, direction);
-
-
-            if (index == -1) {
-                Debug.LogError("Invalid direction");
-                return 0; // This should be reasonable default value.
-            }
-
-            return index;
-        }
-
-        private Vector2Int GetDirectionFromAction(int actionIndex) {
-            return _actionDirections[actionIndex];
-        }
-
-        private void InitializeGame() {
-            _snakeController = new SnakeController();
-            var snakes = _snakeController.CreateSnakes(width, height, numberOfSnakes, startSize);
-
-            if (board != null) {
-                board.Snakes = snakes;
-                board.Reset(snakes, width, height);
-
-                if (isDisplayOn) {
-                    boardDisplay.Reset();
-                }
-            } else {
-                board = new Board(width, height, snakes);
-            }
-
-            PreviousDistance = float.PositiveInfinity;
-
-
-            // food
-            for (int i = 0; i < foodCount; i++) {
-                board.FoodPositions.Add(board.SpawnFood());
-            }
-        }
 
 
         public override void OnEpisodeBegin() {
@@ -130,30 +95,40 @@ namespace SnakeGame.Scripts {
 
 
         public override void CollectObservations(VectorSensor sensor) {
-            const int view = 5; // Define view size as per your needs
+            Debug.Log("Collecting Observations");
+
+            const int view = 6; // Define view size as per your needs
 
             // Assuming that there is always at least one snake and one food in the game
             var snake = board.Snakes[0];
             var food = board.FoodPositions[0];
 
             // Calculate direction to the food relative to the snake's heading
-            Vector2 directionToFood = (food - snake.Position);
+            Vector2 directionToFood = food - snake.Position;
             // Normalize directionToFood
             directionToFood = directionToFood.normalized;
 
 
             // Add the direction to the food (2 floats)
-            sensor.AddObservation(food);
+            sensor.AddObservation(directionToFood);
 
             // Check for immediate dangers: front, left, right relative to the snake's current direction
             var forwardPosition = snake.Position + snake.Direction;
             var leftPosition = snake.Position + RotateCounterClockwise(snake.Direction);
             var rightPosition = snake.Position + RotateClockwise(snake.Direction);
-
             // Check if next positions are inside the board and not occupied by the snake's body
             sensor.AddObservation(IsPositionSafe(forwardPosition));
             sensor.AddObservation(IsPositionSafe(leftPosition));
             sensor.AddObservation(IsPositionSafe(rightPosition));
+
+
+            CalculateLongestPathsForAllDirections();
+
+            sensor.AddObservation(_actionLongestPathArray[1]);
+            sensor.AddObservation(_actionLongestPathArray[0]);
+            sensor.AddObservation(_actionLongestPathArray[2]);
+
+
 
             // Assuming that there is always at least one snake in the game
             var snakeHeadPosition = board.Snakes[0].Position;
@@ -169,7 +144,8 @@ namespace SnakeGame.Scripts {
 
                     int cellValue;
 
-                    if (cellPos.x < 0 || cellPos.y < 0 || cellPos.x >= board.Width || cellPos.y >= board.Height) {
+                    if (cellPos.x < 0 || cellPos.y < 0 || cellPos.x >= board.Width ||
+                        cellPos.y >= board.Height) {
                         // Cell is out of bounds
                         cellValue = -1;
                     } else if (tile.Type == TileType.Snake) {
@@ -186,6 +162,36 @@ namespace SnakeGame.Scripts {
                     sensor.AddObservation(cellValue);
                 }
             }
+        }
+
+        private int FindLongestPath(Vector2Int position, HashSet<Vector2Int> visitedPositions,
+                                    int maxLength,
+                                    int currentLength = 0) {
+            visitedPositions.Add(position);
+
+            // Exit if the path length equals maxPathLength
+            if (currentLength == maxLength) {
+                return currentLength;
+            }
+
+            int longestPath = 0;
+
+
+
+            foreach (var dir in _directions) {
+                var nextPosition = position + dir;
+
+                if (IsPositionSafe(nextPosition) && !visitedPositions.Contains(nextPosition)) {
+                    longestPath = Math.Max(longestPath,
+                                           FindLongestPath(nextPosition, visitedPositions,
+                                                           maxLength,
+                                                           currentLength + 1));
+                }
+            }
+
+            visitedPositions.Remove(position);
+
+            return longestPath;
         }
 
         private bool IsPositionSafe(Vector2Int position) {
@@ -223,29 +229,11 @@ namespace SnakeGame.Scripts {
             }
 
             var snake = board.Snakes[0];
-            Vector2 FoodPosition, previousFoodPosition = Vector2.zero;
 
-            if (board.FoodPositions.Count > 0) {
-                FoodPosition = board.FoodPositions[0];
-                previousFoodPosition = FoodPosition;
-            }
 
-            switch (action) {
-                case 0: //turn left
-                    snake.NextDirection = RotateCounterClockwise(snake.Direction);
-                    break;
-                case 1: //go straight, no need to change the direction
-                    snake.NextDirection = snake.Direction;
-                    break;
-                case 2: //turn right
-                    snake.NextDirection = RotateClockwise(snake.Direction);
-                    break;
-            }
+            HandleSnakeDirection(action, snake);
 
-            _snakeController.FinalizeDirection(snake);
-            _snakeController.CheckCollisions(board);
-
-            _snakeController.Move(board, board.Snakes[0], false);
+            ProcessSnakeMovement(snake);
 
             board.ClearBoard();
             board.DrawFood(board.FoodPositions);
@@ -261,66 +249,129 @@ namespace SnakeGame.Scripts {
                 boardDisplay.DrawBoard(board);
             }
 
-            // update high score if current score is higher
-            if (board.Snakes[0].Score > _highScore) {
-                _highScore = snake.Score;
-            }
-
-            highScoreText.text = "High Score: " + _highScore;
-
-
-            scoreText.text = "Score: " + board.Snakes[0].Score;
+            CheckForNewHighScore(snake);
 
 
             // Distance Reward
             const int rewardRadius = 4;
 
+            // Get action's longest path from the array
+            int actionLongestPath = _actionLongestPathArray[action];
+
+            // If the longest path is shorter than the maximum, it's a bad action (blocked), apply punishment
+            if (actionLongestPath < maxPathLength) {
+                Debug.Log("Bad action");
+                AddReward(-1f);
+            }
+            // Good action, apply reward
+            else {
+                Debug.Log("Good action");
+                AddReward(0.1f);
+            }
+
             if (board.FoodPositions.Count > 0) {
                 var currentTilePos = snake.Position;
-                    FoodPosition = board.FoodPositions[0];
-                     
-                    //Euclidean distance to food from current position
-                float currentDistance = Vector2.Distance(currentTilePos, FoodPosition);
-                    // Normalize the current distance, max distance will be the sqrt of (height^2 + width^2)
-                float normalizedCurrentDistance = currentDistance /
-                                                  Mathf.Sqrt((board.Width * board.Width) +
-                                                             (board.Height * board.Height));
+                Vector2 foodPosition = board.FoodPositions[0];
 
-                if (normalizedCurrentDistance <= rewardRadius) {
-                    // Compute the reward based on the Normalized current distance
-                    // float reward = Mathf.Log((snake.Length + PreviousDistance) / (snake.Length + currentDistance));
-                    
-                    
-                    
+                //Euclidean distance to food from current position
+                float currentDistance = Vector2.Distance(currentTilePos, foodPosition);
 
+                // Calculate the actual distance to the food
 
-                    // Define the reward
-                    float reward = Mathf.Log((snake.Length + PreviousDistance)
-                                             / (snake.Length + normalizedCurrentDistance));
+                // If the current distance is within the reward radius, apply the reward
+                if (currentDistance <= rewardRadius) {
+                    float normalizedCurrentDistance = currentDistance /
+                                                      Mathf.Sqrt(
+                                                              board.Width * board.Width +
+                                                              board.Height * board.Height);
+                    float normalizedPreviousDistance = PreviousDistance /
+                                                       Mathf.Sqrt(board.Width * board.Width +
+                                                           board.Height * board.Height);
+                    // Compute the reward based on the current distance
+                    float reward = Mathf.Log((snake.Length + normalizedPreviousDistance) /
+                                             (snake.Length + normalizedCurrentDistance));
 
-                    // Debug.Log("Distance Reward:" + reward);
+                    // normalize the reward between -1 and 1
+
 
                     // Apply the reward
-                    // AddReward(reward);
-                    PreviousDistance = currentDistance;
+                    AddReward(reward);
                 }
+
+                PreviousDistance = currentDistance;
+
 
                 if (currentDistance < PreviousDistance) {
                     AddReward(0.01f);
                     Debug.Log("Closer :" + 0.01f);
-
                 } else if (currentDistance > PreviousDistance) {
                     AddReward(-0.01f);
                     Debug.Log("Further :" + -0.01f);
                 }
+
                 PreviousDistance = currentDistance;
             }
 
 
-            if (board.Snakes[0].AteFood) {
-                Debug.Log("Eat : " + 10f);
+            CheckSnakeStatus(snake);
+
+            _shouldRecalculatePaths = true;
+        }
+        private void CalculateLongestPathsForAllDirections() {
+            var snake = board.Snakes[0];
+
+            for (int action = 0; action < 3; ++action) {
+                var actionDirection = action switch {
+                    0 => RotateCounterClockwise(snake.Direction),
+                    1 => snake.Direction,
+                    2 => RotateClockwise(snake.Direction),
+                    _ => snake.Direction,
+                };
+
+                int longestPath = FindLongestPath(snake.Position + actionDirection,
+                                                  new HashSet<Vector2Int>(),
+                                                  maxPathLength);
+                string directionText = action switch {
+                    0 => "Left",
+                    1 => "Forward",
+                    2 => "Right",
+                    _ => "Forward",
+                };
+                Debug.Log($"Longest path for action {directionText} is {longestPath}");
+                _actionLongestPathArray[action] = longestPath;
+            }
+        }
+
+
+        private void InitializeGame() {
+            _snakeController = new SnakeController();
+            var snakes = _snakeController.CreateSnakes(width, height, numberOfSnakes, startSize);
+
+            if (board != null) {
+                board.Snakes = snakes;
+                board.Reset(snakes, width, height);
+
+                if (isDisplayOn) {
+                    boardDisplay.Reset();
+                }
+            } else {
+                board = new Board(width, height, snakes);
+            }
+
+            PreviousDistance = float.PositiveInfinity;
+
+
+            // food
+            for (int i = 0; i < foodCount; i++) {
+                board.FoodPositions.Add(board.SpawnFood());
+            }
+        }
+
+        private void CheckSnakeStatus(Snake snake) {
+            if (snake.AteFood) {
+                Debug.Log("Eat : " + 20);
                 AddReward(10f);
-                board.Snakes[0].AteFood = false;
+                snake.AteFood = false;
             }
 
             AddReward(-0.1f);
@@ -332,10 +383,42 @@ namespace SnakeGame.Scripts {
             }
         }
 
+        private void CheckForNewHighScore(Snake snake) {
+            // update high score if current score is higher
+            if (board.Snakes[0].Score > _highScore) {
+                _highScore = snake.Score;
+            }
+
+            highScoreText.text = "High Score: " + _highScore;
+
+
+            scoreText.text = "Score: " + board.Snakes[0].Score;
+        }
+
+        private void ProcessSnakeMovement(Snake snake) {
+            _snakeController.FinalizeDirection(snake);
+            _snakeController.CheckCollisions(board);
+
+            _snakeController.Move(board, board.Snakes[0], false);
+        }
+
+        private void HandleSnakeDirection(int action, Snake snake) {
+            switch (action) {
+                case 0: //turn left
+                    snake.NextDirection = RotateCounterClockwise(snake.Direction);
+                    break;
+                case 1: //go straight, no need to change the direction
+                    snake.NextDirection = snake.Direction;
+                    break;
+                case 2: //turn right
+                    snake.NextDirection = RotateClockwise(snake.Direction);
+                    break;
+            }
+        }
+
 
         public override void Heuristic(in ActionBuffers actionsOut) {
-            // Debug.Log("Heuristic");
-            Vector2Int currentDirection = board.Snakes[0].Direction;
+            var currentDirection = board.Snakes[0].Direction;
             int relativeDirection = GetRelativeDirection(currentDirection, _inputDirection);
             var discreteActionsOut = actionsOut.DiscreteActions;
             discreteActionsOut[0] = relativeDirection;

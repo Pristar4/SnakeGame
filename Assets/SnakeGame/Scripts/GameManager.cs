@@ -1,9 +1,13 @@
+#region
+
 using System;
 using System.Collections.Generic;
 using Cinemachine;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+#endregion
 
 namespace SnakeGame.Scripts {
     public class GameManager : MonoBehaviour {
@@ -68,7 +72,8 @@ namespace SnakeGame.Scripts {
 
                 var snake = _board.Snakes[0];
 
-                var inputDirection = InputController.HandleInput(snake.Direction, player.inputSchemer);
+                var inputDirection =
+                        InputController.HandleInput(snake.Direction, player.inputSchemer);
 
                 if (inputDirection != Vector2Int.zero)
                     snake.NextDirection = inputDirection;
@@ -121,7 +126,8 @@ namespace SnakeGame.Scripts {
                 startSpawnPosition += Vector2Int.right * i * 10;
 
                 snakes[i] = snakeController;
-                SnakeController.InitializeSnakeBody(_board.Snakes[0], startSpawnPosition, Vector2Int.up, 5);
+                SnakeController.InitializeSnakeBody(_board.Snakes[0], startSpawnPosition,
+                                                    Vector2Int.up, 5);
             }
         }
 

@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿#region
+
+using UnityEngine;
+
+#endregion
 
 namespace SnakeGame.Scripts {
     public abstract class BoardDisplay : MonoBehaviour {

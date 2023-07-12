@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿#region
+
+using UnityEngine;
+
+#endregion
 
 namespace SnakeGame.Scripts {
     public class SnakeController {
@@ -22,14 +26,16 @@ namespace SnakeGame.Scripts {
             set => nextDirection = value;
         }*/
 
-        public static void InitializeSnakeBody(Snake snake, Vector2Int position, Vector2Int direction, int length) {
+        public static void InitializeSnakeBody(Snake snake, Vector2Int position,
+                                               Vector2Int direction, int length) {
             for (int i = 0; i < length; i++) {
                 snake.Body[i] = position - direction * i;
             }
         }
 
         public Snake CreateSnake(Vector2Int position, Vector2Int direction, int length, int id) {
-            var snake = new Snake(position, direction, length, id, new Vector2Int[length], SnakeColor.Player1);
+            var snake = new Snake(position, direction, length, id, new Vector2Int[length],
+                                  SnakeColor.Player1);
             InitializeSnakeBody(snake, position, direction, length);
 
             return snake;
@@ -103,8 +109,8 @@ namespace SnakeGame.Scripts {
             var snakeArray = new Snake[numberOfSnakes];
 
             for (int i = 0; i < numberOfSnakes; i++) {
-                var startSpawnPosition = new Vector2Int(Random.Range(0, width), Random.Range(0, height));
-                // var startSpawnPosition = new Vector2Int(0, 0);
+                var startSpawnPosition =
+                        new Vector2Int(Random.Range(0, width), Random.Range(0, height));
                 var startDirection = Vector2Int.up;
                 snakeArray[i] = CreateSnake(startSpawnPosition, startDirection, startSize, i);
             }

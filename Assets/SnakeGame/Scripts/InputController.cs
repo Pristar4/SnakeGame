@@ -1,5 +1,9 @@
+#region
+
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+#endregion
 
 namespace SnakeGame.Scripts {
     /// <summary>
@@ -8,7 +12,8 @@ namespace SnakeGame.Scripts {
     ///     without the opposite direction
     /// </summary>
     public static class InputController {
-        public static Vector2Int HandleInput(Vector2Int currentDirection, InputSchemer inputSchemer) {
+        public static Vector2Int
+                HandleInput(Vector2Int currentDirection, InputSchemer inputSchemer) {
             var up = Vector2Int.up;
             var down = Vector2Int.down;
             var left = Vector2Int.left;
@@ -18,13 +23,17 @@ namespace SnakeGame.Scripts {
 
             Vector2Int nextDirection = default;
 
-            if (Keyboard.current[inputSchemer.UpKey].wasPressedThisFrame && currentDirection != down) {
+            if (Keyboard.current[inputSchemer.UpKey].wasPressedThisFrame &&
+                currentDirection != down) {
                 nextDirection = up;
-            } else if (Keyboard.current[inputSchemer.LeftKey].wasPressedThisFrame && currentDirection != right) {
+            } else if (Keyboard.current[inputSchemer.LeftKey].wasPressedThisFrame &&
+                       currentDirection != right) {
                 nextDirection = left;
-            } else if (Keyboard.current[inputSchemer.DownKey].wasPressedThisFrame && currentDirection != up) {
+            } else if (Keyboard.current[inputSchemer.DownKey].wasPressedThisFrame &&
+                       currentDirection != up) {
                 nextDirection = down;
-            } else if (Keyboard.current[inputSchemer.RightKey].wasPressedThisFrame && currentDirection != left) {
+            } else if (Keyboard.current[inputSchemer.RightKey].wasPressedThisFrame &&
+                       currentDirection != left) {
                 nextDirection = right;
             }
 
