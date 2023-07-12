@@ -10,7 +10,7 @@ var class_snake_game_1_1_scripts_1_1_board =
     [ "GetTile", "class_snake_game_1_1_scripts_1_1_board.html#a3254f713a7b1676317dcbc2c78a2dd9b", null ],
     [ "IsOccupied", "class_snake_game_1_1_scripts_1_1_board.html#ac14af6d28239a3b7cff22de8223b7c79", null ],
     [ "IsOutOfBounds", "class_snake_game_1_1_scripts_1_1_board.html#ad3f876c21e27c01a0c7471ac90bbc19f", null ],
-    [ "Reset", "class_snake_game_1_1_scripts_1_1_board.html#a50ab799ae7396970dff977f862584385", null ],
+    [ "Reset", "class_snake_game_1_1_scripts_1_1_board.html#ae388b42c0337124268ef4356c61b8d34", null ],
     [ "SpawnFood", "class_snake_game_1_1_scripts_1_1_board.html#add8d6d7cb840d70e348c1dca171c763a", null ],
     [ "FoodPositions", "class_snake_game_1_1_scripts_1_1_board.html#a877de6c2fa48a6c4f9760835b2ab9c96", null ],
     [ "Height", "class_snake_game_1_1_scripts_1_1_board.html#a692e92fd627a96362937962231c608ec", null ],

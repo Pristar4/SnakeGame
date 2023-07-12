@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nextdirection_0',['NextDirection',['../class_snake_game_1_1_scripts_1_1_snake.html#a5e1f7e7a7601994cc9952a57d4ac8d36',1,'SnakeGame::Scripts::Snake']]]
+  ['maxdistance_0',['MaxDistance',['../class_snake_game_1_1_scripts_1_1_snake_agent.html#a22d7dc89b4254e431cdeb00a31787c7d',1,'SnakeGame::Scripts::SnakeAgent']]]
 ];

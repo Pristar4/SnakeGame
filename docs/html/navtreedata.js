@@ -70,7 +70,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_board_8cs.html",
-"struct_snake_game_1_1_scripts_1_1_player.html#ab0ae832e4cb900c2e8fe0ba3ee812450"
+"struct_snake_game_1_1_scripts_1_1_player.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
