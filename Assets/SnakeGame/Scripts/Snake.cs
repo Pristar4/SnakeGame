@@ -5,9 +5,11 @@ using UnityEngine;
 
 #endregion
 
-namespace SnakeGame.Scripts {
+namespace SnakeGame.Scripts
+{
     [Serializable]
-    public class Snake {
+    public class Snake
+    {
         #region Serialized Fields
 
         [SerializeField] private Vector2Int position;
@@ -21,23 +23,13 @@ namespace SnakeGame.Scripts {
 
         #endregion
 
-        public Snake(Vector2Int position, Vector2Int direction, int length, int id,
-                     Vector2Int[] body,
-                     SnakeColor color) {
-            Position = position;
-            Direction = direction;
-            Length = length;
-            Id = id;
-            Body = body;
-            this.color = color;
-        }
-
 
         public Vector2Int Position
         {
             get => position;
             set => position = value;
         }
+
         public Vector2Int Direction
         {
             get => direction;
@@ -48,19 +40,23 @@ namespace SnakeGame.Scripts {
         {
             get
             {
-                if (Direction == Vector2Int.up) {
+                if (Direction == Vector2Int.up)
+                {
                     return SnakeDirection.Up;
                 }
 
-                if (Direction == Vector2Int.down) {
+                if (Direction == Vector2Int.down)
+                {
                     return SnakeDirection.Down;
                 }
 
-                if (Direction == Vector2Int.left) {
+                if (Direction == Vector2Int.left)
+                {
                     return SnakeDirection.Left;
                 }
 
-                if (Direction == Vector2Int.right) {
+                if (Direction == Vector2Int.right)
+                {
                     return SnakeDirection.Right;
                 }
 
@@ -68,16 +64,19 @@ namespace SnakeGame.Scripts {
                 return SnakeDirection.Up;
             }
         }
+
         public Vector2Int[] Body
         {
             get => body;
             set => body = value;
         }
+
         public int Length
         {
             get => length;
             set => length = value;
         }
+
         public int Id
         {
             get => id;
@@ -87,26 +86,50 @@ namespace SnakeGame.Scripts {
         public int Score { get; set; }
 
         public bool IsAlive { get; set; } = true;
-        public SnakeColor Color
-        {
-            get => color;
-        }
+        public SnakeColor Color => color;
         public bool AteFood { get; set; }
-        public Vector3 Head
-        {
-            get => new(Position.x, Position.y, 0);
-        }
+        public Vector3 Head => new(Position.x, Position.y, 0);
+
         public Vector2Int NextDirection
         {
             get => nextDirection;
             set => nextDirection = value;
         }
+        public Snake(Vector2Int position, Vector2Int direction, int length, int id,
+                     Vector2Int[] body,
+                     SnakeColor color)
+        {
+            Position = position;
+            Direction = direction;
+            Length = length;
+            Id = id;
+            Body = body;
+            this.color = color;
+        }
 
-        public void Grow() {
+        public bool ContainsPosition(Vector2Int vector2Int)
+        {
+            for (int i = 0; i < Length; i++)
+            {
+                if (Body[i] == vector2Int)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+
+        public void Die() => IsAlive = false;
+
+        public void Grow()
+        {
             Length++;
-            var newBody = new Vector2Int[Length];
+            Vector2Int[] newBody = new Vector2Int[Length];
 
-            for (int i = 0; i < Length - 1; i++) {
+            for (int i = 0; i < Length - 1; i++)
+            {
                 newBody[i] = Body[i];
             }
 
@@ -115,25 +138,10 @@ namespace SnakeGame.Scripts {
             Score++;
             AteFood = true;
         }
-
-
-        public void Die() {
-            IsAlive = false;
-            // Debug.Log("Snake " + Id + " died");
-        }
-
-        public bool ContainsPosition(Vector2Int vector2Int) {
-            for (int i = 0; i < Length; i++) {
-                if (Body[i] == vector2Int) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
     }
 
-    public enum SnakeColor {
+    public enum SnakeColor
+    {
         // 10 color slots for 10 players
         Player1,
         Player2,

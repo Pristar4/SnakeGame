@@ -1,67 +1,76 @@
 {
-  "count": 1,
-  "self": 9.3403792,
-  "total": 9.3681278,
-  "children": {
-    "InitializeActuators": {
-      "count": 8,
-      "self": 0.0010034,
-      "total": 0.0010034,
-      "children": null
-    },
-    "InitializeSensors": {
-      "count": 8,
-      "self": 0.0009994,
-      "total": 0.0009994,
-      "children": null
-    },
-    "AgentSendState": {
-      "count": 1,
-      "self": 0.0010061,
-      "total": 0.010084899999999999,
-      "children": {
-        "CollectObservations": {
-          "count": 8,
-          "self": 0.0080716,
-          "total": 0.0080716,
-          "children": null
+    "count": 1,
+    "self": 10.819744799999999,
+    "total": 11.2268753,
+    "children": {
+        "InitializeActuators": {
+            "count": 8,
+            "self": 0.0015133,
+            "total": 0.0015133,
+            "children": null
         },
-        "WriteActionMask": {
-          "count": 8,
-          "self": 0,
-          "total": 0,
-          "children": null
+        "InitializeSensors": {
+            "count": 8,
+            "self": 0.0015168,
+            "total": 0.0015168,
+            "children": null
         },
-        "RequestDecision": {
-          "count": 8,
-          "self": 0.0010072,
-          "total": 0.0010072,
-          "children": null
+        "AgentSendState": {
+            "count": 60,
+            "self": 0.0010157,
+            "total": 0.2497354,
+            "children": {
+                "CollectObservations": {
+                    "count": 480,
+                    "self": 0.2456526,
+                    "total": 0.2456526,
+                    "children": null
+                },
+                "WriteActionMask": {
+                    "count": 480,
+                    "self": 0.0010668,
+                    "total": 0.0010668,
+                    "children": null
+                },
+                "RequestDecision": {
+                    "count": 480,
+                    "self": 0.0020003,
+                    "total": 0.0020003,
+                    "children": null
+                }
+            }
+        },
+        "DecideAction": {
+            "count": 60,
+            "self": 0.0015038,
+            "total": 0.0015038,
+            "children": null
+        },
+        "AgentAct": {
+            "count": 60,
+            "self": 0.1528612,
+            "total": 0.1528612,
+            "children": null
         }
-      }
     },
-    "DecideAction": {
-      "count": 1,
-      "self": 0.0015562999999999998,
-      "total": 0.0015562999999999998,
-      "children": null
+    "gauges": {
+        "SnakeAi.CumulativeReward": {
+            "count": 71,
+            "max": 19.3010044,
+            "min": -11.4027328,
+            "runningAverage": -9.782438,
+            "value": -11.1,
+            "weightedAverage": -11.1100969
+        }
     },
-    "AgentAct": {
-      "count": 1,
-      "self": 0.014104799999999999,
-      "total": 0.014104799999999999,
-      "children": null
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1689188193",
+        "unity_version": "2023.1.3f1",
+        "command_line_arguments": "C:\\Program Files\\Unity\\Hub\\Editor\\2023.1.3f1\\Editor\\Unity.exe -projectpath C:\\Users\\felix\\SnakeGame -useHub -hubIPC -cloudEnvironment production",
+        "communication_protocol_version": "1.5.0",
+        "com.unity.ml-agents_version": "2.3.0-exp.3",
+        "scene_name": "AI",
+        "end_time_seconds": "1689188204"
     }
-  },
-  "gauges": {},
-  "metadata": {
-    "timer_format_version": "0.1.0",
-    "start_time_seconds": "1689167416",
-    "unity_version": "2023.1.3f1",
-    "command_line_arguments": "C:\\Program Files\\Unity\\Hub\\Editor\\2023.1.3f1\\Editor\\Unity.exe -projectpath C:\\Users\\felix\\SnakeGame -useHub -hubIPC -cloudEnvironment production",
-    "communication_protocol_version": "1.5.0",
-    "com.unity.ml-agents_version": "2.3.0-exp.3",
-    "scene_name": "AI",
-    "end_time_seconds": "1689167425"
-  }
 }

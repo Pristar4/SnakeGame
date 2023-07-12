@@ -1,5 +1,7 @@
-namespace SnakeGame.Scripts {
-    public enum TileType {
+namespace SnakeGame.Scripts
+{
+    public enum TileType
+    {
         None,
         Food,
         Snake,

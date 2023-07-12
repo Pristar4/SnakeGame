@@ -6,26 +6,29 @@ using UnityEngine;
 
 #endregion
 
-namespace Tests.EditMode {
+namespace Tests.EditMode
+{
     [TestFixture]
-    public class SnakeTests {
-        #region Setup/Teardown
-
+    public class SnakeTests
+    {
         [SetUp]
-        public void SetUp() {
+        public void SetUp()
+        {
             var position = new Vector2Int(0, 0);
             var direction = new Vector2Int(0, 1);
-            var body = new[] {position};
+            Vector2Int[] body =
+            {
+                position,
+            };
 
             _snake = new Snake(position, direction, 1, 1, body, SnakeColor.Player1);
         }
 
-        #endregion
-
         private Snake _snake;
 
         [Test]
-        public void ContainsPosition_ReturnsExpectedResult_WhenPositionIsInSnakeBody() {
+        public void ContainsPosition_ReturnsExpectedResult_WhenPositionIsInSnakeBody()
+        {
             var positionInBody = _snake.Body[0];
 
             bool result = _snake.ContainsPosition(positionInBody);
@@ -34,7 +37,8 @@ namespace Tests.EditMode {
         }
 
         [Test]
-        public void ContainsPosition_ReturnsExpectedResult_WhenPositionIsNotInSnakeBody() {
+        public void ContainsPosition_ReturnsExpectedResult_WhenPositionIsNotInSnakeBody()
+        {
             var positionNotInBody = new Vector2Int(5, 5);
 
             bool result = _snake.ContainsPosition(positionNotInBody);
@@ -43,14 +47,16 @@ namespace Tests.EditMode {
         }
 
         [Test]
-        public void Die_MakesSnakeDead() {
+        public void Die_MakesSnakeDead()
+        {
             _snake.Die();
 
             Assert.IsFalse(_snake.IsAlive);
         }
 
         [Test]
-        public void Grow_IncreasesSnakeLengthAndScore_AdjestsBodyAndAteFoodState() {
+        public void Grow_IncreasesSnakeLengthAndScore_AdjestsBodyAndAteFoodState()
+        {
             int initialLength = _snake.Length;
             int initialScore = _snake.Score;
 
@@ -63,8 +69,6 @@ namespace Tests.EditMode {
         }
 
         [Test]
-        public void SnakeConstructor_CreatesSnakeInstance() {
-            Assert.IsNotNull(_snake);
-        }
+        public void SnakeConstructor_CreatesSnakeInstance() => Assert.IsNotNull(_snake);
     }
 }

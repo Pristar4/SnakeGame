@@ -4,9 +4,11 @@ using UnityEngine;
 
 #endregion
 
-namespace SnakeGame.Scripts {
+namespace SnakeGame.Scripts
+{
     [RequireComponent(typeof(SpriteRenderer))]
-    public class TileDisplay : MonoBehaviour {
+    public class TileDisplay : MonoBehaviour
+    {
         #region Serialized Fields
 
         [SerializeField] private SpriteRenderer spriteRenderer;
@@ -15,17 +17,12 @@ namespace SnakeGame.Scripts {
 
         #region Event Functions
 
-        public void Awake() {
-            spriteRenderer = GetComponent<SpriteRenderer>();
-        }
+        public void Awake() => spriteRenderer = GetComponent<SpriteRenderer>();
 
         #endregion
 
-        public void ChangeMaterial(Material material) {
-            spriteRenderer.material = material;
-        }
-        public void SetColor(Color color) {
-            spriteRenderer.material.color = color;
-        }
+        public void ChangeMaterial(Material material) => spriteRenderer.material = material;
+
+        public void SetColor(Color color) => spriteRenderer.material.color = color;
     }
 }

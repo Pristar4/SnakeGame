@@ -4,11 +4,14 @@ using UnityEngine;
 
 #endregion
 
-namespace SnakeGame.Scripts {
-    public class ColorChanger : MonoBehaviour {
+namespace SnakeGame.Scripts
+{
+    public class ColorChanger : MonoBehaviour
+    {
         #region ColorOption enum
 
-        public enum ColorOption {
+        public enum ColorOption
+        {
             Red,
             Green,
             Blue,
@@ -30,24 +33,28 @@ namespace SnakeGame.Scripts {
 
         #region Event Functions
 
-        private void Start() {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-        }
+        private void Start() => _spriteRenderer = GetComponent<SpriteRenderer>();
 
         #endregion
 
-        public void ChangeColor() {
-            var newMaterial = GetMaterialFromColorOption(colorOption);
+        public void ChangeColor()
+        {
+            Material newMaterial = GetMaterialFromColorOption(colorOption);
 
-            if (newMaterial != null) {
+            if (newMaterial != null)
+            {
                 _spriteRenderer.material = newMaterial;
-            } else {
+            }
+            else
+            {
                 Debug.LogError("Invalid color option!");
             }
         }
 
-        private Material GetMaterialFromColorOption(ColorOption color) {
-            switch (color) {
+        private Material GetMaterialFromColorOption(ColorOption color)
+        {
+            switch (color)
+            {
                 case ColorOption.Red:
                     return redMaterial;
                 case ColorOption.Green:

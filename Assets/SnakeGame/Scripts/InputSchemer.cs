@@ -5,10 +5,12 @@ using UnityEngine.InputSystem;
 
 #endregion
 
-namespace SnakeGame.Scripts {
+namespace SnakeGame.Scripts
+{
     [CreateAssetMenu(fileName = "InputSchemer", menuName = "ScriptableObjects/InputSchemer",
                      order = 1)]
-    public class InputSchemer : ScriptableObject {
+    public class InputSchemer : ScriptableObject
+    {
         #region Serialized Fields
 
         [SerializeField] private Key upKey;
@@ -18,22 +20,10 @@ namespace SnakeGame.Scripts {
 
         #endregion
 
+        public Key UpKey => upKey;
+        public Key DownKey => downKey;
+        public Key RightKey => rightKey;
 
-        public Key UpKey
-        {
-            get => upKey;
-        }
-        public Key DownKey
-        {
-            get => downKey;
-        }
-        public Key RightKey
-        {
-            get => rightKey;
-        }
-        public Key LeftKey
-        {
-            get => leftKey;
-        }
+        public Key LeftKey => leftKey;
     }
 }

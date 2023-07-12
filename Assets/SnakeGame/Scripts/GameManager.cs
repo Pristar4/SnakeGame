@@ -9,8 +9,10 @@ using UnityEngine.SceneManagement;
 
 #endregion
 
-namespace SnakeGame.Scripts {
-    public class GameManager : MonoBehaviour {
+namespace SnakeGame.Scripts
+{
+    public class GameManager : MonoBehaviour
+    {
         #region Serialized Fields
 
         [SerializeField] private BoardDisplay boardDisplay;
@@ -43,50 +45,64 @@ namespace SnakeGame.Scripts {
 
         #region Event Functions
 
-        private void Start() {
+        private void Start()
+        {
             _board = new Board(width, height);
             virtualCamera.m_Lens.OrthographicSize = Mathf.Max(width, height) / 2f;
             snakes = new SnakeController[snakeNumber];
             CreateSnakeControllers(snakeNumber);
 
             // food
-            for (int i = 0; i < foodCount; i++) {
+            for (int i = 0; i < foodCount; i++)
+            {
                 _board.FoodPositions.Add(_board.SpawnFood());
             }
         }
 
-        private void Update() {
+        private void Update()
+        {
             _currentTimer += Time.deltaTime;
 
-            if (!IsSnakeAlive(_board.Snakes[0])) {
-                //reload the scene
+            if (!IsSnakeAlive(_board.Snakes[0]))
+                    //reload the scene
+            {
                 SceneManager.LoadScene(0);
             }
 
 
-            foreach (var player in players) {
-                if (snakes.Length <= player.snakeId) {
+            foreach (Player player in players)
+            {
+                if (snakes.Length <= player.snakeId)
+                {
                     Debug.Log("<color=red>Player snake id is out of range</color>");
                     continue;
                 }
 
-                var snake = _board.Snakes[0];
+                Snake snake = _board.Snakes[0];
 
-                var inputDirection =
+                Vector2Int inputDirection =
                         InputController.HandleInput(snake.Direction, player.inputSchemer);
 
                 if (inputDirection != Vector2Int.zero)
+                {
                     snake.NextDirection = inputDirection;
+                }
             }
 
 
-            if (_currentTimer < turnDuration) return;
+            if (_currentTimer < turnDuration)
+            {
+                return;
+            }
+
             _currentTimer = 0;
 
 
             // check for collisions
-            foreach (var snakeController in snakes) {
-                if (IsSnakeAlive(_board.Snakes[0])) {
+            foreach (SnakeController snakeController in snakes)
+            {
+                if (IsSnakeAlive(_board.Snakes[0]))
+                {
                     snakeController.FinalizeDirection(_board.Snakes[0]);
                     snakeController.CheckCollisions(_board);
                 }
@@ -95,8 +111,10 @@ namespace SnakeGame.Scripts {
             _board.ClearBoard();
             _board.DrawFood(_board.FoodPositions);
 
-            foreach (var snakeController in snakes) {
-                if (IsSnakeAlive(_board.Snakes[0])) {
+            foreach (SnakeController snakeController in snakes)
+            {
+                if (IsSnakeAlive(_board.Snakes[0]))
+                {
                     snakeController.Move(_board, _board.Snakes[0], wrapIsEnabled);
                     _board.DrawSnake(_board.Snakes[0]);
                 }
@@ -106,23 +124,28 @@ namespace SnakeGame.Scripts {
             boardDisplay.DrawBoard(_board);
 
             //update score
-            if (snakes.Length > 0) {
+            if (snakes.Length > 0)
+            {
                 player1ScoreText.text = "Player 1 Score: " + _board.Snakes[0].Score;
             }
 
-            if (snakes.Length > 1) {
+            if (snakes.Length > 1)
+            {
                 player2ScoreText.text = "Player 2 Score: " + _board.Snakes[1].Score;
             }
         }
 
         #endregion
 
-        private void CreateSnakeControllers(int number) {
-            for (int i = 0; i < number; i++) {
-                var snakeControllerObj = Instantiate(snakeControllerPrefab);
-                var snakeController = snakeControllerObj.GetComponent<SnakeController>();
+        private void CreateSnakeControllers(int number)
+        {
+            for (int i = 0; i < number; i++)
+            {
+                GameObject snakeControllerObj = Instantiate(snakeControllerPrefab);
+                SnakeController snakeController =
+                        snakeControllerObj.GetComponent<SnakeController>();
 
-                var startSpawnPosition = new Vector2Int(width / 2, height / 2);
+                Vector2Int startSpawnPosition = new(width / 2, height / 2);
                 startSpawnPosition += Vector2Int.right * i * 10;
 
                 snakes[i] = snakeController;
@@ -131,13 +154,12 @@ namespace SnakeGame.Scripts {
             }
         }
 
-        private static bool IsSnakeAlive(Snake snake) {
-            return snake.IsAlive;
-        }
+        private static bool IsSnakeAlive(Snake snake) => snake.IsAlive;
     }
 
     [Serializable]
-    public struct Player {
+    public struct Player
+    {
         #region Serialized Fields
 
         public int snakeId;
