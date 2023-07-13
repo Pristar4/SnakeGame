@@ -28,7 +28,7 @@
   <p align="center">
      Training an AI to play the classic Snake Game!
     <br />
-    <a href="https://github.com/Pristar4/SnakeGame"><strong>Explore the docs »</strong></a>
+    <a href="https://pristar4.github.io/SnakeGame"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/Pristar4/SnakeGame">View Demo</a>
