@@ -1,0 +1,6 @@
+<map id="SnakeGame.Scripts.BoardDisplay" name="SnakeGame.Scripts.BoardDisplay">
+<area shape="rect" id="node1" title=" " alt="" coords="115,80,353,107"/>
+<area shape="rect" id="node3" href="$class_snake_game_1_1_scripts_1_1_board_array.html" title=" " alt="" coords="5,162,231,189"/>
+<area shape="rect" id="node4" title=" " alt="" coords="255,155,445,196"/>
+<area shape="rect" id="node2" title=" " alt="" coords="172,5,296,32"/>
+</map>
