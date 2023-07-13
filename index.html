@@ -176,19 +176,14 @@ Prerequisites</h3>
 Installation</h3>
 <p>Perform the following steps to set up and run the project:</p>
 <ol type="1">
-<li>Clone the repo <div class="fragment"><div class="line">git clone https://github.com/Pristar4/SnakeGame.git</div>
-</div><!-- fragment --></li>
+<li>Clone the repo ``` git clone <a href="https://github.com/Pristar4/SnakeGame.git">https://github.com/Pristar4/SnakeGame.git</a> ```</li>
 <li>Set up the virtual environment in the mk-agents folder under <a class="el" href="namespace_snake_game.html">SnakeGame</a>\ml-agents by running: ``` python -m venv ./venv ```</li>
 <li>Activate your virtual enviroment: ``` .\venv\Scripts\activate ```</li>
-<li>Install ML-agents within the virtual environment by following the Getting Started in the ml-agents rep</li>
-<li>``` python.exe -m pip install &ndash;upgrade pip <div class="fragment"><div class="line">6. </div>
-</div><!-- fragment --> pip install torch -f <a href="https://download.pytorch.org/whl/torch_stable.html">https://download.pytorch.org/whl/torch_stable.html</a> <div class="fragment"><div class="line">7. </div>
-</div><!-- fragment --> pip install tensorboard <div class="fragment"><div class="line">7. </div>
-</div><!-- fragment --> pip install -e ./ml-agents-envs <div class="fragment"><div class="line">8. </div>
-</div><!-- fragment --> pip install -e ./ml-agents <div class="fragment"><div class="line">9. </div>
-</div><!-- fragment --> pip install tensorboard <div class="fragment"><div class="line">9. Start the training by running:</div>
-</div><!-- fragment --> mlagents-learn config/ppo/Snake.yaml &ndash;run-id=trainingRun01 <div class="fragment"><div class="line">10. Open a second terminal and start TensorBoard to monitor training.</div>
-</div><!-- fragment --> tensorboard &ndash;logdir results ```</li>
+<li>Install ML-agents within the virtual environment by following the Getting Started in the ml-agents rep 5. ``` python.exe -m pip install &ndash;upgrade pip ``` 6. ``` pip install torch -f <a href="https://download.pytorch.org/whl/torch_stable.html">https://download.pytorch.org/whl/torch_stable.html</a> ``` 7. ``` pip install tensorboard ``` 8. ``` pip install -e ./ml-agents-envs ```</li>
+</ol>
+<p>9. ``` pip install -e ./ml-agents ``` 10. ``` pip install tensorboard ```</p><ol type="1">
+<li>Start the training by running: ``` mlagents-learn config/ppo/Snake.yaml &ndash;run-id=trainingRun01 ```</li>
+<li>Open a second terminal and start TensorBoard to monitor training. ``` tensorboard &ndash;logdir results ```</li>
 <li>Enter the Play mode in the Unity editor in the AI scene under <code><a class="el" href="namespace_snake_game.html">SnakeGame</a>\Assets\<a class="el" href="namespace_snake_game.html">SnakeGame</a>\_Levels\AI</code>.</li>
 </ol>
 <p>(<a href="#readme-top">back to top</a>)</p>
