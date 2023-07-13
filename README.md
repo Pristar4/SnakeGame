@@ -18,6 +18,7 @@
   <a href="https://github.com/Pristar4/SnakeGame">
 
 [//]: # (This is for the doxygen)
+
 [//]: # (![logo]&#40;images/logo.png&#41;)
 <img src="images/logo.png" alt="Logo" width="80" height="80">
 
@@ -28,7 +29,7 @@
   <p align="center">
      Training an AI to play the classic Snake Game!
     <br />
-    <a href="https://github.com/Pristar4/SnakeGame"><strong>Explore the docs »</strong></a>
+    <a href="https://pristar4.github.io/SnakeGame"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/Pristar4/SnakeGame">View Demo</a>
@@ -117,12 +118,12 @@ Install the following software:
 Perform the following steps to set up and run the project:
 
 1. Clone the repo
-   ```
-   git clone https://github.com/Pristar4/SnakeGame.git
-   ```
+    ```
+    git clone https://github.com/Pristar4/SnakeGame.git
+    ```
 2. Set up the virtual environment in the mk-agents folder under SnakeGame\ml-agents by running:
     ```
-   python -m venv ./venv
+    python -m venv ./venv
     ```
 3. Activate your virtual enviroment:
     ```
@@ -130,33 +131,40 @@ Perform the following steps to set up and run the project:
     ```
 4. Install ML-agents within the virtual environment by following the Getting Started in the
    ml-agents rep
-5. ```
-    python.exe -m pip install --upgrade pip
-   ```
-6. ```
-   pip install torch -f https://download.pytorch.org/whl/torch_stable.html
-   ```
-7. ```
-   pip install tensorboard
-   ```
-7. ```
-    pip install -e ./ml-agents-envs
-   ```
-8. ```
-    pip install -e ./ml-agents
-   ```
-9. ```
-   pip install tensorboard
-   ```
-9. Start the training by running:
+5.
     ```
-   mlagents-learn config/ppo/Snake.yaml --run-id=trainingRun01
-   ```
-10. Open a second terminal and start TensorBoard to monitor training.
+    python.exe -m pip install --upgrade pip
+    ```
+6.
+    ```
+    pip install torch -f https://download.pytorch.org/whl/torch_stable.html
+    ```
+7.
+    ```
+    pip install tensorboard
+    ```
+8.
+    ```
+    pip install -e ./ml-agents-envs
+    ```
+
+9.
+    ```
+    pip install -e ./ml-agents
+    ```
+10.
+    ```
+    pip install tensorboard
+    ```
+11. Start the training by running:
+    ```
+    mlagents-learn config/ppo/Snake.yaml --run-id=trainingRun01
+    ```
+12. Open a second terminal and start TensorBoard to monitor training.
     ```
     tensorboard --logdir results
     ```
-11. Enter the Play mode in the Unity editor in the AI scene
+13. Enter the Play mode in the Unity editor in the AI scene
     under ``SnakeGame\Assets\SnakeGame\_Levels\AI``.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
