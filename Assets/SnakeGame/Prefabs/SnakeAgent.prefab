@@ -50,25 +50,19 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 5000
-  boardDisplay: {fileID: 0}
-  width: 8
-  height: 8
-  players:
-  - snakeId: 0
-    inputSchemer: {fileID: 11400000, guid: 892832864e8092948b7a24eab06bfcad, type: 2}
-  scoreText: {fileID: 0}
-  highScoreText: {fileID: 0}
-  wrapIsEnabled: 0
-  foodCount: 1
   board:
     snakes: []
+  boardDisplay: {fileID: 0}
+  highScoreText: {fileID: 0}
+  isDisplayOn: 1
+  scoreText: {fileID: 0}
+  foodCount: 1
+  height: 8
+  maxPathLength: 5
   numberOfSnakes: 1
   startSize: 1
-  isDisplayOn: 1
-  maxPathLength: 5
-  showPaths: 0
-  blockedColor: {r: 1, g: 0, b: 0, a: 1}
-  openColor: {r: 0, g: 1, b: 0, a: 1}
+  width: 8
+  totalReward: 0
 --- !u!114 &6952289727027405687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 44
+    VectorObservationSize: 72
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
@@ -113,4 +107,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DecisionPeriod: 1
+  DecisionStep: 0
   TakeActionsBetweenDecisions: 0

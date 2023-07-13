@@ -16,13 +16,16 @@ namespace SnakeGame.Scripts
 {
     public class SnakeAgent : Agent
     {
-
         #region Serialized Fields
 
         [SerializeField] private Board board;
 
         [SerializeField] private BoardDisplay boardDisplay;
         [SerializeField] private TMP_Text highScoreText;
+        [SerializeField] private TMP_Text averageScoreText;
+        [SerializeField] private TMP_Text currentRewardText;
+        [SerializeField] private TMP_Text averageRewardText;
+
         [SerializeField] private bool isDisplayOn;
         [SerializeField] private TMP_Text scoreText;
         [SerializeField] private int foodCount;
@@ -44,7 +47,6 @@ namespace SnakeGame.Scripts
 
         private int[] _actionLongestPathArray;
 
-        private float _currentReward;
 
         private float _currentTimer;
         private int _highScore;
@@ -55,6 +57,11 @@ namespace SnakeGame.Scripts
         private int _longestPath;
         private bool _shouldRecalculatePaths;
         private SnakeController _snakeController;
+        private float currentReward;
+        private float averageReward;
+        private double averageScore;
+        [SerializeField] private List<float> _episodeRewards = new();
+        [SerializeField] private List<int> _episodeScores = new();
 
         public SnakeAgent()
         {
@@ -113,9 +120,7 @@ namespace SnakeGame.Scripts
 
         public override void CollectObservations(VectorSensor sensor)
         {
-            Debug.Log("Collecting Observations");
-
-            const int view = 6; // Define view size as per your needs
+            const int view = 8; // Define view size as per your needs
 
             // Assuming that there is always at least one snake and one food in the game
             Snake snake = board.Snakes[0];
@@ -145,10 +150,11 @@ namespace SnakeGame.Scripts
             sensor.AddObservation(_actionLongestPathArray[2]);
 
             // Assuming that there is always at least one snake in the game
-            Vector2Int snakeHeadPosition = board.Snakes[0].Position;
+            // Vector2Int snakeHeadPosition = board.Snakes[0].Position;
 
             // Position of the top left corner of the window
-            Vector2Int windowStart = snakeHeadPosition - new Vector2Int(view / 2, view / 2);
+            // Vector2Int windowStart = snakeHeadPosition - new Vector2Int(view / 2, view / 2);
+            Vector2Int windowStart = Vector2Int.zero;
 
             // Loop over each cell in the window
             for (int i = 0; i < view; i++)
@@ -226,24 +232,25 @@ namespace SnakeGame.Scripts
 
             CheckForNewHighScore(snake);
 
-            // Distance Reward
-            const int rewardRadius = 4;
 
             // Get action's longest path from the array
-            int actionLongestPath = _actionLongestPathArray[action];
+            /*int actionLongestPath = _actionLongestPathArray[action];
+
 
             // If the longest path is shorter than the maximum, it's a bad action (blocked), apply punishment
             if (actionLongestPath < maxPathLength)
             {
                 Debug.Log("Bad action");
                 AddReward(-1f);
-            }
+                currentReward -= 1f;
+            }*/
             // Good action, apply reward
-            else
+            /*else
             {
                 Debug.Log("Good action");
                 AddReward(0.1f);
-            }
+                currentReward += 0.1f;
+            }*/
 
             if (board.FoodPositions.Count > 0)
             {
@@ -256,36 +263,37 @@ namespace SnakeGame.Scripts
                 // Calculate the actual distance to the food
 
                 // If the current distance is within the reward radius, apply the reward
-                if (currentDistance <= rewardRadius)
-                {
-                    float normalizedCurrentDistance = currentDistance /
-                                                      Mathf.Sqrt(
-                                                              board.Width * board.Width +
+                /*float normalizedCurrentDistance = currentDistance /
+                                                  Mathf.Sqrt(
+                                                          board.Width * board.Width +
+                                                          board.Height * board.Height);
+                float normalizedPreviousDistance = PreviousDistance /
+                                                   Mathf.Sqrt(board.Width * board.Width +
                                                               board.Height * board.Height);
-                    float normalizedPreviousDistance = PreviousDistance /
-                                                       Mathf.Sqrt(board.Width * board.Width +
-                                                           board.Height * board.Height);
-                    // Compute the reward based on the current distance
-                    float reward = Mathf.Log((snake.Length + normalizedPreviousDistance) /
-                                             (snake.Length + normalizedCurrentDistance));
+                // Compute the reward based on the current distance
+                float reward = Mathf.Log((snake.Length + normalizedPreviousDistance) /
+                                         (snake.Length + normalizedCurrentDistance));
 
-                    // normalize the reward between -1 and 1
+                // normalize the reward between -1 and 1
 
-                    // Apply the reward
-                    AddReward(reward);
-                }
+                // Apply the reward
+                AddReward(reward);
+                Debug.Log("Distance Reward :" + reward);
+                currentReward += reward;*/
 
                 PreviousDistance = currentDistance;
 
                 if (currentDistance < PreviousDistance)
                 {
-                    AddReward(0.01f);
-                    Debug.Log("Closer :" + 0.01f);
+                    // AddReward(0.01f);
+                    // Debug.Log("Closer :" + 0.01f);
+                    // currentReward += 0.01f;
                 }
                 else if (currentDistance > PreviousDistance)
                 {
-                    AddReward(-0.01f);
-                    Debug.Log("Further :" + -0.01f);
+                    // AddReward(-0.01f);
+                    // currentReward -= 0.01f;
+                    // Debug.Log("Further :" + -0.01f);
                 }
 
                 PreviousDistance = currentDistance;
@@ -296,7 +304,11 @@ namespace SnakeGame.Scripts
             _shouldRecalculatePaths = true;
         }
 
-        public override void OnEpisodeBegin() => InitializeGame();
+        public override void OnEpisodeBegin()
+        {
+            InitializeGame();
+            currentReward = 0;
+        }
 
         private void CalculateLongestPathsForAllDirections()
         {
@@ -314,14 +326,6 @@ namespace SnakeGame.Scripts
 
                 int longestPath = FindLongestPath(snake.Position + actionDirection,
                                                   new HashSet<Vector2Int>(), maxPathLength);
-                string directionText = action switch
-                {
-                    0 => "Left",
-                    1 => "Forward",
-                    2 => "Right",
-                    _ => "Forward",
-                };
-                Debug.Log($"Longest path for action {directionText} is {longestPath}");
                 _actionLongestPathArray[action] = longestPath;
             }
         }
@@ -343,17 +347,40 @@ namespace SnakeGame.Scripts
         {
             if (snake.AteFood)
             {
-                Debug.Log("Eat : " + 20);
+                Debug.Log("Eat : " + 10f);
+                currentReward += 10f;
                 AddReward(10f);
                 snake.AteFood = false;
             }
 
             AddReward(-0.1f);
+            currentReward += -0.1f;
 
             if (!IsSnakeAlive(snake))
             {
                 Debug.Log("Dead : " + -10f);
+                currentReward -= 10f;
                 AddReward(-10f);
+                _episodeRewards.Add(currentReward);
+                _episodeScores.Add(board.Snakes[0].Score);
+            }
+
+            if (_episodeRewards.Any())
+            {
+                averageReward = _episodeRewards.Average();
+            }
+
+            if (_episodeScores.Any())
+            {
+                averageScore = _episodeScores.Average();
+            }
+
+            currentRewardText.text = "Current Reward: " + currentReward.ToString("F2");
+            averageRewardText.text = "Average Reward: " + averageReward.ToString("F2");
+            averageScoreText.text = "Average Score: " + averageScore.ToString("F2");
+
+            if (!IsSnakeAlive(snake))
+            {
                 EndEpisode();
             }
         }
