@@ -115,57 +115,67 @@ Install the following software:
 
 ### Installation
 
+
 Perform the following steps to set up and run the project:
 
 1. Clone the repo
+
     ```
     git clone https://github.com/Pristar4/SnakeGame.git
     ```
 2. Set up the virtual environment in the mk-agents folder under SnakeGame\ml-agents by running:
+
     ```
     python -m venv ./venv
     ```
 3. Activate your virtual enviroment:
+
     ```
     .\venv\Scripts\activate
     ```
-4. Install ML-agents within the virtual environment by following the Getting Started in the
-   ml-agents rep
-5.
+4. Install ML-agents:
     ```
     python.exe -m pip install --upgrade pip
     ```
-6.
+5. Install torch:
     ```
     pip install torch -f https://download.pytorch.org/whl/torch_stable.html
     ```
-7.
+
+6. Install Tensorflow
+
     ```
-    pip install tensorboard
+    pip install tensorflow
     ```
-8.
+7. Install ml-agents-env
+
     ```
     pip install -e ./ml-agents-envs
     ```
+8. Install ml-agents
 
-9.
     ```
     pip install -e ./ml-agents
     ```
-10.
-    ```
-    pip install tensorboard
-    ```
-11. Start the training by running:
+9. install tensorboard
+
+   ```
+   pip install tensorboard
+   ```
+10. Start the training by running:
+
     ```
     mlagents-learn config/ppo/Snake.yaml --run-id=trainingRun01
     ```
-12. Open a second terminal and start TensorBoard to monitor training.
+11. start TensorBoard to monitor training:
+
     ```
     tensorboard --logdir results
     ```
-13. Enter the Play mode in the Unity editor in the AI scene
-    under ``SnakeGame\Assets\SnakeGame\_Levels\AI``.
+12. Enter the Play mode in the Unity editor in the AI scene
+    under
+
+    ``SnakeGame\Assets\SnakeGame\_Levels\AI``
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
