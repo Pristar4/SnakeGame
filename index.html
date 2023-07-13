@@ -176,15 +176,39 @@ Prerequisites</h3>
 Installation</h3>
 <p>Perform the following steps to set up and run the project:</p>
 <ol type="1">
-<li>Clone the repo ``` git clone <a href="https://github.com/Pristar4/SnakeGame.git">https://github.com/Pristar4/SnakeGame.git</a> ```</li>
-<li>Set up the virtual environment in the mk-agents folder under <a class="el" href="namespace_snake_game.html">SnakeGame</a>\ml-agents by running: ``` python -m venv ./venv ```</li>
-<li>Activate your virtual enviroment: ``` .\venv\Scripts\activate ```</li>
-<li>Install ML-agents within the virtual environment by following the Getting Started in the ml-agents rep 5. ``` python.exe -m pip install &ndash;upgrade pip ``` 6. ``` pip install torch -f <a href="https://download.pytorch.org/whl/torch_stable.html">https://download.pytorch.org/whl/torch_stable.html</a> ``` 7. ``` pip install tensorboard ``` 8. ``` pip install -e ./ml-agents-envs ```</li>
+<li><p class="startli">Clone the repo</p>
+<p class="startli">``` git clone <a href="https://github.com/Pristar4/SnakeGame.git">https://github.com/Pristar4/SnakeGame.git</a> ```</p>
+</li>
+<li><p class="startli">Set up the virtual environment in the mk-agents folder under <a class="el" href="namespace_snake_game.html">SnakeGame</a>\ml-agents by running:</p>
+<p class="startli">``` python -m venv ./venv ```</p>
+</li>
+<li><p class="startli">Activate your virtual enviroment:</p>
+<p class="startli">``` .\venv\Scripts\activate ```</p>
+</li>
+<li>Install ML-agents: ``` python.exe -m pip install &ndash;upgrade pip ```</li>
+<li>Install torch: ``` pip install torch -f <a href="https://download.pytorch.org/whl/torch_stable.html">https://download.pytorch.org/whl/torch_stable.html</a> ```</li>
+<li><p class="startli">Install Tensorflow</p>
+<p class="startli">``` pip install tensorflow ```</p>
+</li>
+<li><p class="startli">Install ml-agents-env</p>
+<p class="startli">``` pip install -e ./ml-agents-envs ```</p>
+</li>
+<li><p class="startli">Install ml-agents</p>
+<p class="startli">``` pip install -e ./ml-agents ```</p>
+</li>
+<li>install tensorboard</li>
 </ol>
-<p>9. ``` pip install -e ./ml-agents ``` 10. ``` pip install tensorboard ```</p><ol type="1">
-<li>Start the training by running: ``` mlagents-learn config/ppo/Snake.yaml &ndash;run-id=trainingRun01 ```</li>
-<li>Open a second terminal and start TensorBoard to monitor training. ``` tensorboard &ndash;logdir results ```</li>
-<li>Enter the Play mode in the Unity editor in the AI scene under <code><a class="el" href="namespace_snake_game.html">SnakeGame</a>\Assets\<a class="el" href="namespace_snake_game.html">SnakeGame</a>\_Levels\AI</code>.</li>
+<div class="fragment"><div class="line">pip install tensorboard</div>
+</div><!-- fragment --><ol type="1">
+<li><p class="startli">Start the training by running:</p>
+<p class="startli">``` mlagents-learn config/ppo/Snake.yaml &ndash;run-id=trainingRun01 ```</p>
+</li>
+<li><p class="startli">start TensorBoard to monitor training:</p>
+<p class="startli">``` tensorboard &ndash;logdir results ```</p>
+</li>
+<li><p class="startli">Enter the Play mode in the Unity editor in the AI scene under</p>
+<p class="startli"><code><a class="el" href="namespace_snake_game.html">SnakeGame</a>\Assets\<a class="el" href="namespace_snake_game.html">SnakeGame</a>\_Levels\AI</code></p>
+</li>
 </ol>
 <p>(<a href="#readme-top">back to top</a>)</p>
 <h2><a class="anchor" id="autotoc_md5"></a>
