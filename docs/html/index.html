@@ -120,11 +120,11 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a> <a class="anchor" id="readme-top"></a></p>
 <p><a href="https://github.com/Pristar4/SnakeGame/graphs/contributors"><img src="https://img.shields.io/github/contributors/Pristar4/SnakeGame.svg?style=for-the-badge" alt="Contributors" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/Pristar4/SnakeGame/network/members"><img src="https://img.shields.io/github/forks/Pristar4/SnakeGame.svg?style=for-the-badge" alt="Forks" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/Pristar4/SnakeGame/stargazers"><img src="https://img.shields.io/github/stars/Pristar4/SnakeGame.svg?style=for-the-badge" alt="Stargazers" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/Pristar4/SnakeGame/issues"><img src="https://img.shields.io/github/issues/Pristar4/SnakeGame.svg?style=for-the-badge" alt="Issues" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/Pristar4/SnakeGame/blob/master/LICENSE.txt"><img src="https://img.shields.io/github/license/Pristar4/SnakeGame.svg?style=for-the-badge" alt="MIT License" style="pointer-events: none;" class="inline"/></a></p>
-<div class="title_logo"></div><div class="title_logo"></div><p><br  />
+<p><br  />
 </p>
-<div align="center"> <div class="title_logo"> <a href="https://github.com/Pristar4/SnakeGame"><img src="logo.png" alt="" class="inline" title="logo"/>     </a> </div> <h3 align="center"><a class="el" href="namespace_snake_game.html">SnakeGame</a> - AI Edition</h3>
+<div align="center"> <div class="title_logo"></div></div><div align="center"><div class="title_logo"> <a href="https://github.com/Pristar4/SnakeGame"><img src="images/logo.png" alt="Logo" width="80" height="80" class="inline"/>  </a> </div> <h3 align="center"><a class="el" href="namespace_snake_game.html">SnakeGame</a> - AI Edition</h3>
 </div><div align="center"></div><div align="center"> </div><div align="center"> Training an AI to play the classic Snake Game! <br  />
- <a href="https://github.com/Pristar4/SnakeGame"><b>Explore the docs »</b></a> <br  />
+ <a href="https://pristar4.github.io/SnakeGame"><b>Explore the docs »</b></a> <br  />
  <br  />
  <a href="https://github.com/Pristar4/SnakeGame">View Demo</a> · <a href="https://github.com/Pristar4/SnakeGame/issues">Report Bug</a> · <a href="https://github.com/Pristar4/SnakeGame/issues">Request Feature</a> </div><div align="center"> </div><details >
 <summary >
@@ -191,13 +191,24 @@ Installation</h3>
 </div><!-- fragment --></li>
 <li>Activate your virtual enviroment: <div class="fragment"><div class="line">.\venv\Scripts\activate</div>
 </div><!-- fragment --></li>
-<li>Install ML-agents within the virtual environment by following the Getting Started in the ml-agents rep <div class="fragment"><div class="line">pip install mlagents</div>
+<li>Install ML-agents: <div class="fragment"><div class="line">python.exe -m pip install --upgrade pip</div>
+</div><!-- fragment --></li>
+<li>Install torch: <div class="fragment"><div class="line">pip install torch -f https://download.pytorch.org/whl/torch_stable.html</div>
+</div><!-- fragment --></li>
+<li>Install Tensorflow <div class="fragment"><div class="line">pip install tensorflow</div>
+</div><!-- fragment --></li>
+<li>Install ml-agents-env <div class="fragment"><div class="line">pip install -e ./ml-agents-envs</div>
+</div><!-- fragment --></li>
+<li>Install ml-agents <div class="fragment"><div class="line">pip install -e ./ml-agents</div>
+</div><!-- fragment --></li>
+<li>install tensorboard <div class="fragment"><div class="line">pip install tensorboard</div>
 </div><!-- fragment --></li>
 <li>Start the training by running: <div class="fragment"><div class="line">mlagents-learn config/ppo/Snake.yaml --run-id=trainingRun01</div>
 </div><!-- fragment --></li>
-<li>Open a second terminal and start TensorBoard to monitor training. <div class="fragment"><div class="line">tensorboard --logdir results</div>
-</div><!-- fragment --></li>
-<li>Enter the Play mode in the Unity editor in the AI scene under <code><a class="el" href="namespace_snake_game.html">SnakeGame</a>\Assets\<a class="el" href="namespace_snake_game.html">SnakeGame</a>\_Levels\AI</code>.</li>
+<li>start TensorBoard to monitor training: <code> tensorboard --logdir results </code></li>
+<li><p class="startli">Enter the Play mode in the Unity editor in the AI scene under</p>
+<p class="startli"><code><a class="el" href="namespace_snake_game.html">SnakeGame</a>\Assets\<a class="el" href="namespace_snake_game.html">SnakeGame</a>\_Levels\AI</code></p>
+</li>
 </ol>
 <p>(<a href="#readme-top">back to top</a>)</p>
 <h2><a class="anchor" id="autotoc_md5"></a>
