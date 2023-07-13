@@ -76,7 +76,7 @@ crashlytics-build.properties
 
 
 #ignore local config files/ mlagents files
-/Assets/ML-Agents/
+/Assets/ML-Agents/*
 
 
 
