@@ -2,4 +2,5 @@
 	path = doxygen-awesome-css
 	url = https://github.com/jothepro/doxygen-awesome-css.git
 [submodule "ml-agents"]
-	url = https://github.com/Unity-Technologies/ml-agents
+	path = ml-agents
+	url = https://github.com/Pristar4/ml-agents
