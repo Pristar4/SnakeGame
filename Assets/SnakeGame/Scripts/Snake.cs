@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace SnakeGame.Scripts
 {
+    /// <summary>
+    /// Represents a snake in the game.
+    /// </summary>
     [Serializable]
     public class Snake
     {
@@ -95,6 +98,16 @@ namespace SnakeGame.Scripts
             get => nextDirection;
             set => nextDirection = value;
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Snake"/> class.
+        /// </summary>
+        /// <param name="position">The starting position of the snake.</param>
+        /// <param name="direction">The starting direction of the snake.</param>
+        /// <param name="length">The starting length of the snake.</param>
+        /// <param name="id">The ID of the snake.</param>
+        /// <param name="body">The body of the snake.</param>
+        /// <param name="color">The color of the snake.</param>
         public Snake(Vector2Int position, Vector2Int direction, int length, int id,
                      Vector2Int[] body,
                      SnakeColor color)
@@ -107,6 +120,11 @@ namespace SnakeGame.Scripts
             this.color = color;
         }
 
+        /// <summary>
+        /// Checks if the snake's body contains a given position.
+        /// </summary>
+        /// <param name="vector2Int">The position to check.</param>
+        /// <returns>True if the snake's body contains the position, false otherwise.</returns>
         public bool ContainsPosition(Vector2Int vector2Int)
         {
             for (int i = 0; i < Length; i++)
@@ -120,9 +138,14 @@ namespace SnakeGame.Scripts
             return false;
         }
 
-
+        /// <summary>
+        /// Kills the snake.
+        /// </summary>
         public void Die() => IsAlive = false;
 
+        /// <summary>
+        /// Increases the length of the snake by one.
+        /// </summary>
         public void Grow()
         {
             Length++;
@@ -140,6 +163,9 @@ namespace SnakeGame.Scripts
         }
     }
 
+    /// <summary>
+    /// Represents the color of a snake.
+    /// </summary>
     public enum SnakeColor
     {
         // 10 color slots for 10 players

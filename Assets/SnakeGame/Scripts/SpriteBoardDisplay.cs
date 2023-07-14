@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace SnakeGame.Scripts
 {
+    /// <summary>
+    /// Displays the game board using sprites.
+    /// </summary>
     internal class SpriteBoardDisplay : BoardDisplay
     {
         #region Serialized Fields
@@ -38,6 +41,7 @@ namespace SnakeGame.Scripts
 
         #endregion
 
+
         private readonly Dictionary<Snake, GameObject> _snakeDirections = new();
 
         private TileDisplay[,] _tileDisplays;
@@ -56,7 +60,10 @@ namespace SnakeGame.Scripts
 
         #endregion
 
-        // implement object pooling
+        /// <summary>
+        /// Compares the current tile displays with the board and creates or deletes tile displays as necessary.
+        /// </summary>
+        /// <param name="board">The board to compare with the tile displays.</param>
         private void CompareBoardAndTileDisplays(Board board)
         {
             if (_tileDisplays == null)
@@ -72,13 +79,23 @@ namespace SnakeGame.Scripts
         }
 
 
+        /// <summary>
+        /// Creates a new tile display at the specified position.
+        /// </summary>
+        /// <param name="position">The position to create the tile display at.</param>
+        /// <returns>The newly created tile display.</returns>
         private TileDisplay CreateTileDisplay(Vector3 position)
         {
             TileDisplay tileDisplay = Instantiate(tileDisplayPrefab, transform);
             tileDisplay.transform.localPosition = position;
             return tileDisplay;
         }
-
+        /// <summary>
+        /// Creates tile displays for the board based on the given width and height.
+        /// </summary>
+        /// <param name="width">The width of the board.</param>
+        /// <param name="height">The height of the board.</param>
+        /// <see cref="TileDisplay"/>
         private void CreateTileDisplays(int width, int height)
         {
             _tileDisplays = new TileDisplay[width, height];
@@ -94,8 +111,15 @@ namespace SnakeGame.Scripts
             }
         }
 
+        /// <summary>
+        /// Deletes the given tile display.
+        /// </summary>
+        /// <param name="tileDisplay">The tile display to delete.</param>
         private void DeleteTileDisplay(TileDisplay tileDisplay) => Destroy(tileDisplay.gameObject);
 
+        /// <summary>
+        /// Deletes all tile displays in the current board.
+        /// </summary>
         private void DeleteTileDisplays()
         {
             foreach (TileDisplay tileDisplay in _tileDisplays)
@@ -104,6 +128,11 @@ namespace SnakeGame.Scripts
             }
         }
 
+        /// <summary>
+        /// Compares the number of snakes in the board with the number of snake direction objects.
+        /// If the numbers are different, it resets the snake direction objects and creates new ones for each snake.
+        /// </summary>
+        /// <param name="board">The board to compare with the snake direction objects.</param>
         private void SnakeDirectionCompare(Board board)
         {
             if (_snakeDirections.Count != board.Snakes.Length)
@@ -144,7 +173,7 @@ namespace SnakeGame.Scripts
 
                         switch (tile.Type)
                         {
-                            case TileType.None:
+                            case TileType.Empty:
                                 HandleTileTypeNone(x, y, snakePos, foodPos, rewardRadius,
                                                    tileDisplay);
 
@@ -164,6 +193,17 @@ namespace SnakeGame.Scripts
                 }
             }
         }
+        /// <summary>
+        /// Handles the display of tiles with TileType.None.
+        /// If isShowingReward is true, it changes the material of the tile to a reward material if the tile is within the reward radius of the snake or food.
+        /// Otherwise, it changes the material of the tile to a default none material.
+        /// </summary>
+        /// <param name="x">The x position of the tile.</param>
+        /// <param name="y">The y position of the tile.</param>
+        /// <param name="snakePos">The position of the snake.</param>
+        /// <param name="foodPos">The position of the food.</param>
+        /// <param name="rewardRadius">The radius within which a tile is considered a reward tile.</param>
+        /// <param name="tileDisplay">The tile display to change the material of.</param>
         private void HandleTileTypeNone(int x, int y, Vector2Int snakePos, Vector2Int foodPos,
                                         int rewardRadius, TileDisplay tileDisplay)
         {
@@ -196,6 +236,10 @@ namespace SnakeGame.Scripts
             }
         }
 
+
+        /// <summary>
+        /// Updates the position and rotation of the snake direction objects on the board.
+        /// </summary>
         private void SnakeDirectionUpdate()
         {
             foreach (KeyValuePair<Snake, GameObject> entity in _snakeDirections)
@@ -205,7 +249,6 @@ namespace SnakeGame.Scripts
                 Vector3 tilePosition = _tileDisplays[positionX, positionY].transform.position;
 
                 entity.Value.transform.position = tilePosition + new Vector3(0, 0, -1);
-
 
                 //rotation
                 Quaternion rotation;
@@ -234,6 +277,11 @@ namespace SnakeGame.Scripts
         }
 
 
+        /// <summary>
+        /// Returns the material associated with the given snake color.
+        /// </summary>
+        /// <param name="tileSnake">The snake to get the material for.</param>
+        /// <returns>The material associated with the given snake color.</returns>
         private Material GetSnakeMaterial(Snake tileSnake)
         {
             switch (tileSnake.Color)
@@ -262,7 +310,10 @@ namespace SnakeGame.Scripts
 
             return snakeMaterial;
         }
-
+        /// <summary>
+        /// Clears the board by changing the material of all tile displays to the default none material.
+        /// </summary>
+        /// <param name="board">The board to clear.</param>
         public override void ClearBoard(Board board)
         {
             CompareBoardAndTileDisplays(board);
@@ -280,6 +331,9 @@ namespace SnakeGame.Scripts
         #endregion
     }
 
+    /// <summary>
+    /// Represents the possible directions that a snake can move in.
+    /// </summary>
     public enum SnakeDirection
     {
         Up,

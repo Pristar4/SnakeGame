@@ -1,76 +1,76 @@
 {
     "count": 1,
-    "self": 129.9823616,
-    "total": 130.0575893,
+    "self": 149.2018048,
+    "total": 149.7529451,
     "children": {
         "InitializeActuators": {
-            "count": 2,
-            "self": 0.0015041,
-            "total": 0.0015041,
+            "count": 5,
+            "self": 0.0015082,
+            "total": 0.0015082,
             "children": null
         },
         "InitializeSensors": {
-            "count": 2,
-            "self": 0,
-            "total": 0,
+            "count": 5,
+            "self": 0.0015359,
+            "total": 0.0015359,
             "children": null
         },
         "AgentSendState": {
-            "count": 380,
-            "self": 0.0059397999999999994,
-            "total": 0.027555,
+            "count": 3537,
+            "self": 0.0429494,
+            "total": 0.0866126,
             "children": {
                 "CollectObservations": {
-                    "count": 164,
-                    "self": 0.0196022,
-                    "total": 0.0196022,
+                    "count": 2019,
+                    "self": 0.0276229,
+                    "total": 0.0276229,
                     "children": null
                 },
                 "WriteActionMask": {
-                    "count": 164,
-                    "self": 0.0005042,
-                    "total": 0.0005042,
+                    "count": 2019,
+                    "self": 0.0035137999999999996,
+                    "total": 0.0035137999999999996,
                     "children": null
                 },
                 "RequestDecision": {
-                    "count": 164,
-                    "self": 0.0015088,
-                    "total": 0.0015088,
+                    "count": 2019,
+                    "self": 0.0125265,
+                    "total": 0.0125265,
                     "children": null
                 }
             }
         },
         "DecideAction": {
-            "count": 380,
-            "self": 0.0030052,
-            "total": 0.0030052,
+            "count": 3537,
+            "self": 0.0240825,
+            "total": 0.0240825,
             "children": null
         },
         "AgentAct": {
-            "count": 380,
-            "self": 0.0431618,
-            "total": 0.0431618,
+            "count": 3537,
+            "self": 0.4373997,
+            "total": 0.4373997,
             "children": null
         }
     },
     "gauges": {
         "SnakeAi.CumulativeReward": {
-            "count": 28,
-            "max": -0.500000954,
-            "min": -10.8,
-            "runningAverage": -9.857143,
-            "value": -10.4,
-            "weightedAverage": -10.5307541
+            "count": 439,
+            "max": -2,
+            "min": -15.276638,
+            "runningAverage": -5.88577652,
+            "value": -6.4485,
+            "weightedAverage": -5.143485
         }
     },
     "metadata": {
         "timer_format_version": "0.1.0",
-        "start_time_seconds": "1689260653",
-        "unity_version": "2023.1.3f1",
-        "command_line_arguments": "C:\\Program Files\\Unity\\Hub\\Editor\\2023.1.3f1\\Editor\\Unity.exe -projectpath C:\\Users\\felix\\SnakeGame -useHub -hubIPC -cloudEnvironment production",
+        "start_time_seconds": "1689306457",
+        "unity_version": "2022.3.4f1",
+        "command_line_arguments": "C:\\Program Files\\Unity\\Hub\\Editor\\2022.3.4f1\\Editor\\Unity.exe -projectpath C:\\Users\\felix\\SnakeGame -useHub -hubIPC -cloudEnvironment production",
         "communication_protocol_version": "1.5.0",
         "com.unity.ml-agents_version": "2.3.0-exp.4",
         "scene_name": "AI",
-        "end_time_seconds": "1689260783"
+        "end_time_seconds": "1689306607"
     }
 }

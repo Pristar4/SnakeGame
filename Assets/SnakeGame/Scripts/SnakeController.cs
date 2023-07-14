@@ -85,7 +85,6 @@ namespace SnakeGame.Scripts
             if (nextPosition.x < 0 || nextPosition.x >= board.Width || nextPosition.y < 0 ||
                 nextPosition.y >= board.Height)
             {
-                // make the snake wrap around the board
 
                 Debug.Log("Collision with wall");
                 board.Snakes[0].Die();
@@ -104,7 +103,7 @@ namespace SnakeGame.Scripts
                 case TileType.Food:
                     board.Snakes[0].Grow();
                     board.FoodPositions.Remove(nextPosition);
-                    board.FoodPositions.Add(board.SpawnFood());
+                    board.SpawnFood();
                     break;
             }
         }

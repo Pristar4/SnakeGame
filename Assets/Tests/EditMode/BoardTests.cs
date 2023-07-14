@@ -30,7 +30,7 @@ namespace Tests.EditMode
                 for (int y = 0; y < _height; y++)
                 {
                     Assert.IsNotNull(_board.GetTile(x, y));
-                    Assert.AreEqual(TileType.None, _board.GetTile(x, y).Type);
+                    Assert.AreEqual(TileType.Empty, _board.GetTile(x, y).Type);
                 }
             }
         }

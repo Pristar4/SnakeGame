@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace SnakeGame.Scripts
 {
+    /// <summary>
+    /// Changes the color of a sprite renderer based on a selected color option.
+    /// </summary>
     public class ColorChanger : MonoBehaviour
     {
         #region ColorOption enum
@@ -21,7 +24,8 @@ namespace SnakeGame.Scripts
 
         #region Serialized Fields
 
-        public ColorOption colorOption; // The color option you want to apply to the sprite
+        [Tooltip("The color option you want to apply to the sprite.")]
+        public ColorOption colorOption;
 
         public Material redMaterial;
         public Material greenMaterial;
@@ -37,6 +41,9 @@ namespace SnakeGame.Scripts
 
         #endregion
 
+        /// <summary>
+        /// Changes the color of the sprite renderer based on the selected color option.
+        /// </summary>
         public void ChangeColor()
         {
             Material newMaterial = GetMaterialFromColorOption(colorOption);
