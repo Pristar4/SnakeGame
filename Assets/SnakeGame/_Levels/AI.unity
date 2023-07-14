@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &179457821 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7152727188512011903, guid: 5aadfc29e3233f24f8980e6f948b18eb, type: 3}
-  m_PrefabInstance: {fileID: 7051632490841417575}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09e27a9e979653a47bd78611d7d84eaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &225214226
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +238,7 @@ PrefabInstance:
     - target: {fileID: 1655411129354736655, guid: 5aadfc29e3233f24f8980e6f948b18eb, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: c4ba55f0222bd404697c6c2743553016, type: 3}
+      objectReference: {fileID: 5022602860645237092, guid: 5f6f171c7f32a74499669be546f32fdb, type: 3}
     - target: {fileID: 1655411129354736655, guid: 5aadfc29e3233f24f8980e6f948b18eb, type: 3}
       propertyPath: m_BehaviorType
       value: 0
@@ -737,17 +726,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0.49, z: 0}
---- !u!114 &1196740628 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7538769358573959649, guid: 5aadfc29e3233f24f8980e6f948b18eb, type: 3}
-  m_PrefabInstance: {fileID: 7051632490841417575}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 939a75a990faa4c4eb3f768181f646f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1222165746
 GameObject:
   m_ObjectHideFlags: 0
@@ -2063,26 +2041,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7538769358573959649, guid: 5aadfc29e3233f24f8980e6f948b18eb, type: 3}
       propertyPath: boardDebugger
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: agent
-      value: 
-      objectReference: {fileID: 1196740628}
-    - target: {fileID: 0}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: boardDisplay
-      value: 
-      objectReference: {fileID: 179457821}
-    - target: {fileID: 0}
-      propertyPath: board.snakes.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []

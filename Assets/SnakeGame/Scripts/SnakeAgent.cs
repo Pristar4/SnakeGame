@@ -578,9 +578,8 @@ namespace SnakeGame.Scripts
         /// </returns>
         private bool IsPositionSafe(Vector2Int position)
         {
-            Tile tile = Board.Tiles[position.x, position.y];
-            return position.x >= 0 && position.x < Board.Width && position.y >= 0 &&
-                   position.y < Board.Width && tile.Type != TileType.Snake;
+            return !Board.IsOutOfBounds(position) &&
+                   !Board.IsSnake(position.x, position.y);
         }
 
         private static bool IsSnakeAlive(Snake snake) => snake.IsAlive;
@@ -611,10 +610,9 @@ namespace SnakeGame.Scripts
         {
             foreach (Vector2Int pathPosition in currentPath)
             {
-                if (Board.Tiles[pathPosition.x, pathPosition.y].Type !=
-                    TileType.Food) // Do not override Food tile type
+                if (Board.IsFood(pathPosition.x, pathPosition.y)) // Do not override Food tile type
                 {
-                    Board.Tiles[pathPosition.x, pathPosition.y].Type = TileType.Path;
+                    Board.SetTile(pathPosition.x, pathPosition.y, TileType.Path);
                 }
             }
         }

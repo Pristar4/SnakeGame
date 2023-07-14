@@ -53,7 +53,7 @@ namespace SnakeGame.Scripts
         public Tile[,] Tiles
         {
             get => _tiles;
-            set => _tiles = value;
+            private set => _tiles = value;
         }
 
         /// <summary>
@@ -210,7 +210,25 @@ namespace SnakeGame.Scripts
         /// <param name="x">The x-coordinate of the position.</param>
         /// <param name="y">The y-coordinate of the position.</param>
         /// <returns>The tile at the specified position.</returns>
-        public Tile GetTile(int x, int y) => Tiles[x, y];
+        public Tile GetTile(int x, int y)
+        {
+            Debug.Assert(x >= 0 && x < Width,
+                         nameof(x) + " >= 0 && " + nameof(x) + " < " + nameof(Width));
+            Debug.Assert(y >= 0 && y < Height,
+                         nameof(y) + " >= 0 && " + nameof(y) + " < " + nameof(Height));
+
+            return Tiles[x, y];
+        }
+        public Tile SetTile(int x, int y, TileType type)
+        {
+            Debug.Assert(x >= 0 && x < Width,
+                         nameof(x) + " >= 0 && " + nameof(x) + " < " + nameof(Width));
+            Debug.Assert(y >= 0 && y < Height,
+                         nameof(y) + " >= 0 && " + nameof(y) + " < " + nameof(Height));
+
+            Tiles[x, y].Type = type;
+            return Tiles[x, y];
+        }
 
         /// <summary>
         ///     Determines whether the specified position is occupied by a snake.
@@ -226,13 +244,17 @@ namespace SnakeGame.Scripts
         /// <summary>
         ///     Determines whether the specified position is out of bounds.
         /// </summary>
-        /// <param name="nextPosition">The position to check.</param>
+        /// <param name="position">The position to check.</param>
         /// <returns><c>true</c> if the position is out of bounds; otherwise, <c>false</c>.</returns>
-        public bool IsOutOfBounds(Vector2Int nextPosition) =>
-                nextPosition.x < 0 || nextPosition.x >= Width || nextPosition.y < 0 ||
-                nextPosition.y >= Height;
+        public bool IsOutOfBounds(Vector2Int position) =>
+                position.x < 0 || position.x >= Width || position.y < 0 ||
+                position.y >= Height;
 
-        public bool IsSnakeAtPosition(int x, int y) => Tiles[x, y].Type == TileType.Snake;
+        public bool IsSnake(int x, int y) => Tiles[x, y].Type == TileType.Snake;
+
+        public bool IsFood(int x, int y) => Tiles[x, y].Type == TileType.Food;
+
+        public bool IsEmpty(int x, int y) => Tiles[x, y].Type == TileType.Empty;
 
         /// <summary>
         ///     Resets the board with the specified snakes, width, and height.
