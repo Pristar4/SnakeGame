@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
 namespace SnakeGame.Scripts
 {
     /// <summary>
-    /// Represents the game board.
+    ///     Represents the game board.
     /// </summary>
     [Serializable]
     public class Board
@@ -18,28 +18,28 @@ namespace SnakeGame.Scripts
         #region Serialized Fields
 
         [SerializeField] private Snake[] snakes;
-        [SerializeField] private Tile[,] _tiles;
 
         #endregion
 
+        [SerializeField] private Tile[,] _tiles;
+
 
         /// <summary>
-        /// Gets the width of the board.
+        ///     Gets the width of the board.
         /// </summary>
         public int Width => Tiles.GetLength(0);
-
         /// <summary>
-        /// Gets the height of the board.
+        ///     Gets the height of the board.
         /// </summary>
         public int Height => Tiles.GetLength(1);
 
         /// <summary>
-        /// Gets or sets the positions of the food on the board.
+        ///     Gets or sets the positions of the food on the board.
         /// </summary>
         public List<Vector2Int> FoodPositions { get; set; } = new();
 
         /// <summary>
-        /// Gets or sets the snakes on the board.
+        ///     Gets or sets the snakes on the board.
         /// </summary>
         public Snake[] Snakes
         {
@@ -48,7 +48,7 @@ namespace SnakeGame.Scripts
         }
 
         /// <summary>
-        /// Gets or sets the tiles on the board.
+        ///     Gets or sets the tiles on the board.
         /// </summary>
         public Tile[,] Tiles
         {
@@ -57,7 +57,8 @@ namespace SnakeGame.Scripts
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Board"/> class with the specified width, height, and snakes.
+        ///     Initializes a new instance of the <see cref="Board" /> class with the specified width, height,
+        ///     and snakes.
         /// </summary>
         /// <param name="width">The width of the board.</param>
         /// <param name="height">The height of the board.</param>
@@ -77,7 +78,7 @@ namespace SnakeGame.Scripts
         }
 
         /// <summary>
-        /// Clears the board by setting all tiles to <see cref="TileType.Empty"/>.
+        ///     Clears the board by setting all tiles to <see cref="TileType.Empty" />.
         /// </summary>
         public void ClearBoard()
         {
@@ -86,12 +87,13 @@ namespace SnakeGame.Scripts
                 for (int x = 0; x < Width; x++)
                 {
                     Tiles[x, y].Type = TileType.Empty;
+                    Tiles[x, y].Snake = null;
                 }
             }
         }
 
         /// <summary>
-        /// Draws the food on the board at the specified positions.
+        ///     Draws the food on the board at the specified positions.
         /// </summary>
         /// <param name="foodPositions">The positions of the food.</param>
         public void DrawFood(List<Vector2Int> foodPositions)
@@ -106,7 +108,7 @@ namespace SnakeGame.Scripts
         }
 
         /// <summary>
-        /// Draws the specified snake on the board.
+        ///     Draws the specified snake on the board.
         /// </summary>
         /// <param name="snake">The snake to draw.</param>
         public void DrawSnake(Snake snake)
@@ -132,7 +134,7 @@ namespace SnakeGame.Scripts
         }
 
         /// <summary>
-        /// Gets the board as a one-dimensional array of integers.
+        ///     Gets the board as a one-dimensional array of integers.
         /// </summary>
         /// <returns>The board as a one-dimensional array of integers.</returns>
         public int[] GetBoardAsArray()
@@ -165,7 +167,7 @@ namespace SnakeGame.Scripts
         }
 
         /// <summary>
-        /// Gets the board as a two-dimensional array of integers.
+        ///     Gets the board as a two-dimensional array of integers.
         /// </summary>
         /// <returns>The board as a two-dimensional array of integers.</returns>
         public int[,] GetBoardAsMatrix()
@@ -196,14 +198,14 @@ namespace SnakeGame.Scripts
         }
 
         /// <summary>
-        /// Gets the snake at the specified index.
+        ///     Gets the snake at the specified index.
         /// </summary>
         /// <param name="i">The index of the snake.</param>
         /// <returns>The snake at the specified index.</returns>
         public Snake GetSnake(int i) => Snakes[i];
 
         /// <summary>
-        /// Gets the tile at the specified position.
+        ///     Gets the tile at the specified position.
         /// </summary>
         /// <param name="x">The x-coordinate of the position.</param>
         /// <param name="y">The y-coordinate of the position.</param>
@@ -211,7 +213,7 @@ namespace SnakeGame.Scripts
         public Tile GetTile(int x, int y) => Tiles[x, y];
 
         /// <summary>
-        /// Determines whether the specified position is occupied by a snake.
+        ///     Determines whether the specified position is occupied by a snake.
         /// </summary>
         /// <param name="vector2Int">The position to check.</param>
         /// <returns><c>true</c> if the position is occupied by a snake; otherwise, <c>false</c>.</returns>
@@ -222,7 +224,7 @@ namespace SnakeGame.Scripts
         }
 
         /// <summary>
-        /// Determines whether the specified position is out of bounds.
+        ///     Determines whether the specified position is out of bounds.
         /// </summary>
         /// <param name="nextPosition">The position to check.</param>
         /// <returns><c>true</c> if the position is out of bounds; otherwise, <c>false</c>.</returns>
@@ -230,13 +232,10 @@ namespace SnakeGame.Scripts
                 nextPosition.x < 0 || nextPosition.x >= Width || nextPosition.y < 0 ||
                 nextPosition.y >= Height;
 
-        public bool IsSnakeAtPosition(int x, int y)
-        {
-            return Tiles[x, y].Type == TileType.Snake;
-        }
+        public bool IsSnakeAtPosition(int x, int y) => Tiles[x, y].Type == TileType.Snake;
 
         /// <summary>
-        /// Resets the board with the specified snakes, width, and height.
+        ///     Resets the board with the specified snakes, width, and height.
         /// </summary>
         /// <param name="snakeArray">The snakes to add to the board.</param>
         /// <param name="width">The width of the board.</param>
@@ -277,7 +276,7 @@ namespace SnakeGame.Scripts
         }
 
         /// <summary>
-        /// Spawns food at a random position on the board.
+        ///     Spawns food at a random position on the board.
         /// </summary>
         /// <returns>The position of the spawned food.</returns>
         public Vector2Int SpawnFood()
@@ -286,15 +285,15 @@ namespace SnakeGame.Scripts
 
             do
             {
-                x = Random.Range(0, Width);
-                y = Random.Range(0, Height);
-            } while (IsSnakeAtPosition(x, y) && Tiles[x, y].Type != TileType.Empty);
-
+                x = Random.Range(0, Tiles.GetLength(0));
+                y = Random.Range(0, Tiles.GetLength(1));
+            } while (Tiles[x, y].Type == TileType.Snake || Tiles[x, y].Type == TileType.Food);
 
             Tiles[x, y].Type = TileType.Food;
-            FoodPositions.Add(new Vector2Int(x, y));
+            Vector2Int foodPosition = new(x, y);
+            FoodPositions.Add(foodPosition);
 
-            return new Vector2Int(x, y);
+            return foodPosition;
         }
     }
 }

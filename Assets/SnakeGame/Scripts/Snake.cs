@@ -8,7 +8,7 @@ using UnityEngine;
 namespace SnakeGame.Scripts
 {
     /// <summary>
-    /// Represents a snake in the game.
+    ///     Represents a snake in the game.
     /// </summary>
     [Serializable]
     public class Snake
@@ -100,7 +100,7 @@ namespace SnakeGame.Scripts
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Snake"/> class.
+        ///     Initializes a new instance of the <see cref="Snake" /> class.
         /// </summary>
         /// <param name="position">The starting position of the snake.</param>
         /// <param name="direction">The starting direction of the snake.</param>
@@ -121,7 +121,7 @@ namespace SnakeGame.Scripts
         }
 
         /// <summary>
-        /// Checks if the snake's body contains a given position.
+        ///     Checks if the snake's body contains a given position.
         /// </summary>
         /// <param name="vector2Int">The position to check.</param>
         /// <returns>True if the snake's body contains the position, false otherwise.</returns>
@@ -139,12 +139,12 @@ namespace SnakeGame.Scripts
         }
 
         /// <summary>
-        /// Kills the snake.
+        ///     Kills the snake.
         /// </summary>
         public void Die() => IsAlive = false;
 
         /// <summary>
-        /// Increases the length of the snake by one.
+        ///     Increases the length of the snake by one.
         /// </summary>
         public void Grow()
         {
@@ -164,7 +164,7 @@ namespace SnakeGame.Scripts
     }
 
     /// <summary>
-    /// Represents the color of a snake.
+    ///     Represents the color of a snake.
     /// </summary>
     public enum SnakeColor
     {

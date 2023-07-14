@@ -1,9 +1,7 @@
 #region
 
-using System;
 using System.Collections.Generic;
 using TMPro;
-using Unity.Barracuda;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
@@ -15,12 +13,15 @@ using UnityEngine.InputSystem;
 namespace SnakeGame.Scripts
 {
     /// <summary>
-    /// The SnakeAgent class is responsible for controlling the behavior of the <see cref="Snake"/> in the game.
-    /// It contains methods for finding the longest path,
-    /// getting the relative direction of the input direction relative to the current direction,
-    /// handling the snake's direction based on the given action, initializing the game by creating snakes,
-    /// resetting the <see cref="Scripts.Board"/>, and spawning food, determining if a given position on the game <see cref="Scripts.Board"/> is safe,
-    /// processing snake movement, and rotating the snake's direction clockwise and counterclockwise.
+    ///     The SnakeAgent class is responsible for controlling the behavior of the <see cref="Snake" /> in
+    ///     the game.
+    ///     It contains methods for finding the longest path,
+    ///     getting the relative direction of the input direction relative to the current direction,
+    ///     handling the snake's direction based on the given action, initializing the game by creating
+    ///     snakes,
+    ///     resetting the <see cref="Scripts.Board" />, and spawning food, determining if a given position
+    ///     on the game <see cref="Scripts.Board" /> is safe,
+    ///     processing snake movement, and rotating the snake's direction clockwise and counterclockwise.
     /// </summary>
     public class SnakeAgent : Agent
     {
@@ -44,19 +45,19 @@ namespace SnakeGame.Scripts
         [SerializeField] private int startSize;
         [SerializeField] private int maxHungryTime = 64;
         [SerializeField] private int resetAverageCount = 250;
-
+        [SerializeField] private int eatTimer;
+        [SerializeField] private int episodeCount;
 
         #endregion
 
         private readonly Vector2Int[] _directions =
         {
-            new(0, 1),
-            new(1, 0),
-            new(0, -1),
-            new(-1, 0),
+            new(0, 1),  // up
+            new(1, 0),  // right
+            new(0, -1), // down
+            new(-1, 0), // left
         };
 
-        private int[] _actionLongestPathArray;
 
         private float _currentTimer;
         private int _highScore;
@@ -65,49 +66,52 @@ namespace SnakeGame.Scripts
                 _inputDirection = Vector2Int.up; // keeps track of the last input direction
 
         private int _longestPath;
-        private bool _shouldRecalculatePaths;
         private SnakeController _snakeController;
-        private double currentReward = 0.0;
-        private double totalScore = 0.0;
-        private double totalReward = 0.0;
-        [SerializeField] private int episodeCount;
 
-        private double averageReward;
-        private double averageScore;
-        [SerializeField] private int _eatTimer = 0;
-        private float currentDistance;
-        [SerializeField] private float previousDistanceEditor;
+        private double _averageReward;
+        private double _averageScore;
+        private float _currentDistance;
+        private double _currentReward;
+        private double _totalReward;
+        private double _totalScore;
+
+        private float PreviousDistance { get; set; }
+        public float MaxDistance { get; set; }
+        public int MaxPathLength
+        {
+            get => maxPathLength;
+            set => maxPathLength = value;
+        }
+        public Board Board
+        {
+            get => board;
+            set => board = value;
+        }
 
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SnakeAgent"/> class.
+        ///     Initializes a new instance of the <see cref="SnakeAgent" /> class.
         /// </summary>
         public SnakeAgent()
         {
             InitializeGame();
-            _actionLongestPathArray = new int[3];
-            _shouldRecalculatePaths = true;
-            MaxDistance = Mathf.Sqrt((Board.Height * Board.Height) + (Board.Width * Board.Width));
+            MaxDistance = Mathf.Sqrt(Board.Height * Board.Height + Board.Width * Board.Width);
         }
-
-        private float PreviousDistance { get; set; }
 
         #region Event Functions
 
         /// <summary>
-        /// Initializes the game and sets up the necessary variables.
+        ///     Initializes the game and sets up the necessary variables.
         /// </summary>
         private void Start()
         {
             InitializeGame();
-            _actionLongestPathArray = new int[3];
-            _shouldRecalculatePaths = true;
         }
 
 
         /// <summary>
-        /// Updates the input direction based on the user's keyboard input.
-        /// Recalculates the longest paths for all directions if needed.
+        ///     Updates the input direction based on the user's keyboard input.
+        ///     Recalculates the longest paths for all directions if needed.
         /// </summary>
         private void Update()
         {
@@ -139,101 +143,48 @@ namespace SnakeGame.Scripts
             {
                 Time.timeScale = Time.timeScale == 0 ? 1 : 0; // Pause/unpause the game
             }
-
-            // if (_shouldRecalculatePaths)
-            // {
-            //     var currentVisitedPath = new List<Vector2Int>();
-            //     var currentVisitedPositions = new HashSet<Vector2Int>();
-            //     CalculateLongestPathsForAllDirections(currentVisitedPath, currentVisitedPositions);
-            //
-            //
-            //     _shouldRecalculatePaths = true;
-            // }
         }
 
         #endregion
 
         /// <summary>
-        /// Collects observations for the agent based on the current state of the game board.
+        ///     Collects observations for the agent based on the current state of the game board.
         /// </summary>
         /// <param name="sensor">The sensor used to collect observations.</param>
         public override void CollectObservations(VectorSensor sensor)
         {
-            // MaxPathLength = Mathf.Max(MaxPathLength, Board.Snakes[0].Length);
-            const int view = 8; // Define view size as per your needs
+            const int view = 8;
 
-            // Assuming that there is always at least one snake and one food in the game
             Snake snake = Board.Snakes[0];
             Vector2Int food = Board.FoodPositions[0];
 
-            // Calculate direction to the food relative to the snake's heading
             Vector2 directionToFood = food - snake.Position;
+            directionToFood = directionToFood.normalized;
 
-            // Add the direction to the food (2 floats)
             sensor.AddObservation(directionToFood);
 
-            // Check for immediate dangers: front, left, right relative to the snake's current direction
             Vector2Int forwardPosition = snake.Position + snake.Direction;
             Vector2Int leftPosition = snake.Position + RotateCounterClockwise(snake.Direction);
             Vector2Int rightPosition = snake.Position + RotateClockwise(snake.Direction);
-            // Check if next positions are inside the board and not occupied by the snake's body
+
             sensor.AddObservation(IsPositionSafe(forwardPosition));
             sensor.AddObservation(IsPositionSafe(leftPosition));
             sensor.AddObservation(IsPositionSafe(rightPosition));
 
-            // CalculateLongestPathsForAllDirections();
 
-            sensor.AddObservation(_actionLongestPathArray[1]);
-            sensor.AddObservation(_actionLongestPathArray[0]);
-            sensor.AddObservation(_actionLongestPathArray[2]);
-
-            // Assuming that there is always at least one snake in the game
-            // Vector2Int snakeHeadPosition = board.Snakes[0].Position;
-
-            // Position of the top left corner of the window
-            // Vector2Int windowStart = snakeHeadPosition - new Vector2Int(view / 2, view / 2);
-            Vector2Int windowStart = Vector2Int.zero;
-
-            // Loop over each cell in the window
             for (int i = 0; i < view; i++)
             {
                 for (int j = 0; j < view; j++)
                 {
-                    Vector2Int cellPos = windowStart + new Vector2Int(i, j);
                     Tile tile = Board.GetTile(i, j);
-
-                    int cellValue;
-
-                    if (cellPos.x < 0 || cellPos.y < 0 || cellPos.x >= Board.Width ||
-                        cellPos.y >= Board.Height)
-                            // Cell is out of bounds
-                    {
-                        cellValue = -1;
-                    }
-                    else if (tile.Type == TileType.Snake)
-                            // Cell is occupied by the snake
-                    {
-                        cellValue = 1;
-                    }
-                    else if (tile.Type == TileType.Food)
-                            // Cell contains food
-                    {
-                        cellValue = 2;
-                    }
-                    else
-                            // Cell is empty
-                    {
-                        cellValue = 0;
-                    }
-
-                    sensor.AddObservation(cellValue);
+                    sensor.AddObservation((int)tile.Type);
                 }
             }
         }
 
 
         /// <summary>
-        /// Generates an action based on the user's input direction.
+        ///     Generates an action based on the user's input direction.
         /// </summary>
         /// <param name="actionsOut">The generated actions.</param>
         public override void Heuristic(in ActionBuffers actionsOut)
@@ -246,11 +197,11 @@ namespace SnakeGame.Scripts
 
 
         /// <summary>
-        /// Called when the agent receives an action.
-        /// Handles the snake's movement and direction based on the received action.
-        /// Clears the board, draws the food and snake, and checks for a new high score.
-        /// Calculates the distance to the food and applies a reward or punishment based on the distance.
-        /// Checks the snake's status and sets the flag to recalculate paths.
+        ///     Called when the agent receives an action.
+        ///     Handles the snake's movement and direction based on the received action.
+        ///     Clears the board, draws the food and snake, and checks for a new high score.
+        ///     Calculates the distance to the food and applies a reward or punishment based on the distance.
+        ///     Checks the snake's status and sets the flag to recalculate paths.
         /// </summary>
         /// <param name="actions">The received actions.</param>
         public override void OnActionReceived(ActionBuffers actions)
@@ -262,7 +213,7 @@ namespace SnakeGame.Scripts
                 return;
             }
 
-            _eatTimer += 1;
+            eatTimer += 1;
 
             Snake snake = Board.Snakes[0];
 
@@ -287,58 +238,19 @@ namespace SnakeGame.Scripts
             CheckForNewHighScore(snake);
 
 
-            // Get action's longest path from the array
-            int actionLongestPath = _actionLongestPathArray[action];
-
-
-            // If the longest path is shorter than the maximum, it's a bad action (blocked), apply punishment
-            for (int i = 0; i < 3; i++)
-            {
-                var longestPath = _actionLongestPathArray[i];
-
-                /*switch (i)
-                {
-                    case 0:
-                        Debug.Log("Left action longest path: " + longestPath);
-                        break;
-                    case 1:
-                        Debug.Log("Forward action longest path: " + longestPath);
-                        break;
-                    case 2:
-                        Debug.Log("Right action longest path: " + longestPath);
-                        break;
-                }*/
-            }
-
-
-            if (actionLongestPath < MaxPathLength)
-            {
-                // Debug.Log("Bad action");
-                AddReward(-1f);
-                currentReward -= 1f;
-            }
-            // Good action, apply reward
-            else
-            {
-                // Debug.Log("Good action");
-                AddReward(0.1f);
-                currentReward += 0.1f;
-            }
-
             if (Board.FoodPositions.Count > 0)
             {
                 Vector2Int currentTilePos = snake.Position;
                 Vector2 foodPosition = Board.FoodPositions[0];
 
                 //Euclidean distance to food from current position
-                currentDistance = Vector2.Distance(currentTilePos, foodPosition);
+                _currentDistance = Vector2.Distance(currentTilePos, foodPosition);
 
-                previousDistanceEditor = PreviousDistance;
 
                 // Calculate the actual distance to the food
 
                 // If the current distance is within the reward radius, apply the reward
-                float normalizedCurrentDistance = currentDistance /
+                float normalizedCurrentDistance = _currentDistance /
                                                   Mathf.Sqrt(
                                                           Board.Width * Board.Width +
                                                           Board.Height * Board.Height);
@@ -353,83 +265,156 @@ namespace SnakeGame.Scripts
 
                 // Apply the reward
                 AddReward(reward);
-                // Debug.Log("Distance Reward :" + reward);
-                currentReward += reward;
+                _currentReward += reward;
 
 
-                /*if (currentDistance < PreviousDistance)
-                {
-                    AddReward(0.1f);
-                    Debug.Log("Closer :" + 0.1f);
-                    currentReward += 0.1f;
-                }
-                else if (currentDistance > PreviousDistance)
-                {
-                    AddReward(-0.1f);
-                    currentReward -= 0.1f;
-                    Debug.Log("Further :" + -0.1f);
-                }*/
-
-                PreviousDistance = currentDistance;
+                PreviousDistance = _currentDistance;
             }
 
             CheckSnakeStatus(snake);
-
-            _shouldRecalculatePaths = true;
         }
 
         /// <summary>
-        /// Called when the agent starts a new episode.
-        /// Resets the game and initializes the current reward to 0.
-        /// If the number of episodes exceeds the reset average count, the total score and reward are reset.
+        ///     Called when the agent starts a new episode.
+        ///     Resets the game and initializes the current reward to 0.
+        ///     If the number of episodes exceeds the reset average count, the total score and reward are
+        ///     reset.
         /// </summary>
         public override void OnEpisodeBegin()
         {
             if (episodeCount > resetAverageCount)
             {
-                totalScore = 0.0;
-                totalReward = 0.0;
+                _totalScore = 0.0;
+                _totalReward = 0.0;
                 episodeCount = 0;
             }
 
-            // MaxPathLength = 0;
-            Debug.Log("MaxPathLength: " + MaxPathLength);
-            // _shouldRecalculatePaths = true;
 
-            _eatTimer = 0;
+            eatTimer = 0;
             episodeCount++;
             InitializeGame();
-            currentReward = 0;
+            _currentReward = 0;
         }
 
-        /*private void CalculateLongestPathsForAllDirections()
+        /// <summary>
+        ///     Recursively finds the longest path from the given position, without visiting any position more
+        ///     than once.
+        /// </summary>
+        /// <param name="position">The starting position.</param>
+        /// <param name="visitedPositions">The set of visited positions.</param>
+        /// <param name="maxLength">The maximum length of the path.</param>
+        /// <param name="currentPath"></param>
+        /// <param name="currentLength">The current length of the path.</param>
+        /// <returns>The length of the longest path.</returns>
+        private int BreadthFirstSearch(Vector2Int position, HashSet<Vector2Int> visitedPositions,
+                                       int maxLength, List<Vector2Int> currentPath,
+                                       int currentLength = 0)
         {
-            Snake snake = Board.Snakes[0];
-
-            for (int action = 0; action < 3; ++action)
+            if (!IsPositionSafe(position) || currentLength > maxLength ||
+                visitedPositions.Contains(position))
             {
-                Vector2Int actionDirection = action switch
-                {
-                    0 => RotateCounterClockwise(snake.Direction),
-                    1 => snake.Direction,
-                    2 => RotateClockwise(snake.Direction),
-                    _ => snake.Direction,
-                };
-
-                var position = snake.Position;
-                var visited = new HashSet<Vector2Int>();
-                var currentPath = new List<Vector2Int>();
-                var currentPathLength = 0;
-                int longestPath = BreadthFirstSearch(position, visited, MaxPathLength,
-                                                     currentPath, currentPathLength);
-                _actionLongestPathArray[action] = longestPath;
+                return -1;
             }
 
-            // Debug.Log("Longest path for left action: " + _actionLongestPathArray[0]);
-        }*/
+            visitedPositions.Add(position);
+            currentPath.Add(position);
+
+            // If this tile is empty, set it to be a path tile
+            if (Board.Tiles[position.x, position.y].Type == TileType.Empty)
+            {
+                Board.Tiles[position.x, position.y].Type = TileType.Path;
+            }
+
+            // Exit if the path length equals maxPathLength
+            if (currentLength == maxLength)
+            {
+                visitedPositions.Remove(position);
+                currentPath.RemoveAt(currentPath.Count - 1);
+                return currentLength;
+            }
+
+            int longestPathLength = currentLength;
+            int possiblePaths = 0;
+
+
+            foreach (Vector2Int direction in _directions)
+            {
+                Vector2Int nextPosition = position + direction;
+
+                int nextPathLength = BreadthFirstSearch(nextPosition, visitedPositions, maxLength,
+                                                        currentPath, currentLength + 1);
+
+                if (nextPathLength > longestPathLength)
+                {
+                    longestPathLength = nextPathLength;
+                }
+
+                if (nextPathLength >= 0)
+                {
+                    possiblePaths++;
+                }
+            }
+
+            visitedPositions.Remove(position);
+            currentPath.RemoveAt(currentPath.Count - 1);
+
+            if (possiblePaths == 0 && longestPathLength < maxLength)
+            {
+                SetEnclosedSpacesAsBlocked(visitedPositions);
+            }
+
+            return longestPathLength;
+        }
+        /// <summary>
+        ///     Calculates the longest paths for all possible directions the snake can move in.
+        /// </summary>
+        /// <summary>
+        ///     Calculates the longest paths for all possible directions the snake can move in.
+        /// </summary>
+        private void CalculateLongestPaths(List<Vector2Int> currentVisitedPath,
+                                           HashSet<Vector2Int> currentVisitedPositions)
+        {
+            foreach (Vector2Int direction in _directions)
+            {
+                Vector2Int nextPosition = Board.Snakes[0].Position + direction;
+
+                // Check if the next position is safe
+                if (!IsPositionSafe(nextPosition))
+                {
+                    continue;
+                }
+
+                HashSet<Vector2Int> visitedPositions = new(currentVisitedPositions);
+                List<Vector2Int> currentPath = new(currentVisitedPath);
+
+                int pathLength =
+                        BreadthFirstSearch(nextPosition, visitedPositions, MaxPathLength,
+                                           currentPath);
+
+                // Check if the path is valid
+                if (pathLength >= 0)
+                {
+                    // Update the grid with the path
+                    UpdateGridWithPath(currentPath);
+
+                    // Check if the direction moves into an enclosed space
+                    int openSpaceCount = 0;
+
+                    openSpaceCount = CountOpenSpaces(visitedPositions, openSpaceCount);
+
+                    int threshold = 3;
+
+                    if (openSpaceCount < threshold)
+                    {
+                        SetEnclosedSpacesAsBlocked(visitedPositions);
+                    }
+                }
+            }
+        }
+
 
         /// <summary>
-        /// Checks if the current score is higher than the high score and updates it if necessary.
+        ///     Checks if the current score is higher than the high score and updates it if necessary.
         /// </summary>
         /// <param name="snake">The snake to check the score for.</param>
         private void CheckForNewHighScore(Snake snake)
@@ -447,7 +432,7 @@ namespace SnakeGame.Scripts
 
 
         /// <summary>
-        /// Checks the status of the given snake and updates the reward accordingly.
+        ///     Checks the status of the given snake and updates the reward accordingly.
         /// </summary>
         /// <param name="snake">The snake to check.</param>
         private void CheckSnakeStatus(Snake snake)
@@ -455,41 +440,52 @@ namespace SnakeGame.Scripts
             if (snake.AteFood)
             {
                 Debug.Log("Eat : " + 1f);
-                currentReward += 1f;
+                _currentReward += 1f;
                 AddReward(1f);
                 snake.AteFood = false;
-                _eatTimer = 0;
+                eatTimer = 0;
             }
 
-            // AddReward(-0.1f);
-            // currentReward += -0.1f;
 
-            if (_eatTimer > maxHungryTime)
+            if (eatTimer > maxHungryTime)
             {
-                Debug.Log("Starved");
-                snake.IsAlive = false;
+                Debug.Log("Starving");
+                _currentReward -= 0.1f;
+                AddReward(-0.1f);
             }
 
             if (!IsSnakeAlive(snake))
             {
                 Debug.Log("Dead : " + -1f);
-                currentReward -= 1f;
+                _currentReward -= 1f;
                 AddReward(-1f);
-                totalScore += Board.Snakes[0].Score;
-                totalReward += currentReward;
-                averageScore = totalScore / episodeCount;
-                averageReward = totalReward / episodeCount;
+                _totalScore += Board.Snakes[0].Score;
+                _totalReward += _currentReward;
+                _averageScore = _totalScore / episodeCount;
+                _averageReward = _totalReward / episodeCount;
                 EndEpisode();
             }
 
-            currentRewardText.text = "Current Reward:\n" + currentReward.ToString("F2");
-            averageRewardText.text = "Average Reward:\n" + averageReward.ToString("F2");
-            averageScoreText.text = "Average Score:\n" + averageScore.ToString("F2");
+            currentRewardText.text = "Current Reward:\n" + _currentReward.ToString("F2");
+            averageRewardText.text = "Average Reward:\n" + _averageReward.ToString("F2");
+            averageScoreText.text = "Average Score:\n" + _averageScore.ToString("F2");
+        }
+        private int CountOpenSpaces(HashSet<Vector2Int> visitedPositions, int openSpaceCount)
+        {
+            foreach (Vector2Int position in visitedPositions)
+            {
+                if (Board.Tiles[position.x, position.y].Type == TileType.Path)
+                {
+                    openSpaceCount++;
+                }
+            }
+
+            return openSpaceCount;
         }
 
 
         /// <summary>
-        /// Gets the relative direction of the input direction relative to the current direction.
+        ///     Gets the relative direction of the input direction relative to the current direction.
         /// </summary>
         /// <param name="currentDirection">The current direction.</param>
         /// <param name="inputDirection">The input direction.</param>
@@ -517,7 +513,7 @@ namespace SnakeGame.Scripts
             return 1;
         }
         /// <summary>
-        /// Handles the snake's direction based on the given action.
+        ///     Handles the snake's direction based on the given action.
         /// </summary>
         /// <param name="action">The action to take.</param>
         /// <param name="snake">The snake to handle.</param>
@@ -539,7 +535,7 @@ namespace SnakeGame.Scripts
 
 
         /// <summary>
-        /// Initializes the game by creating snakes, resetting the board, and spawning food.
+        ///     Initializes the game by creating snakes, resetting the board, and spawning food.
         /// </summary>
         private void InitializeGame()
         {
@@ -570,21 +566,6 @@ namespace SnakeGame.Scripts
                 Board.SpawnFood();
             }
         }
-        public float MaxDistance { get; set; }
-        public int MaxPathLength
-        {
-            get => maxPathLength;
-            set => maxPathLength = value;
-            // {
-            //     var snake = Board.Snakes[0];
-            //     maxPathLength = Mathf.Max(value, snake.Length);
-            // }
-        }
-        public Board Board
-        {
-            get => board;
-            set => board = value;
-        }
 
         /// <summary>
         ///     Determines if a given position on the game board is safe.
@@ -592,31 +573,14 @@ namespace SnakeGame.Scripts
         /// <param name="position" cref="Scripts.Board">The position to check.</param>
         /// <returns>
         ///     True if the position is within the bounds of the board, defined by the ‘width’ and ‘height’
-        ///     properties, and neither collides with any body part of a snake in the Snake collection of the
-        ///     Board class.
+        ///     properties, and the tile at the position is not a snake.
         ///     False otherwise.
         /// </returns>
         private bool IsPositionSafe(Vector2Int position)
         {
-            // Define the condition for the position to be safe. The following is just a basic example.
-            // You might need to add more conditions or modify it according to your game rules.
-
-            // Check if out of bounds
-            if (position.x < 0 || position.y < 0 || position.x >= width || position.y >= height)
-            {
-                return false;
-            }
-
-            // Check if would collide with the snake
-
-            if (Board.Tiles[position.x, position.y].Type == TileType.Snake)
-            {
-                return false;
-            }
-
-
-            // If passed both conditions, the position is safe.
-            return true;
+            Tile tile = Board.Tiles[position.x, position.y];
+            return position.x >= 0 && position.x < Board.Width && position.y >= 0 &&
+                   position.y < Board.Width && tile.Type != TileType.Snake;
         }
 
         private static bool IsSnakeAlive(Snake snake) => snake.IsAlive;
@@ -633,5 +597,26 @@ namespace SnakeGame.Scripts
 
         private Vector2Int RotateCounterClockwise(Vector2Int direction) =>
                 new(-direction.y, direction.x);
+        private void SetEnclosedSpacesAsBlocked(HashSet<Vector2Int> visitedPositions)
+        {
+            foreach (Vector2Int position in visitedPositions)
+            {
+                if (Board.Tiles[position.x, position.y].Type == TileType.Path)
+                {
+                    Board.Tiles[position.x, position.y].Type = TileType.Blocked;
+                }
+            }
+        }
+        private void UpdateGridWithPath(List<Vector2Int> currentPath)
+        {
+            foreach (Vector2Int pathPosition in currentPath)
+            {
+                if (Board.Tiles[pathPosition.x, pathPosition.y].Type !=
+                    TileType.Food) // Do not override Food tile type
+                {
+                    Board.Tiles[pathPosition.x, pathPosition.y].Type = TileType.Path;
+                }
+            }
+        }
     }
 }

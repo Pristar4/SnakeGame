@@ -54,15 +54,22 @@ MonoBehaviour:
     snakes: []
   boardDisplay: {fileID: 0}
   highScoreText: {fileID: 0}
+  averageScoreText: {fileID: 0}
+  currentRewardText: {fileID: 0}
+  averageRewardText: {fileID: 0}
   isDisplayOn: 1
   scoreText: {fileID: 0}
   foodCount: 1
+  width: 8
   height: 8
   maxPathLength: 5
   numberOfSnakes: 1
   startSize: 1
-  width: 8
-  totalReward: 0
+  maxHungryTime: 64
+  resetAverageCount: 250
+  episodeCount: 0
+  _eatTimer: 0
+  previousDistanceEditor: 0
 --- !u!114 &6952289727027405687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,7 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 72
+    VectorObservationSize: 69
     NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
@@ -85,7 +92,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 5f6f171c7f32a74499669be546f32fdb, type: 3}
   m_InferenceDevice: 2
   m_BehaviorType: 0
   m_BehaviorName: SnakeAi

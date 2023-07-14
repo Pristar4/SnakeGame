@@ -9,7 +9,7 @@ using UnityEngine;
 namespace SnakeGame.Scripts
 {
     /// <summary>
-    /// Displays the game board using sprites.
+    ///     Displays the game board using sprites.
     /// </summary>
     internal class SpriteBoardDisplay : BoardDisplay
     {
@@ -61,7 +61,8 @@ namespace SnakeGame.Scripts
         #endregion
 
         /// <summary>
-        /// Compares the current tile displays with the board and creates or deletes tile displays as necessary.
+        ///     Compares the current tile displays with the board and creates or deletes tile displays as
+        ///     necessary.
         /// </summary>
         /// <param name="board">The board to compare with the tile displays.</param>
         private void CompareBoardAndTileDisplays(Board board)
@@ -80,7 +81,7 @@ namespace SnakeGame.Scripts
 
 
         /// <summary>
-        /// Creates a new tile display at the specified position.
+        ///     Creates a new tile display at the specified position.
         /// </summary>
         /// <param name="position">The position to create the tile display at.</param>
         /// <returns>The newly created tile display.</returns>
@@ -91,11 +92,11 @@ namespace SnakeGame.Scripts
             return tileDisplay;
         }
         /// <summary>
-        /// Creates tile displays for the board based on the given width and height.
+        ///     Creates tile displays for the board based on the given width and height.
         /// </summary>
         /// <param name="width">The width of the board.</param>
         /// <param name="height">The height of the board.</param>
-        /// <see cref="TileDisplay"/>
+        /// <see cref="TileDisplay" />
         private void CreateTileDisplays(int width, int height)
         {
             _tileDisplays = new TileDisplay[width, height];
@@ -112,13 +113,13 @@ namespace SnakeGame.Scripts
         }
 
         /// <summary>
-        /// Deletes the given tile display.
+        ///     Deletes the given tile display.
         /// </summary>
         /// <param name="tileDisplay">The tile display to delete.</param>
         private void DeleteTileDisplay(TileDisplay tileDisplay) => Destroy(tileDisplay.gameObject);
 
         /// <summary>
-        /// Deletes all tile displays in the current board.
+        ///     Deletes all tile displays in the current board.
         /// </summary>
         private void DeleteTileDisplays()
         {
@@ -129,8 +130,9 @@ namespace SnakeGame.Scripts
         }
 
         /// <summary>
-        /// Compares the number of snakes in the board with the number of snake direction objects.
-        /// If the numbers are different, it resets the snake direction objects and creates new ones for each snake.
+        ///     Compares the number of snakes in the board with the number of snake direction objects.
+        ///     If the numbers are different, it resets the snake direction objects and creates new ones for
+        ///     each snake.
         /// </summary>
         /// <param name="board">The board to compare with the snake direction objects.</param>
         private void SnakeDirectionCompare(Board board)
@@ -194,9 +196,10 @@ namespace SnakeGame.Scripts
             }
         }
         /// <summary>
-        /// Handles the display of tiles with TileType.None.
-        /// If isShowingReward is true, it changes the material of the tile to a reward material if the tile is within the reward radius of the snake or food.
-        /// Otherwise, it changes the material of the tile to a default none material.
+        ///     Handles the display of tiles with TileType.None.
+        ///     If isShowingReward is true, it changes the material of the tile to a reward material if the
+        ///     tile is within the reward radius of the snake or food.
+        ///     Otherwise, it changes the material of the tile to a default none material.
         /// </summary>
         /// <param name="x">The x position of the tile.</param>
         /// <param name="y">The y position of the tile.</param>
@@ -238,7 +241,7 @@ namespace SnakeGame.Scripts
 
 
         /// <summary>
-        /// Updates the position and rotation of the snake direction objects on the board.
+        ///     Updates the position and rotation of the snake direction objects on the board.
         /// </summary>
         private void SnakeDirectionUpdate()
         {
@@ -278,7 +281,7 @@ namespace SnakeGame.Scripts
 
 
         /// <summary>
-        /// Returns the material associated with the given snake color.
+        ///     Returns the material associated with the given snake color.
         /// </summary>
         /// <param name="tileSnake">The snake to get the material for.</param>
         /// <returns>The material associated with the given snake color.</returns>
@@ -311,7 +314,7 @@ namespace SnakeGame.Scripts
             return snakeMaterial;
         }
         /// <summary>
-        /// Clears the board by changing the material of all tile displays to the default none material.
+        ///     Clears the board by changing the material of all tile displays to the default none material.
         /// </summary>
         /// <param name="board">The board to clear.</param>
         public override void ClearBoard(Board board)
@@ -332,7 +335,7 @@ namespace SnakeGame.Scripts
     }
 
     /// <summary>
-    /// Represents the possible directions that a snake can move in.
+    ///     Represents the possible directions that a snake can move in.
     /// </summary>
     public enum SnakeDirection
     {

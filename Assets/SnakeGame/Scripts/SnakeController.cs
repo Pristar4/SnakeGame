@@ -10,8 +10,6 @@ namespace SnakeGame.Scripts
     {
         #region Methods
 
-
-
         public static void InitializeSnakeBody(Snake snake, Vector2Int position,
                                                Vector2Int direction, int length)
         {
@@ -85,7 +83,6 @@ namespace SnakeGame.Scripts
             if (nextPosition.x < 0 || nextPosition.x >= board.Width || nextPosition.y < 0 ||
                 nextPosition.y >= board.Height)
             {
-
                 Debug.Log("Collision with wall");
                 board.Snakes[0].Die();
                 return;
