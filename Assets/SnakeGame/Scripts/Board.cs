@@ -96,6 +96,9 @@ namespace SnakeGame.Scripts
         /// <param name="foodPositions">The positions of the food.</param>
         public void DrawFood(List<Vector2Int> foodPositions)
         {
+            Debug.Assert(foodPositions != null,
+                         nameof(foodPositions) + " != null");
+
             foreach (Vector2Int pos in foodPositions)
             {
                 Tiles[pos.x, pos.y].Type = TileType.Food;
