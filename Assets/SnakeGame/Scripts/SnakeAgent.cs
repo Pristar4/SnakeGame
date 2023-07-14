@@ -45,7 +45,6 @@ namespace SnakeGame.Scripts
         [SerializeField] private int maxHungryTime = 64;
         [SerializeField] private int resetAverageCount = 250;
 
-        [SerializeField] private BoardDebugger boardDebugger;
 
         #endregion
 
@@ -141,16 +140,15 @@ namespace SnakeGame.Scripts
                 Time.timeScale = Time.timeScale == 0 ? 1 : 0; // Pause/unpause the game
             }
 
-            if (_shouldRecalculatePaths)
-            {
-                var currentVisitedPath = new List<Vector2Int>();
-                var currentVisitedPositions = new HashSet<Vector2Int>();
-                CalculateLongestPathsForAllDirections(currentVisitedPath, currentVisitedPositions);
-
-                boardDebugger.DrawColoredEnumBoard(Board);
-
-                _shouldRecalculatePaths = true;
-            }
+            // if (_shouldRecalculatePaths)
+            // {
+            //     var currentVisitedPath = new List<Vector2Int>();
+            //     var currentVisitedPositions = new HashSet<Vector2Int>();
+            //     CalculateLongestPathsForAllDirections(currentVisitedPath, currentVisitedPositions);
+            //
+            //
+            //     _shouldRecalculatePaths = true;
+            // }
         }
 
         #endregion
@@ -284,7 +282,6 @@ namespace SnakeGame.Scripts
             if (isDisplayOn)
             {
                 boardDisplay.DrawBoard(Board);
-                boardDebugger.DrawColoredEnumBoard(Board);
             }
 
             CheckForNewHighScore(snake);
@@ -428,7 +425,6 @@ namespace SnakeGame.Scripts
                 _actionLongestPathArray[action] = longestPath;
             }
 
-            boardDebugger.DrawColoredEnumBoard(Board);
             // Debug.Log("Longest path for left action: " + _actionLongestPathArray[0]);
         }*/
 
@@ -489,192 +485,6 @@ namespace SnakeGame.Scripts
             currentRewardText.text = "Current Reward:\n" + currentReward.ToString("F2");
             averageRewardText.text = "Average Reward:\n" + averageReward.ToString("F2");
             averageScoreText.text = "Average Score:\n" + averageScore.ToString("F2");
-        }
-        /// <summary>
-        /// Calculates the longest paths for all possible directions the snake can move in.
-        /// </summary>
-        /// <summary>
-        /// Calculates the longest paths for all possible directions the snake can move in.
-        /// </summary>
-        private void CalculateLongestPathsForAllDirections(List<Vector2Int> currentVisitedPath,
-                                                           HashSet<Vector2Int>
-                                                                   currentVisitedPositions)
-        {
-            // Define the four possible directions (up, down, left, right)
-            Vector2Int[] directions = new Vector2Int[]
-            {
-                new Vector2Int(0, 1),  // Up
-                new Vector2Int(0, -1), // Down
-                new Vector2Int(-1, 0), // Left
-                new Vector2Int(1, 0)   // Right
-            };
-
-            foreach (Vector2Int direction in directions)
-            {
-                Vector2Int nextPosition = Board.Snakes[0].Position + direction;
-
-                // Check if the next position is within the bounds of your grid or array
-                if (nextPosition.x >= 0 && nextPosition.x < Board.Width && nextPosition.y >= 0 &&
-                    nextPosition.y < Board.Height)
-                {
-                    // Check if the tile at the next position is of type TileType.Snake or TileType.Food
-                    if (Board.Tiles[nextPosition.x, nextPosition.y].Type == TileType.Snake ||
-                        Board.Tiles[nextPosition.x, nextPosition.y].Type == TileType.Food)
-                    {
-                        continue; // Skip this direction if it's blocked by a snake or food
-                    }
-
-                    // Create a copy of the visited positions set and the current path list
-                    HashSet<Vector2Int> visitedPositions =
-                            new HashSet<Vector2Int>(currentVisitedPositions);
-                    List<Vector2Int> currentPath = new List<Vector2Int>(currentVisitedPath);
-
-                    // Call the BreadthFirstSearch method
-                    int pathLength =
-                            BreadthFirstSearch(nextPosition, visitedPositions, MaxPathLength,
-                                               currentPath);
-
-                    // Check if the path is valid
-                    if (pathLength >= 0)
-                    {
-                        // Update the grid with the path
-                        foreach (Vector2Int pathPosition in currentPath)
-                        {
-                            if (Board.Tiles[pathPosition.x, pathPosition.y].Type !=
-                                TileType.Food) // Do not override Food tile type
-                            {
-                                Board.Tiles[pathPosition.x, pathPosition.y].Type = TileType.Path;
-                            }
-
-                            boardDebugger.DrawColoredEnumBoard(Board);
-                        }
-
-                        // Check if the direction moves into an enclosed space
-                        int openSpaceCount = 0;
-
-                        foreach (Vector2Int position in visitedPositions)
-                        {
-                            if (Board.Tiles[position.x, position.y].Type == TileType.Path)
-                            {
-                                openSpaceCount++;
-                            }
-                        }
-
-                        // Check if the direction moves into an enclosed space (adjust the threshold as needed)
-                        int threshold = 3;
-
-                        if (openSpaceCount < threshold)
-                        {
-                            // Set all tiles of the enclosed space to TileType.Blocked
-                            foreach (Vector2Int position in visitedPositions)
-                            {
-                                if (Board.Tiles[position.x, position.y].Type == TileType.Path)
-                                {
-                                    Board.Tiles[position.x, position.y].Type = TileType.Blocked;
-                                    boardDebugger.DrawColoredEnumBoard(Board);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Recursively finds the longest path from the given position, without visiting any position more than once.
-        /// </summary>
-        /// <param name="position">The starting position.</param>
-        /// <param name="visitedPositions">The set of visited positions.</param>
-        /// <param name="maxLength">The maximum length of the path.</param>
-        /// <param name="currentPath"></param>
-        /// <param name="currentLength">The current length of the path.</param>
-        /// <returns>The length of the longest path.</returns>
-        private int BreadthFirstSearch(Vector2Int position, HashSet<Vector2Int> visitedPositions,
-                                       int maxLength, List<Vector2Int> currentPath,
-                                       int currentLength = 0)
-        {
-            if (position.x < 0 || position.x >= Board.Width || position.y < 0 ||
-                position.y >= Board.Height)
-            {
-                return -1;
-            }
-
-            if (currentLength > MaxPathLength)
-            {
-                return -1;
-            }
-
-            if (visitedPositions.Contains(position))
-            {
-                return -1;
-            }
-
-            if (Board.Tiles[position.x, position.y].Type == TileType.Snake ||
-                Board.Tiles[position.x, position.y].Type == TileType.Food)
-            {
-                return -1;
-            }
-
-            visitedPositions.Add(position);
-            currentPath.Add(position);
-
-            // If this tile is empty, set it to be a path tile
-            if (Board.Tiles[position.x, position.y].Type == TileType.Empty)
-            {
-                Board.Tiles[position.x, position.y].Type = TileType.Path;
-                boardDebugger.DrawColoredEnumBoard(Board);
-            }
-
-            // Exit if the path length equals maxPathLength
-            if (currentLength >= maxLength)
-            {
-                return currentLength;
-            }
-
-            int longestPathLength = currentLength;
-            int possiblePaths = 0;
-
-            // Check all possible directions
-            Vector2Int[] directions = new Vector2Int[]
-            {
-                new Vector2Int(0, 1),  // Up
-                new Vector2Int(0, -1), // Down
-                new Vector2Int(-1, 0), // Left
-                new Vector2Int(1, 0)   // Right
-            };
-
-            foreach (Vector2Int direction in directions)
-            {
-                Vector2Int nextPosition = position + direction;
-
-                int nextPathLength = BreadthFirstSearch(nextPosition, visitedPositions, maxLength,
-                                                        currentPath, currentLength + 1);
-
-                if (nextPathLength > longestPathLength)
-                {
-                    longestPathLength = nextPathLength;
-                }
-
-                if (nextPathLength >= 0)
-                {
-                    possiblePaths++;
-                }
-            }
-
-            visitedPositions.Remove(position);
-            currentPath.RemoveAt(currentPath.Count - 1);
-
-            // If there are no possible paths, this is an enclosed space, mark all tiles as blocked
-            if (possiblePaths == 0 && longestPathLength < maxLength)
-            {
-                foreach (Vector2Int enclosedPosition in visitedPositions)
-                {
-                    Board.Tiles[enclosedPosition.x, enclosedPosition.y].Type = TileType.Blocked;
-                    boardDebugger.DrawColoredEnumBoard(Board);
-                }
-            }
-
-            return longestPathLength;
         }
 
 

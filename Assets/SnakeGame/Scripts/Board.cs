@@ -2,8 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
-using Sirenix.Utilities;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
