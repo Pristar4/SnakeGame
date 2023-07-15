@@ -162,8 +162,13 @@ namespace SnakeGame.Scripts
                 SnakeDirectionCompare(board);
                 SnakeDirectionUpdate();
 
-                Vector2Int snakePos = new(board.Snakes[0].Position.x, board.Snakes[0].Position.y);
-                Vector2Int foodPos = new(board.FoodPositions[0].x, board.FoodPositions[0].y);
+                Vector2Int snakePos = board.GetSnake(0).Position;
+                Vector2Int foodPos = snakePos;
+
+                if (board.FoodPositions.Count > 0)
+                {
+                    foodPos = board.FoodPositions[0];
+                }
                 const int rewardRadius = 10;
 
                 for (int y = 0; y < board.Height; y++)

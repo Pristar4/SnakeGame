@@ -19,7 +19,7 @@ namespace SnakeGame.Scripts
             }
         }
 
-        public Snake CreateSnake(Vector2Int position, Vector2Int direction, int length, int id)
+        private Snake CreateSnake(Vector2Int position, Vector2Int direction, int length, int id)
         {
             Snake snake = new(position, direction, length, id, new Vector2Int[length],
                               SnakeColor.Player1);
@@ -75,34 +75,24 @@ namespace SnakeGame.Scripts
             snake.Body[0] = snake.Position;
         }
 
-        public void CheckCollisions(Board board)
+        public TileType CheckCollisions(Board board, Snake snake)
         {
             // check if the next move would be a collision with the wall
-            Vector2Int nextPosition = board.Snakes[0].Position + board.Snakes[0].Direction;
+            Vector2Int nextPosition = snake.Position + snake.NextDirection;
 
-            if (nextPosition.x < 0 || nextPosition.x >= board.Width || nextPosition.y < 0 ||
-                nextPosition.y >= board.Height)
+            if (board.IsOutOfBounds(nextPosition))
             {
-                Debug.Log("Collision with wall");
-                board.Snakes[0].Die();
-                return;
+                return TileType.Wall;
             }
 
             TileType nextTileType = board.GetTile(nextPosition.x, nextPosition.y).Type;
 
-            switch (nextTileType)
+            return nextTileType switch
             {
-                case TileType.Snake:
-                    Debug.Log("Collision with snake");
-                    // Game Over
-                    board.Snakes[0].Die();
-                    break;
-                case TileType.Food:
-                    board.Snakes[0].Grow();
-                    board.FoodPositions.Remove(nextPosition);
-                    board.SpawnFood();
-                    break;
-            }
+                TileType.Snake => TileType.Snake,
+                TileType.Food => TileType.Food,
+                _ => TileType.Empty,
+            };
         }
 
         public Snake[] CreateSnakes(int width, int height, int numberOfSnakes, int startSize)
@@ -123,4 +113,6 @@ namespace SnakeGame.Scripts
 
         #endregion
     }
+
+
 }

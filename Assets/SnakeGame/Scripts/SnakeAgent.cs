@@ -38,8 +38,8 @@ namespace SnakeGame.Scripts
         [SerializeField] private bool isDisplayOn;
         [SerializeField] private TMP_Text scoreText;
         [SerializeField] private int foodCount;
-        [Range(5, 100)] [SerializeField] private int width;
-        [Range(5, 100)] [SerializeField] private int height;
+        [Range(2, 100)] [SerializeField] private int width;
+        [Range(2, 100)] [SerializeField] private int height;
         [Range(1, 10)] [SerializeField] private int maxPathLength;
         [SerializeField] private int numberOfSnakes;
         [SerializeField] private int startSize;
@@ -75,6 +75,9 @@ namespace SnakeGame.Scripts
         private double _totalReward;
         private double _totalScore;
 
+        private StatsRecorder stats;
+        private float _episodeStarted;
+
         private float PreviousDistance { get; set; }
         public float MaxDistance { get; set; }
         public int MaxPathLength
@@ -89,23 +92,16 @@ namespace SnakeGame.Scripts
         }
 
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="SnakeAgent" /> class.
-        /// </summary>
-        public SnakeAgent()
-        {
-            InitializeGame();
-            MaxDistance = Mathf.Sqrt(Board.Height * Board.Height + Board.Width * Board.Width);
-        }
-
         #region Event Functions
 
         /// <summary>
         ///     Initializes the game and sets up the necessary variables.
         /// </summary>
-        private void Start()
+        public override void Initialize()
         {
+            stats = Academy.Instance.StatsRecorder;
             InitializeGame();
+            MaxDistance = Mathf.Sqrt(Board.Height * Board.Height + Board.Width * Board.Width);
         }
 
 
@@ -113,6 +109,7 @@ namespace SnakeGame.Scripts
         ///     Updates the input direction based on the user's keyboard input.
         ///     Recalculates the longest paths for all directions if needed.
         /// </summary>
+        // Disabled for Training
         private void Update()
         {
             Vector2Int tempDirection = Vector2Int.zero;
@@ -153,10 +150,16 @@ namespace SnakeGame.Scripts
         /// <param name="sensor">The sensor used to collect observations.</param>
         public override void CollectObservations(VectorSensor sensor)
         {
-            const int view = 8;
+            int view = Board.Width;
 
             Snake snake = Board.Snakes[0];
-            Vector2Int food = Board.FoodPositions[0];
+            Vector2Int food = snake.Position;
+
+            if (Board.FoodPositions.Count >= 1)
+            {
+                food = Board.FoodPositions[0];
+            }
+
 
             Vector2 directionToFood = food - snake.Position;
             directionToFood = directionToFood.normalized;
@@ -216,7 +219,6 @@ namespace SnakeGame.Scripts
             eatTimer += 1;
 
             Snake snake = Board.Snakes[0];
-
             HandleSnakeDirection(action, snake);
 
             ProcessSnakeMovement(snake);
@@ -282,6 +284,8 @@ namespace SnakeGame.Scripts
         /// </summary>
         public override void OnEpisodeBegin()
         {
+            _episodeStarted = Time.fixedUnscaledTime;
+
             if (episodeCount > resetAverageCount)
             {
                 _totalScore = 0.0;
@@ -423,6 +427,7 @@ namespace SnakeGame.Scripts
             if (Board.Snakes[0].Score > _highScore)
             {
                 _highScore = snake.Score;
+                stats.Add("Score/High Score", _highScore, StatAggregationMethod.MostRecent);
             }
 
             highScoreText.text = "High Score: " + _highScore;
@@ -437,14 +442,24 @@ namespace SnakeGame.Scripts
         /// <param name="snake">The snake to check.</param>
         private void CheckSnakeStatus(Snake snake)
         {
+            int availableSpace = Board.Width * Board.Height - snake.Length;
+
+            if (availableSpace <= 0)
+            {
+                Debug.Log("Game Won!");
+                _currentReward += 10f;
+            }
             if (snake.AteFood)
             {
+                stats.Add("Score/Time to Eat (Scaled with Length)",
+                          (Time.fixedUnscaledTime - _episodeStarted) / snake.Length);
                 Debug.Log("Eat : " + 1f);
                 _currentReward += 1f;
                 AddReward(1f);
                 snake.AteFood = false;
                 eatTimer = 0;
             }
+
 
 
             if (eatTimer > maxHungryTime)
@@ -456,6 +471,9 @@ namespace SnakeGame.Scripts
 
             if (!IsSnakeAlive(snake))
             {
+                stats.Add("Score/AVG Score", snake.Score, StatAggregationMethod.Average);
+                stats.Add("Score/Time to Die (Scaled with Length)",
+                          (Time.fixedUnscaledTime - _episodeStarted) / snake.Length);
                 Debug.Log("Dead : " + -1f);
                 _currentReward -= 1f;
                 AddReward(-1f);
@@ -587,9 +605,31 @@ namespace SnakeGame.Scripts
         private void ProcessSnakeMovement(Snake snake)
         {
             _snakeController.FinalizeDirection(snake);
-            _snakeController.CheckCollisions(Board);
 
-            _snakeController.Move(Board, Board.Snakes[0], false);
+            TileType collisionTileType = _snakeController.CheckCollisions(Board, snake);
+
+            if (collisionTileType == TileType.Food)
+            {
+                snake.Grow();
+                int availableSpace = Board.Width * Board.Height - snake.Length;
+                board.FoodPositions.Remove(snake.Position + snake.Direction);
+                snake.AteFood = true;
+                eatTimer = 0;
+
+                if (availableSpace > 0)
+                {
+                    board.SpawnFood();
+                }
+            }
+            else if (collisionTileType == TileType.Snake || collisionTileType == TileType.Wall)
+            {
+                Board.Snakes[0].IsAlive = false;
+            }
+
+            if (IsSnakeAlive(snake))
+            {
+                _snakeController.Move(Board, snake, false);
+            }
         }
 
         private Vector2Int RotateClockwise(Vector2Int direction) => new(direction.y, -direction.x);

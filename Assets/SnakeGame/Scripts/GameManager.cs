@@ -55,7 +55,8 @@ namespace SnakeGame.Scripts
             // food
             for (int i = 0; i < foodCount; i++)
             {
-                _board.FoodPositions.Add(_board.SpawnFood());
+                _board.SpawnFood();
+
             }
         }
 
@@ -104,7 +105,24 @@ namespace SnakeGame.Scripts
                 if (IsSnakeAlive(_board.Snakes[0]))
                 {
                     snakeController.FinalizeDirection(_board.Snakes[0]);
-                    snakeController.CheckCollisions(_board);
+                    TileType tileType = snakeController.CheckCollisions(_board, _board.Snakes[0]);
+
+                    if (tileType == TileType.Food)
+                    {
+                        _board.FoodPositions.Remove(_board.Snakes[0].Position);
+                        _board.Snakes[0].AteFood = true;
+                        int availableSpace = _board.Width * _board.Height - _board.Snakes[0].Length;
+
+                        if (availableSpace > 0)
+                        {
+                            _board.SpawnFood();
+                        }
+                    }
+                    else if (tileType == TileType.Snake || tileType == TileType.Wall)
+                    {
+                        _board.Snakes[0].IsAlive = false;
+                    }
+
                 }
             }
 

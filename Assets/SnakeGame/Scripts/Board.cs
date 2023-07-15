@@ -301,21 +301,31 @@ namespace SnakeGame.Scripts
         ///     Spawns food at a random position on the board.
         /// </summary>
         /// <returns>The position of the spawned food.</returns>
-        public Vector2Int SpawnFood()
+        public void SpawnFood()
         {
-            int x, y;
+            List<Vector2Int> emptyTiles = new List<Vector2Int>();
 
-            do
+            for (int x = 0; x < Tiles.GetLength(0); x++)
             {
-                x = Random.Range(0, Tiles.GetLength(0));
-                y = Random.Range(0, Tiles.GetLength(1));
-            } while (Tiles[x, y].Type == TileType.Snake || Tiles[x, y].Type == TileType.Food);
+                for (int y = 0; y < Tiles.GetLength(1); y++)
+                {
+                    if (!IsSnake(x, y) && !IsFood(x, y))
+                    {
+                        emptyTiles.Add(new Vector2Int(x, y));
+                    }
+                }
+            }
 
-            Tiles[x, y].Type = TileType.Food;
-            Vector2Int foodPosition = new(x, y);
+            if (emptyTiles.Count == 0)
+            {
+                return;
+            }
+
+
+            Vector2Int foodPosition = emptyTiles[Random.Range(0, emptyTiles.Count)];
+            Tiles[foodPosition.x, foodPosition.y].Type = TileType.Food;
             FoodPositions.Add(foodPosition);
 
-            return foodPosition;
         }
     }
 }
