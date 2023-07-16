@@ -4,7 +4,6 @@ var dir_a2e8f6d67759e45b2a32430870e62d67 =
     [ "BoardArray.cs", "_board_array_8cs.html", "_board_array_8cs" ],
     [ "BoardDisplay.cs", "_board_display_8cs.html", "_board_display_8cs" ],
     [ "ColorChanger.cs", "_color_changer_8cs.html", "_color_changer_8cs" ],
-    [ "GameManager.cs", "_game_manager_8cs.html", "_game_manager_8cs" ],
     [ "InputController.cs", "_input_controller_8cs.html", null ],
     [ "InputSchemer.cs", "_input_schemer_8cs.html", "_input_schemer_8cs" ],
     [ "Snake.cs", "_snake_8cs.html", "_snake_8cs" ],

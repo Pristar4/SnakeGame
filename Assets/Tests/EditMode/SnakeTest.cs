@@ -26,6 +26,8 @@ namespace Tests.EditMode
 
         private Snake _snake;
 
+
+
         [Test]
         public void ContainsPosition_ReturnsExpectedResult_WhenPositionIsInSnakeBody()
         {
@@ -69,6 +71,29 @@ namespace Tests.EditMode
         }
 
         [Test]
-        public void SnakeConstructor_CreatesSnakeInstance() => Assert.IsNotNull(_snake);
+        public void SnakeConstructor_WhenCalled_SetsValuesCorrectly()
+        {
+            // Arrange
+            Vector2Int position = new Vector2Int(5, 5);
+            Vector2Int direction = new Vector2Int(1, 0);
+            int length = 5;
+            int id = 1;
+            Vector2Int[] body = new Vector2Int[length];
+            SnakeColor color = SnakeColor.Player1;
+
+            //print (body.Length);
+
+            // Act
+            Snake snake = new Snake(position, direction, length, id, body, color);
+
+            //Assert
+
+            Assert.AreEqual(position, snake.Position);
+            Assert.AreEqual(direction, snake.Direction);
+            Assert.AreEqual(length, snake.Length);
+            Assert.AreEqual(id, snake.Id);
+            CollectionAssert.AreEqual(body, snake.Body);
+            Assert.AreEqual(color, snake.Color);
+        }
     }
 }

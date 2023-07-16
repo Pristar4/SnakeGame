@@ -6,6 +6,9 @@ var class_snake_game_1_1_scripts_1_1_color_changer =
       [ "Blue", "class_snake_game_1_1_scripts_1_1_color_changer.html#aa92da33133a221a449da7108e021c319a9594eec95be70e7b1710f730fdda33d9", null ]
     ] ],
     [ "ChangeColor", "class_snake_game_1_1_scripts_1_1_color_changer.html#a50638b560513829cb4d25b0205943d4d", null ],
+    [ "GetMaterialFromColorOption", "class_snake_game_1_1_scripts_1_1_color_changer.html#af63b85a3d4f1972b60ec532f4500d6b5", null ],
+    [ "Start", "class_snake_game_1_1_scripts_1_1_color_changer.html#afc74ffd07ead9b4412fba305c756b5c0", null ],
+    [ "_spriteRenderer", "class_snake_game_1_1_scripts_1_1_color_changer.html#ab91c16fc2c44aef05a14b4b9622d91f4", null ],
     [ "blueMaterial", "class_snake_game_1_1_scripts_1_1_color_changer.html#ad844fdc8833f61c003d5612532b0ff37", null ],
     [ "colorOption", "class_snake_game_1_1_scripts_1_1_color_changer.html#a020a857f4313c1c1037a110ff19497a4", null ],
     [ "greenMaterial", "class_snake_game_1_1_scripts_1_1_color_changer.html#abb416663cde6d5311ec406c834f94062", null ],

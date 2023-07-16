@@ -117,53 +117,102 @@ $(document).ready(function(){initNavTree('class_snake_game_1_1_scripts_1_1_board
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#properties">Properties</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_snake_game_1_1_scripts_1_1_board-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">SnakeGame.Scripts.Board Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents the game board.  
+ <a href="class_snake_game_1_1_scripts_1_1_board.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0f8c06a5013caebd75e84eb19c988485"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#a0f8c06a5013caebd75e84eb19c988485">Board</a> (int width, int height, params <a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a>[] snakes)</td></tr>
+<tr class="memitem:a0f8c06a5013caebd75e84eb19c988485"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#a0f8c06a5013caebd75e84eb19c988485">Board</a> (int width, int height, params <a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a>[] <a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#a34b5d293f9bb88af003b670a906e9a63">snakes</a>)</td></tr>
+<tr class="memdesc:a0f8c06a5013caebd75e84eb19c988485"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new instance of the Board class with the specified width, height, and snakes.  <br /></td></tr>
 <tr class="separator:a0f8c06a5013caebd75e84eb19c988485"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9b4e73d988e3499f720759a2bf21295"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#ab9b4e73d988e3499f720759a2bf21295">ClearBoard</a> ()</td></tr>
+<tr class="memdesc:ab9b4e73d988e3499f720759a2bf21295"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the board by setting all tiles to TileType.Empty.  <br /></td></tr>
 <tr class="separator:ab9b4e73d988e3499f720759a2bf21295"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac26fc01cbbab66bb9f58a37a18f2f5f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#ac26fc01cbbab66bb9f58a37a18f2f5f3">DrawFood</a> (List&lt; Vector2Int &gt; foodPositions)</td></tr>
+<tr class="memdesc:ac26fc01cbbab66bb9f58a37a18f2f5f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the food on the board at the specified positions.  <br /></td></tr>
 <tr class="separator:ac26fc01cbbab66bb9f58a37a18f2f5f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ff4aafed30c4abc53799cf6cb17d81f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#a1ff4aafed30c4abc53799cf6cb17d81f">DrawSnake</a> (<a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a> snake)</td></tr>
+<tr class="memdesc:a1ff4aafed30c4abc53799cf6cb17d81f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the specified snake on the board.  <br /></td></tr>
 <tr class="separator:a1ff4aafed30c4abc53799cf6cb17d81f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7242096bdb6acd1be79d78f7dc8011af"><td class="memItemLeft" align="right" valign="top">int[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#a7242096bdb6acd1be79d78f7dc8011af">GetBoardAsArray</a> ()</td></tr>
+<tr class="memdesc:a7242096bdb6acd1be79d78f7dc8011af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the board as a one-dimensional array of integers.  <br /></td></tr>
 <tr class="separator:a7242096bdb6acd1be79d78f7dc8011af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af11fc38190bd809bf978e7461d2bcd51"><td class="memItemLeft" align="right" valign="top">int[,]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#af11fc38190bd809bf978e7461d2bcd51">GetBoardAsMatrix</a> ()</td></tr>
+<tr class="memdesc:af11fc38190bd809bf978e7461d2bcd51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the board as a two-dimensional array of integers.  <br /></td></tr>
 <tr class="separator:af11fc38190bd809bf978e7461d2bcd51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f32f3ba24cb9cfcfb24dc987bd4fd50"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#a0f32f3ba24cb9cfcfb24dc987bd4fd50">GetSnake</a> (int i)</td></tr>
+<tr class="memdesc:a0f32f3ba24cb9cfcfb24dc987bd4fd50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the snake at the specified index.  <br /></td></tr>
 <tr class="separator:a0f32f3ba24cb9cfcfb24dc987bd4fd50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3254f713a7b1676317dcbc2c78a2dd9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_snake_game_1_1_scripts_1_1_tile.html">Tile</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#a3254f713a7b1676317dcbc2c78a2dd9b">GetTile</a> (int x, int y)</td></tr>
+<tr class="memdesc:a3254f713a7b1676317dcbc2c78a2dd9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the tile at the specified position.  <br /></td></tr>
 <tr class="separator:a3254f713a7b1676317dcbc2c78a2dd9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7278355a8cf78416976e161abf7e2c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_snake_game_1_1_scripts_1_1_tile.html">Tile</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#ae7278355a8cf78416976e161abf7e2c5">SetTile</a> (int x, int y, <a class="el" href="namespace_snake_game_1_1_scripts.html#a17f90812441fe7911e589bbb135cf509">TileType</a> type)</td></tr>
+<tr class="separator:ae7278355a8cf78416976e161abf7e2c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac14af6d28239a3b7cff22de8223b7c79"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#ac14af6d28239a3b7cff22de8223b7c79">IsOccupied</a> (Vector2Int vector2Int)</td></tr>
+<tr class="memdesc:ac14af6d28239a3b7cff22de8223b7c79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether the specified position is occupied by a snake.  <br /></td></tr>
 <tr class="separator:ac14af6d28239a3b7cff22de8223b7c79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3f876c21e27c01a0c7471ac90bbc19f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#ad3f876c21e27c01a0c7471ac90bbc19f">IsOutOfBounds</a> (Vector2Int nextPosition)</td></tr>
-<tr class="separator:ad3f876c21e27c01a0c7471ac90bbc19f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bb8c5334ef44cf5b65ad44efae54a45"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#a1bb8c5334ef44cf5b65ad44efae54a45">IsOutOfBounds</a> (Vector2Int position)</td></tr>
+<tr class="memdesc:a1bb8c5334ef44cf5b65ad44efae54a45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether the specified position is out of bounds.  <br /></td></tr>
+<tr class="separator:a1bb8c5334ef44cf5b65ad44efae54a45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed8db80477f4cc3a64e91f6d51e30fa9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#aed8db80477f4cc3a64e91f6d51e30fa9">IsSnake</a> (int x, int y)</td></tr>
+<tr class="separator:aed8db80477f4cc3a64e91f6d51e30fa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff663c94bc3fd3e118d71a6ef6f7bdca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#aff663c94bc3fd3e118d71a6ef6f7bdca">IsFood</a> (int x, int y)</td></tr>
+<tr class="separator:aff663c94bc3fd3e118d71a6ef6f7bdca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22878edd194213809899e623273e8c58"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#a22878edd194213809899e623273e8c58">IsEmpty</a> (int x, int y)</td></tr>
+<tr class="separator:a22878edd194213809899e623273e8c58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae388b42c0337124268ef4356c61b8d34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#ae388b42c0337124268ef4356c61b8d34">Reset</a> (<a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a>[] snakeArray, int width, int height)</td></tr>
+<tr class="memdesc:ae388b42c0337124268ef4356c61b8d34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the board with the specified snakes, width, and height.  <br /></td></tr>
 <tr class="separator:ae388b42c0337124268ef4356c61b8d34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add8d6d7cb840d70e348c1dca171c763a"><td class="memItemLeft" align="right" valign="top">Vector2Int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#add8d6d7cb840d70e348c1dca171c763a">SpawnFood</a> ()</td></tr>
-<tr class="separator:add8d6d7cb840d70e348c1dca171c763a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9acb0c8a3d7f6fee111dbe9b79758339"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#a9acb0c8a3d7f6fee111dbe9b79758339">SpawnFood</a> ()</td></tr>
+<tr class="memdesc:a9acb0c8a3d7f6fee111dbe9b79758339"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spawns food at a random position on the board.  <br /></td></tr>
+<tr class="separator:a9acb0c8a3d7f6fee111dbe9b79758339"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f8566c97c8eb07305b00c6c65f89483"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#a6f8566c97c8eb07305b00c6c65f89483">IsPositionSafe</a> (Vector2Int position)</td></tr>
+<tr class="memdesc:a6f8566c97c8eb07305b00c6c65f89483"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if a given position on the game board is safe.  <br /></td></tr>
+<tr class="separator:a6f8566c97c8eb07305b00c6c65f89483"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:af7e2f3534e9e0468c2d9682e6dc32af8"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#af7e2f3534e9e0468c2d9682e6dc32af8">IsSnakeAlive</a> (<a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a> snake)</td></tr>
+<tr class="separator:af7e2f3534e9e0468c2d9682e6dc32af8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:ac14764e0b564dc85644d825eb4823dd8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#ac14764e0b564dc85644d825eb4823dd8">Width</a><code> [get]</code></td></tr>
+<tr class="memdesc:ac14764e0b564dc85644d825eb4823dd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the width of the board.  <br /></td></tr>
 <tr class="separator:ac14764e0b564dc85644d825eb4823dd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a692e92fd627a96362937962231c608ec"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#a692e92fd627a96362937962231c608ec">Height</a><code> [get]</code></td></tr>
+<tr class="memdesc:a692e92fd627a96362937962231c608ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the height of the board.  <br /></td></tr>
 <tr class="separator:a692e92fd627a96362937962231c608ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a877de6c2fa48a6c4f9760835b2ab9c96"><td class="memItemLeft" align="right" valign="top">List&lt; Vector2Int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#a877de6c2fa48a6c4f9760835b2ab9c96">FoodPositions</a> = new()<code> [get, set]</code></td></tr>
+<tr class="memdesc:a877de6c2fa48a6c4f9760835b2ab9c96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the positions of the food on the board.  <br /></td></tr>
 <tr class="separator:a877de6c2fa48a6c4f9760835b2ab9c96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26a1c5e21a7499ffd601a9d03ec9172c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#a26a1c5e21a7499ffd601a9d03ec9172c">Snakes</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a26a1c5e21a7499ffd601a9d03ec9172c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the snakes on the board.  <br /></td></tr>
 <tr class="separator:a26a1c5e21a7499ffd601a9d03ec9172c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9cc69656d3b5aa3be35ffe23443c3025"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_snake_game_1_1_scripts_1_1_tile.html">Tile</a>[,]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#a9cc69656d3b5aa3be35ffe23443c3025">Tiles</a><code> [get, set]</code></td></tr>
+<tr class="memitem:a9cc69656d3b5aa3be35ffe23443c3025"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_snake_game_1_1_scripts_1_1_tile.html">Tile</a>[,]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#a9cc69656d3b5aa3be35ffe23443c3025">Tiles</a><code> [get, private set]</code></td></tr>
+<tr class="memdesc:a9cc69656d3b5aa3be35ffe23443c3025"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the tiles on the board.  <br /></td></tr>
 <tr class="separator:a9cc69656d3b5aa3be35ffe23443c3025"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a34b5d293f9bb88af003b670a906e9a63"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#a34b5d293f9bb88af003b670a906e9a63">snakes</a></td></tr>
+<tr class="separator:a34b5d293f9bb88af003b670a906e9a63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b927c36a5e4da81e6b638a119088999"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_snake_game_1_1_scripts_1_1_tile.html">Tile</a>[,]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#a9b927c36a5e4da81e6b638a119088999">_tiles</a></td></tr>
+<tr class="separator:a9b927c36a5e4da81e6b638a119088999"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f7902e36175e0799a2cad22a3e661bf"><td class="memItemLeft" align="right" valign="top">bool y.&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html#a9f7902e36175e0799a2cad22a3e661bf">Type</a> == <a class="el" href="namespace_snake_game_1_1_scripts.html#a17f90812441fe7911e589bbb135cf509adfa90f1b4eb3affbd3b46af34ed2477c">TileType.Snake</a></td></tr>
+<tr class="separator:a9f7902e36175e0799a2cad22a3e661bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents the game board. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0f8c06a5013caebd75e84eb19c988485" name="a0f8c06a5013caebd75e84eb19c988485"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0f8c06a5013caebd75e84eb19c988485">&#9670;&#160;</a></span>Board()</h2>
 
@@ -196,6 +245,16 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Initializes a new instance of the Board class with the specified width, height, and snakes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">width</td><td>The width of the board.</td></tr>
+    <tr><td class="paramname">height</td><td>The height of the board.</td></tr>
+    <tr><td class="paramname">snakes</td><td>The snakes on the board.</td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -213,6 +272,8 @@ Properties</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Clears the board by setting all tiles to TileType.Empty. </p>
 
 </div>
 </div>
@@ -232,6 +293,14 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Draws the food on the board at the specified positions. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">foodPositions</td><td>The positions of the food.</td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a1ff4aafed30c4abc53799cf6cb17d81f" name="a1ff4aafed30c4abc53799cf6cb17d81f"></a>
@@ -250,6 +319,14 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Draws the specified snake on the board. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">snake</td><td>The snake to draw.</td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a7242096bdb6acd1be79d78f7dc8011af" name="a7242096bdb6acd1be79d78f7dc8011af"></a>
@@ -267,6 +344,9 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Gets the board as a one-dimensional array of integers. </p>
+<dl class="section return"><dt>Returns</dt><dd>The board as a one-dimensional array of integers.</dd></dl>
+
 </div>
 </div>
 <a id="af11fc38190bd809bf978e7461d2bcd51" name="af11fc38190bd809bf978e7461d2bcd51"></a>
@@ -283,6 +363,9 @@ Properties</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Gets the board as a two-dimensional array of integers. </p>
+<dl class="section return"><dt>Returns</dt><dd>The board as a two-dimensional array of integers.</dd></dl>
 
 </div>
 </div>
@@ -302,6 +385,15 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Gets the snake at the specified index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>The index of the snake.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The snake at the specified index.</dd></dl>
+
 </div>
 </div>
 <a id="a3254f713a7b1676317dcbc2c78a2dd9b" name="a3254f713a7b1676317dcbc2c78a2dd9b"></a>
@@ -312,6 +404,72 @@ Properties</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="class_snake_game_1_1_scripts_1_1_tile.html">Tile</a> SnakeGame.Scripts.Board.GetTile </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the tile at the specified position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>The x-coordinate of the position.</td></tr>
+    <tr><td class="paramname">y</td><td>The y-coordinate of the position.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The tile at the specified position.</dd></dl>
+
+</div>
+</div>
+<a id="a22878edd194213809899e623273e8c58" name="a22878edd194213809899e623273e8c58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22878edd194213809899e623273e8c58">&#9670;&#160;</a></span>IsEmpty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SnakeGame.Scripts.Board.IsEmpty </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aff663c94bc3fd3e118d71a6ef6f7bdca" name="aff663c94bc3fd3e118d71a6ef6f7bdca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff663c94bc3fd3e118d71a6ef6f7bdca">&#9670;&#160;</a></span>IsFood()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SnakeGame.Scripts.Board.IsFood </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>x</em>, </td>
@@ -348,10 +506,19 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Determines whether the specified position is occupied by a snake. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vector2Int</td><td>The position to check.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if the position is occupied by a snake; otherwise, <code>false</code>.</dd></dl>
+
 </div>
 </div>
-<a id="ad3f876c21e27c01a0c7471ac90bbc19f" name="ad3f876c21e27c01a0c7471ac90bbc19f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad3f876c21e27c01a0c7471ac90bbc19f">&#9670;&#160;</a></span>IsOutOfBounds()</h2>
+<a id="a1bb8c5334ef44cf5b65ad44efae54a45" name="a1bb8c5334ef44cf5b65ad44efae54a45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bb8c5334ef44cf5b65ad44efae54a45">&#9670;&#160;</a></span>IsOutOfBounds()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -360,10 +527,100 @@ Properties</h2></td></tr>
           <td class="memname">bool SnakeGame.Scripts.Board.IsOutOfBounds </td>
           <td>(</td>
           <td class="paramtype">Vector2Int&#160;</td>
-          <td class="paramname"><em>nextPosition</em></td><td>)</td>
+          <td class="paramname"><em>position</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+<p>Determines whether the specified position is out of bounds. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>The position to check.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if the position is out of bounds; otherwise, <code>false</code>.</dd></dl>
+
+</div>
+</div>
+<a id="a6f8566c97c8eb07305b00c6c65f89483" name="a6f8566c97c8eb07305b00c6c65f89483"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f8566c97c8eb07305b00c6c65f89483">&#9670;&#160;</a></span>IsPositionSafe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SnakeGame.Scripts.Board.IsPositionSafe </td>
+          <td>(</td>
+          <td class="paramtype">Vector2Int&#160;</td>
+          <td class="paramname"><em>position</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Determines if a given position on the game board is safe. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>The position to check.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the position is within the bounds of the board, defined by the ‘width’ and ‘height’ properties, and the tile at the position is not a snake. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="aed8db80477f4cc3a64e91f6d51e30fa9" name="aed8db80477f4cc3a64e91f6d51e30fa9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed8db80477f4cc3a64e91f6d51e30fa9">&#9670;&#160;</a></span>IsSnake()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SnakeGame.Scripts.Board.IsSnake </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af7e2f3534e9e0468c2d9682e6dc32af8" name="af7e2f3534e9e0468c2d9682e6dc32af8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7e2f3534e9e0468c2d9682e6dc32af8">&#9670;&#160;</a></span>IsSnakeAlive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool SnakeGame.Scripts.Board.IsSnakeAlive </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a>&#160;</td>
+          <td class="paramname"><em>snake</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -400,21 +657,135 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Resets the board with the specified snakes, width, and height. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">snakeArray</td><td>The snakes to add to the board.</td></tr>
+    <tr><td class="paramname">width</td><td>The width of the board.</td></tr>
+    <tr><td class="paramname">height</td><td>The height of the board.</td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a id="add8d6d7cb840d70e348c1dca171c763a" name="add8d6d7cb840d70e348c1dca171c763a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add8d6d7cb840d70e348c1dca171c763a">&#9670;&#160;</a></span>SpawnFood()</h2>
+<a id="ae7278355a8cf78416976e161abf7e2c5" name="ae7278355a8cf78416976e161abf7e2c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7278355a8cf78416976e161abf7e2c5">&#9670;&#160;</a></span>SetTile()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Vector2Int SnakeGame.Scripts.Board.SpawnFood </td>
+          <td class="memname"><a class="el" href="class_snake_game_1_1_scripts_1_1_tile.html">Tile</a> SnakeGame.Scripts.Board.SetTile </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespace_snake_game_1_1_scripts.html#a17f90812441fe7911e589bbb135cf509">TileType</a>&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9acb0c8a3d7f6fee111dbe9b79758339" name="a9acb0c8a3d7f6fee111dbe9b79758339"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9acb0c8a3d7f6fee111dbe9b79758339">&#9670;&#160;</a></span>SpawnFood()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SnakeGame.Scripts.Board.SpawnFood </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+<p>Spawns food at a random position on the board. </p>
+<dl class="section return"><dt>Returns</dt><dd>The position of the spawned food.</dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a9b927c36a5e4da81e6b638a119088999" name="a9b927c36a5e4da81e6b638a119088999"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b927c36a5e4da81e6b638a119088999">&#9670;&#160;</a></span>_tiles</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_snake_game_1_1_scripts_1_1_tile.html">Tile</a> [,] SnakeGame.Scripts.Board._tiles</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a34b5d293f9bb88af003b670a906e9a63" name="a34b5d293f9bb88af003b670a906e9a63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34b5d293f9bb88af003b670a906e9a63">&#9670;&#160;</a></span>snakes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a> [] SnakeGame.Scripts.Board.snakes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9f7902e36175e0799a2cad22a3e661bf" name="a9f7902e36175e0799a2cad22a3e661bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f7902e36175e0799a2cad22a3e661bf">&#9670;&#160;</a></span>Type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool y SnakeGame.Scripts.Board.Type == <a class="el" href="namespace_snake_game_1_1_scripts.html#a17f90812441fe7911e589bbb135cf509adfa90f1b4eb3affbd3b46af34ed2477c">TileType.Snake</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -440,6 +811,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Gets or sets the positions of the food on the board. </p>
+
 </div>
 </div>
 <a id="a692e92fd627a96362937962231c608ec" name="a692e92fd627a96362937962231c608ec"></a>
@@ -461,6 +834,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Gets the height of the board. </p>
 
 </div>
 </div>
@@ -484,6 +859,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Gets or sets the snakes on the board. </p>
+
 </div>
 </div>
 <a id="a9cc69656d3b5aa3be35ffe23443c3025" name="a9cc69656d3b5aa3be35ffe23443c3025"></a>
@@ -501,10 +878,12 @@ Properties</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">private set</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Gets or sets the tiles on the board. </p>
 
 </div>
 </div>
@@ -527,6 +906,8 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Gets the width of the board. </p>
 
 </div>
 </div>

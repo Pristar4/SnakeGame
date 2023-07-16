@@ -327,5 +327,21 @@ namespace SnakeGame.Scripts
             FoodPositions.Add(foodPosition);
 
         }
+        /// <summary>
+        ///     Determines if a given position on the game board is safe.
+        /// </summary>
+        /// <param name="position" cref="Scripts.Board">The position to check.</param>
+        /// <returns>
+        ///     True if the position is within the bounds of the board, defined by the ‘width’ and ‘height’
+        ///     properties, and the tile at the position is not a snake.
+        ///     False otherwise.
+        /// </returns>
+        public bool IsPositionSafe(Vector2Int position)
+        {
+            return !this.IsOutOfBounds(position) &&
+                   !this.IsSnake(position.x, position.y);
+        }
+
+        public static bool IsSnakeAlive(Snake snake) => snake.IsAlive;
     }
 }

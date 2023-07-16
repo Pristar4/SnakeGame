@@ -1,12 +1,11 @@
 var searchData=
 [
-  ['blue_0',['Blue',['../class_snake_game_1_1_scripts_1_1_color_changer.html#aa92da33133a221a449da7108e021c319a9594eec95be70e7b1710f730fdda33d9',1,'SnakeGame::Scripts::ColorChanger']]],
-  ['bluematerial_1',['blueMaterial',['../class_snake_game_1_1_scripts_1_1_color_changer.html#ad844fdc8833f61c003d5612532b0ff37',1,'SnakeGame::Scripts::ColorChanger']]],
-  ['board_2',['Board',['../class_snake_game_1_1_scripts_1_1_board.html#a0f8c06a5013caebd75e84eb19c988485',1,'SnakeGame.Scripts.Board.Board()'],['../class_snake_game_1_1_scripts_1_1_board.html',1,'SnakeGame.Scripts.Board']]],
-  ['board_2ecs_3',['Board.cs',['../_board_8cs.html',1,'']]],
-  ['boardarray_4',['BoardArray',['../class_snake_game_1_1_scripts_1_1_board_array.html',1,'SnakeGame::Scripts']]],
-  ['boardarray_2ecs_5',['BoardArray.cs',['../_board_array_8cs.html',1,'']]],
-  ['boarddisplay_6',['BoardDisplay',['../class_snake_game_1_1_scripts_1_1_board_display.html',1,'SnakeGame::Scripts']]],
-  ['boarddisplay_2ecs_7',['BoardDisplay.cs',['../_board_display_8cs.html',1,'']]],
-  ['body_8',['Body',['../class_snake_game_1_1_scripts_1_1_snake.html#a84717365fca7c7d931aab8f796830316',1,'SnakeGame::Scripts::Snake']]]
+  ['atefood_0',['AteFood',['../class_snake_game_1_1_scripts_1_1_snake.html#a28fca0240ea35f306796aaa57ef120bf',1,'SnakeGame::Scripts::Snake']]],
+  ['averagereward_1',['AverageReward',['../class_snake_game_1_1_scripts_1_1_snake_agent.html#aa2ab7ce8fe2174362cf5e7086a919a2a',1,'SnakeGame::Scripts::SnakeAgent']]],
+  ['averagerewardtext_2',['AverageRewardText',['../class_snake_game_1_1_scripts_1_1_snake_agent.html#a2b1226c448786996803d410b4b0c1748',1,'SnakeGame::Scripts::SnakeAgent']]],
+  ['averagerewardtext_3',['averageRewardText',['../class_snake_game_1_1_scripts_1_1_snake_agent.html#a8776d1dd211337d0241868da72294a4e',1,'SnakeGame::Scripts::SnakeAgent']]],
+  ['averagescore_4',['AverageScore',['../class_snake_game_1_1_scripts_1_1_snake_agent.html#a6a2ee3971c9d44dc0a5f9fbafd6a0469',1,'SnakeGame::Scripts::SnakeAgent']]],
+  ['averagescoretext_5',['averageScoreText',['../class_snake_game_1_1_scripts_1_1_snake_agent.html#aa17d7d3210c7c410dd6a71e0624be32f',1,'SnakeGame::Scripts::SnakeAgent']]],
+  ['averagescoretext_6',['AverageScoreText',['../class_snake_game_1_1_scripts_1_1_snake_agent.html#ac00745cce6fbc8fe9370d7b4f95cf817',1,'SnakeGame::Scripts::SnakeAgent']]],
+  ['awake_7',['Awake',['../class_snake_game_1_1_scripts_1_1_tile_display.html#a013a8ce5515385edab23b268235cdbd4',1,'SnakeGame::Scripts::TileDisplay']]]
 ];

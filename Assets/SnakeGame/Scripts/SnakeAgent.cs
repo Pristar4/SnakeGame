@@ -90,6 +90,112 @@ namespace SnakeGame.Scripts
             get => board;
             set => board = value;
         }
+        public int HighScore
+        {
+            set { _highScore = value; }
+            get { return _highScore; }
+        }
+        public StatsRecorder Stats
+        {
+            set { stats = value; }
+            get { return stats; }
+        }
+        public TMP_Text HighScoreText
+        {
+            set { highScoreText = value; }
+            get { return highScoreText; }
+        }
+        public TMP_Text ScoreText
+        {
+            set { scoreText = value; }
+            get { return scoreText; }
+        }
+        public double CurrentReward
+        {
+            set { _currentReward = value; }
+            get { return _currentReward; }
+        }
+        public StatsRecorder Stats1
+        {
+            set { stats = value; }
+            get { return stats; }
+        }
+        public float EpisodeStarted
+        {
+            set { _episodeStarted = value; }
+            get { return _episodeStarted; }
+        }
+        public int EatTimer
+        {
+            set { eatTimer = value; }
+            get { return eatTimer; }
+        }
+        public int MaxHungryTime
+        {
+            set { maxHungryTime = value; }
+            get { return maxHungryTime; }
+        }
+        public double TotalScore
+        {
+            set { _totalScore = value; }
+            get { return _totalScore; }
+        }
+        public double TotalReward
+        {
+            set { _totalReward = value; }
+            get { return _totalReward; }
+        }
+        public double AverageScore
+        {
+            set { _averageScore = value; }
+            get { return _averageScore; }
+        }
+        public int EpisodeCount
+        {
+            set { episodeCount = value; }
+            get { return episodeCount; }
+        }
+        public double AverageReward
+        {
+            set { _averageReward = value; }
+            get { return _averageReward; }
+        }
+        public TMP_Text CurrentRewardText
+        {
+            set { currentRewardText = value; }
+            get { return currentRewardText; }
+        }
+        public TMP_Text AverageRewardText
+        {
+            set { averageRewardText = value; }
+            get { return averageRewardText; }
+        }
+        public TMP_Text AverageScoreText
+        {
+            set { averageScoreText = value; }
+            get { return averageScoreText; }
+        }
+        public Board Board1
+        {
+            set { board = value; }
+            get { return board; }
+        }
+        public int EatTimer1
+        {
+            set { eatTimer = value; }
+            get { return eatTimer; }
+        }
+        public int Height
+        {
+            set { height = value; }
+            get { return height; }
+        }
+        public int Width
+        {
+            set { width = value; }
+            get { return width; }
+        }
+
 
 
         #region Event Functions
@@ -99,9 +205,55 @@ namespace SnakeGame.Scripts
         /// </summary>
         public override void Initialize()
         {
-            stats = Academy.Instance.StatsRecorder;
             InitializeGame();
+            stats = Academy.Instance.StatsRecorder;
+
+
             MaxDistance = Mathf.Sqrt(Board.Height * Board.Height + Board.Width * Board.Width);
+        }
+
+        public void InitializeGame()
+        {
+            RandomizeBoardSize();
+            _snakeController = new SnakeController();
+            Snake[] snakes =
+                    _snakeController.CreateSnakes(width, height, numberOfSnakes, startSize);
+
+            if (Board != null)
+            {
+                Board.Snakes = snakes;
+                Board.Reset(snakes, width, height);
+
+                if (isDisplayOn)
+                {
+                    boardDisplay.Reset();
+                }
+            }
+            else
+            {
+                Board = new Board(width, height, snakes);
+            }
+
+            PreviousDistance = MaxDistance;
+
+            // Spawn food
+            for (int i = 0; i < foodCount; i++)
+            {
+                Board.SpawnFood();
+            }
+        }
+
+        private void RandomizeBoardSize()
+        {
+            int minSize = 8 / 2;
+            int maxSize =
+                    18 / 2; // go up to 34 because the Random.Range method is exclusive of the upper bound
+
+            // width = Random.Range(minSize, maxSize) * 2;
+
+            int size = Random.Range(minSize, maxSize) * 2;
+            Height = size;
+            Width = size;
         }
 
 
@@ -110,6 +262,8 @@ namespace SnakeGame.Scripts
         ///     Recalculates the longest paths for all directions if needed.
         /// </summary>
         // Disabled for Training
+
+#if UNITY_EDITOR
         private void Update()
         {
             Vector2Int tempDirection = Vector2Int.zero;
@@ -141,6 +295,7 @@ namespace SnakeGame.Scripts
                 Time.timeScale = Time.timeScale == 0 ? 1 : 0; // Pause/unpause the game
             }
         }
+#endif
 
         #endregion
 
@@ -150,7 +305,7 @@ namespace SnakeGame.Scripts
         /// <param name="sensor">The sensor used to collect observations.</param>
         public override void CollectObservations(VectorSensor sensor)
         {
-            int view = Board.Width;
+            int view = 8;
 
             Snake snake = Board.Snakes[0];
             Vector2Int food = snake.Position;
@@ -165,22 +320,32 @@ namespace SnakeGame.Scripts
             directionToFood = directionToFood.normalized;
 
             sensor.AddObservation(directionToFood);
+            Vector2Int windowStart = snake.Position - new Vector2Int(view / 2, view / 2);
 
             Vector2Int forwardPosition = snake.Position + snake.Direction;
             Vector2Int leftPosition = snake.Position + RotateCounterClockwise(snake.Direction);
             Vector2Int rightPosition = snake.Position + RotateClockwise(snake.Direction);
 
-            sensor.AddObservation(IsPositionSafe(forwardPosition));
-            sensor.AddObservation(IsPositionSafe(leftPosition));
-            sensor.AddObservation(IsPositionSafe(rightPosition));
+            sensor.AddObservation(Board.IsPositionSafe(forwardPosition));
+            sensor.AddObservation(Board.IsPositionSafe(leftPosition));
+            sensor.AddObservation(Board.IsPositionSafe(rightPosition));
 
 
             for (int i = 0; i < view; i++)
             {
                 for (int j = 0; j < view; j++)
                 {
-                    Tile tile = Board.GetTile(i, j);
-                    sensor.AddObservation((int)tile.Type);
+                    Vector2Int cellPos = windowStart + new Vector2Int(i, j);
+
+                    if (!Board.IsOutOfBounds(cellPos))
+                    {
+                        Tile tile = Board.GetTile(cellPos.x, cellPos.y);
+                        sensor.AddObservation((int)tile.Type);
+                    }
+                    else
+                    {
+                        sensor.AddObservation((int)TileType.Wall);
+                    }
                 }
             }
         }
@@ -193,7 +358,8 @@ namespace SnakeGame.Scripts
         public override void Heuristic(in ActionBuffers actionsOut)
         {
             Vector2Int currentDirection = Board.Snakes[0].Direction;
-            int relativeDirection = GetRelativeDirection(currentDirection, _inputDirection);
+            int relativeDirection =
+                    _snakeController.GetRelativeDirection(currentDirection, _inputDirection, this);
             ActionSegment<int> discreteActionsOut = actionsOut.DiscreteActions;
             discreteActionsOut[0] = relativeDirection;
         }
@@ -219,14 +385,14 @@ namespace SnakeGame.Scripts
             eatTimer += 1;
 
             Snake snake = Board.Snakes[0];
-            HandleSnakeDirection(action, snake);
+            _snakeController.HandleSnakeDirection(action, snake, this);
 
-            ProcessSnakeMovement(snake);
+            _snakeController.ProcessSnakeMovement(snake, this);
 
             Board.ClearBoard();
             Board.DrawFood(Board.FoodPositions);
 
-            if (IsSnakeAlive(snake))
+            if (Board.IsSnakeAlive(snake))
             {
                 Board.DrawSnake(Board.Snakes[0]);
             }
@@ -237,7 +403,8 @@ namespace SnakeGame.Scripts
                 boardDisplay.DrawBoard(Board);
             }
 
-            CheckForNewHighScore(snake);
+
+            _snakeController.CheckForNewHighScore(snake, this);
 
 
             if (Board.FoodPositions.Count > 0)
@@ -273,7 +440,7 @@ namespace SnakeGame.Scripts
                 PreviousDistance = _currentDistance;
             }
 
-            CheckSnakeStatus(snake);
+            _snakeController.CheckSnakeStatus(snake, this);
         }
 
         /// <summary>
@@ -314,7 +481,7 @@ namespace SnakeGame.Scripts
                                        int maxLength, List<Vector2Int> currentPath,
                                        int currentLength = 0)
         {
-            if (!IsPositionSafe(position) || currentLength > maxLength ||
+            if (!Board.IsPositionSafe(position) || currentLength > maxLength ||
                 visitedPositions.Contains(position))
             {
                 return -1;
@@ -383,7 +550,7 @@ namespace SnakeGame.Scripts
                 Vector2Int nextPosition = Board.Snakes[0].Position + direction;
 
                 // Check if the next position is safe
-                if (!IsPositionSafe(nextPosition))
+                if (!Board.IsPositionSafe(nextPosition))
                 {
                     continue;
                 }
@@ -417,77 +584,6 @@ namespace SnakeGame.Scripts
         }
 
 
-        /// <summary>
-        ///     Checks if the current score is higher than the high score and updates it if necessary.
-        /// </summary>
-        /// <param name="snake">The snake to check the score for.</param>
-        private void CheckForNewHighScore(Snake snake)
-        {
-            // update high score if current score is higher
-            if (Board.Snakes[0].Score > _highScore)
-            {
-                _highScore = snake.Score;
-                stats.Add("Score/High Score", _highScore, StatAggregationMethod.MostRecent);
-            }
-
-            highScoreText.text = "High Score: " + _highScore;
-
-            scoreText.text = "Score: " + Board.Snakes[0].Score;
-        }
-
-
-        /// <summary>
-        ///     Checks the status of the given snake and updates the reward accordingly.
-        /// </summary>
-        /// <param name="snake">The snake to check.</param>
-        private void CheckSnakeStatus(Snake snake)
-        {
-            int availableSpace = Board.Width * Board.Height - snake.Length;
-
-            if (availableSpace <= 0)
-            {
-                Debug.Log("Game Won!");
-                _currentReward += 10f;
-            }
-            if (snake.AteFood)
-            {
-                stats.Add("Score/Time to Eat (Scaled with Length)",
-                          (Time.fixedUnscaledTime - _episodeStarted) / snake.Length);
-                Debug.Log("Eat : " + 1f);
-                _currentReward += 1f;
-                AddReward(1f);
-                snake.AteFood = false;
-                eatTimer = 0;
-            }
-
-
-
-            if (eatTimer > maxHungryTime)
-            {
-                Debug.Log("Starving");
-                _currentReward -= 0.1f;
-                AddReward(-0.1f);
-            }
-
-            if (!IsSnakeAlive(snake))
-            {
-                stats.Add("Score/AVG Score", snake.Score, StatAggregationMethod.Average);
-                stats.Add("Score/Time to Die (Scaled with Length)",
-                          (Time.fixedUnscaledTime - _episodeStarted) / snake.Length);
-                Debug.Log("Dead : " + -1f);
-                _currentReward -= 1f;
-                AddReward(-1f);
-                _totalScore += Board.Snakes[0].Score;
-                _totalReward += _currentReward;
-                _averageScore = _totalScore / episodeCount;
-                _averageReward = _totalReward / episodeCount;
-                EndEpisode();
-            }
-
-            currentRewardText.text = "Current Reward:\n" + _currentReward.ToString("F2");
-            averageRewardText.text = "Average Reward:\n" + _averageReward.ToString("F2");
-            averageScoreText.text = "Average Score:\n" + _averageScore.ToString("F2");
-        }
         private int CountOpenSpaces(HashSet<Vector2Int> visitedPositions, int openSpaceCount)
         {
             foreach (Vector2Int position in visitedPositions)
@@ -502,139 +598,9 @@ namespace SnakeGame.Scripts
         }
 
 
-        /// <summary>
-        ///     Gets the relative direction of the input direction relative to the current direction.
-        /// </summary>
-        /// <param name="currentDirection">The current direction.</param>
-        /// <param name="inputDirection">The input direction.</param>
-        /// <returns>The relative direction of the input direction relative to the current direction.</returns>
-        private int GetRelativeDirection(Vector2Int currentDirection, Vector2Int inputDirection)
-        {
-            Vector2Int clockwiseDirection = RotateClockwise(currentDirection);
-            Vector2Int counterClockwiseDirection = RotateCounterClockwise(currentDirection);
+        public Vector2Int RotateClockwise(Vector2Int direction) => new(direction.y, -direction.x);
 
-            if (inputDirection == counterClockwiseDirection)
-            {
-                return 0; // turn left
-            }
-
-            if (inputDirection == currentDirection)
-            {
-                return 1; // go straight
-            }
-
-            if (inputDirection == clockwiseDirection)
-            {
-                return 2; // turn right
-            }
-
-            return 1;
-        }
-        /// <summary>
-        ///     Handles the snake's direction based on the given action.
-        /// </summary>
-        /// <param name="action">The action to take.</param>
-        /// <param name="snake">The snake to handle.</param>
-        private void HandleSnakeDirection(int action, Snake snake)
-        {
-            switch (action)
-            {
-                case 0: //turn left
-                    snake.NextDirection = RotateCounterClockwise(snake.Direction);
-                    break;
-                case 1: //go straight, no need to change the direction
-                    snake.NextDirection = snake.Direction;
-                    break;
-                case 2: //turn right
-                    snake.NextDirection = RotateClockwise(snake.Direction);
-                    break;
-            }
-        }
-
-
-        /// <summary>
-        ///     Initializes the game by creating snakes, resetting the board, and spawning food.
-        /// </summary>
-        private void InitializeGame()
-        {
-            _snakeController = new SnakeController();
-            Snake[] snakes =
-                    _snakeController.CreateSnakes(width, height, numberOfSnakes, startSize);
-
-            if (Board != null)
-            {
-                Board.Snakes = snakes;
-                Board.Reset(snakes, width, height);
-
-                if (isDisplayOn)
-                {
-                    boardDisplay.Reset();
-                }
-            }
-            else
-            {
-                Board = new Board(width, height, snakes);
-            }
-
-            PreviousDistance = MaxDistance;
-
-            // Spawn food
-            for (int i = 0; i < foodCount; i++)
-            {
-                Board.SpawnFood();
-            }
-        }
-
-        /// <summary>
-        ///     Determines if a given position on the game board is safe.
-        /// </summary>
-        /// <param name="position" cref="Scripts.Board">The position to check.</param>
-        /// <returns>
-        ///     True if the position is within the bounds of the board, defined by the ‘width’ and ‘height’
-        ///     properties, and the tile at the position is not a snake.
-        ///     False otherwise.
-        /// </returns>
-        private bool IsPositionSafe(Vector2Int position)
-        {
-            return !Board.IsOutOfBounds(position) &&
-                   !Board.IsSnake(position.x, position.y);
-        }
-
-        private static bool IsSnakeAlive(Snake snake) => snake.IsAlive;
-
-        private void ProcessSnakeMovement(Snake snake)
-        {
-            _snakeController.FinalizeDirection(snake);
-
-            TileType collisionTileType = _snakeController.CheckCollisions(Board, snake);
-
-            if (collisionTileType == TileType.Food)
-            {
-                snake.Grow();
-                int availableSpace = Board.Width * Board.Height - snake.Length;
-                board.FoodPositions.Remove(snake.Position + snake.Direction);
-                snake.AteFood = true;
-                eatTimer = 0;
-
-                if (availableSpace > 0)
-                {
-                    board.SpawnFood();
-                }
-            }
-            else if (collisionTileType == TileType.Snake || collisionTileType == TileType.Wall)
-            {
-                Board.Snakes[0].IsAlive = false;
-            }
-
-            if (IsSnakeAlive(snake))
-            {
-                _snakeController.Move(Board, snake, false);
-            }
-        }
-
-        private Vector2Int RotateClockwise(Vector2Int direction) => new(direction.y, -direction.x);
-
-        private Vector2Int RotateCounterClockwise(Vector2Int direction) =>
+        public Vector2Int RotateCounterClockwise(Vector2Int direction) =>
                 new(-direction.y, direction.x);
         private void SetEnclosedSpacesAsBlocked(HashSet<Vector2Int> visitedPositions)
         {

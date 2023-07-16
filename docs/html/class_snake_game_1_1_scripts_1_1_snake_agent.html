@@ -118,10 +118,15 @@ $(document).ready(function(){initNavTree('class_snake_game_1_1_scripts_1_1_snake
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#properties">Properties</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_snake_game_1_1_scripts_1_1_snake_agent-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">SnakeGame.Scripts.SnakeAgent Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>The SnakeAgent class is responsible for controlling the behavior of the Snake in the game. It contains methods for finding the longest path, getting the relative direction of the input direction relative to the current direction, handling the snake's direction based on the given action, initializing the game by creating snakes, resetting the Scripts.Board, and spawning food, determining if a given position on the game Scripts.Board is safe, processing snake movement, and rotating the snake's direction clockwise and counterclockwise.  
+ <a href="class_snake_game_1_1_scripts_1_1_snake_agent.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for SnakeGame.Scripts.SnakeAgent:</div>
 <div class="dyncontent">
@@ -130,41 +135,274 @@ Inheritance diagram for SnakeGame.Scripts.SnakeAgent:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a92dac0d503b6486827a9cee233fc142e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a92dac0d503b6486827a9cee233fc142e">SnakeAgent</a> ()</td></tr>
-<tr class="separator:a92dac0d503b6486827a9cee233fc142e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa1eee2bf7761f1d67d5ac258ccf418b"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#afa1eee2bf7761f1d67d5ac258ccf418b">Initialize</a> ()</td></tr>
+<tr class="memdesc:afa1eee2bf7761f1d67d5ac258ccf418b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the game and sets up the necessary variables.  <br /></td></tr>
+<tr class="separator:afa1eee2bf7761f1d67d5ac258ccf418b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1684e3ba3bf8a6dc7a58b3f081b7c8da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a1684e3ba3bf8a6dc7a58b3f081b7c8da">InitializeGame</a> ()</td></tr>
+<tr class="separator:a1684e3ba3bf8a6dc7a58b3f081b7c8da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a126a554938c430f125f2bc95e5e02fb6"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a126a554938c430f125f2bc95e5e02fb6">CollectObservations</a> (VectorSensor sensor)</td></tr>
+<tr class="memdesc:a126a554938c430f125f2bc95e5e02fb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the input direction based on the user's keyboard input. Recalculates the longest paths for all directions if needed.  <br /></td></tr>
 <tr class="separator:a126a554938c430f125f2bc95e5e02fb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04ad166aee61042938f71f6bbba0e893"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a04ad166aee61042938f71f6bbba0e893">Heuristic</a> (in ActionBuffers actionsOut)</td></tr>
+<tr class="memdesc:a04ad166aee61042938f71f6bbba0e893"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates an action based on the user's input direction.  <br /></td></tr>
 <tr class="separator:a04ad166aee61042938f71f6bbba0e893"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfc4636521e4cfcd150ae0be288386e6"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#abfc4636521e4cfcd150ae0be288386e6">OnActionReceived</a> (ActionBuffers actions)</td></tr>
+<tr class="memdesc:abfc4636521e4cfcd150ae0be288386e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when the agent receives an action. Handles the snake's movement and direction based on the received action. Clears the board, draws the food and snake, and checks for a new high score. Calculates the distance to the food and applies a reward or punishment based on the distance. Checks the snake's status and sets the flag to recalculate paths.  <br /></td></tr>
 <tr class="separator:abfc4636521e4cfcd150ae0be288386e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac48fcb72958f7c2ad6a97b07edcdfa40"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#ac48fcb72958f7c2ad6a97b07edcdfa40">OnEpisodeBegin</a> ()</td></tr>
+<tr class="memdesc:ac48fcb72958f7c2ad6a97b07edcdfa40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when the agent starts a new episode. Resets the game and initializes the current reward to 0. If the number of episodes exceeds the reset average count, the total score and reward are reset.  <br /></td></tr>
 <tr class="separator:ac48fcb72958f7c2ad6a97b07edcdfa40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60093a1dd16a1ee38e936c1810555989"><td class="memItemLeft" align="right" valign="top">Vector2Int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a60093a1dd16a1ee38e936c1810555989">RotateClockwise</a> (Vector2Int direction)</td></tr>
+<tr class="separator:a60093a1dd16a1ee38e936c1810555989"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a587ac3eccfbc84676232575bdc261523"><td class="memItemLeft" align="right" valign="top">Vector2Int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a587ac3eccfbc84676232575bdc261523">RotateCounterClockwise</a> (Vector2Int direction)</td></tr>
+<tr class="separator:a587ac3eccfbc84676232575bdc261523"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
+<tr class="memitem:a65d41c975a8284be7055853d4fb4b506"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a65d41c975a8284be7055853d4fb4b506">PreviousDistance</a><code> [get, set]</code></td></tr>
+<tr class="separator:a65d41c975a8284be7055853d4fb4b506"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22d7dc89b4254e431cdeb00a31787c7d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a22d7dc89b4254e431cdeb00a31787c7d">MaxDistance</a><code> [get, set]</code></td></tr>
 <tr class="separator:a22d7dc89b4254e431cdeb00a31787c7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a92f3fb6c48921f816435a503beaa7e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a2a92f3fb6c48921f816435a503beaa7e">MaxPathLength</a><code> [get, set]</code></td></tr>
+<tr class="separator:a2a92f3fb6c48921f816435a503beaa7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2faee018810be772fea05240628fc3f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html">Board</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a2faee018810be772fea05240628fc3f3">Board</a><code> [get, set]</code></td></tr>
+<tr class="separator:a2faee018810be772fea05240628fc3f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5bbe650d06222347599d793e09b0704"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#ae5bbe650d06222347599d793e09b0704">HighScore</a><code> [get, set]</code></td></tr>
+<tr class="separator:ae5bbe650d06222347599d793e09b0704"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cd42ae7c09c13b80451aacec76acaea"><td class="memItemLeft" align="right" valign="top">StatsRecorder&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a2cd42ae7c09c13b80451aacec76acaea">Stats</a><code> [get, set]</code></td></tr>
+<tr class="separator:a2cd42ae7c09c13b80451aacec76acaea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad06c018f67cc27db3bc341dd1d25e82e"><td class="memItemLeft" align="right" valign="top">TMP_Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#ad06c018f67cc27db3bc341dd1d25e82e">HighScoreText</a><code> [get, set]</code></td></tr>
+<tr class="separator:ad06c018f67cc27db3bc341dd1d25e82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f56323e4ac91e1c8460af23ce7d4d2b"><td class="memItemLeft" align="right" valign="top">TMP_Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a5f56323e4ac91e1c8460af23ce7d4d2b">ScoreText</a><code> [get, set]</code></td></tr>
+<tr class="separator:a5f56323e4ac91e1c8460af23ce7d4d2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab62dc988c9deacc0ae76c7b9f1413b58"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#ab62dc988c9deacc0ae76c7b9f1413b58">CurrentReward</a><code> [get, set]</code></td></tr>
+<tr class="separator:ab62dc988c9deacc0ae76c7b9f1413b58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f13da3d3602a013bb498dd5cfc2dfbb"><td class="memItemLeft" align="right" valign="top">StatsRecorder&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a4f13da3d3602a013bb498dd5cfc2dfbb">Stats1</a><code> [get, set]</code></td></tr>
+<tr class="separator:a4f13da3d3602a013bb498dd5cfc2dfbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae89aa6ffa692c1219d3cf9a0a8bbc6ad"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#ae89aa6ffa692c1219d3cf9a0a8bbc6ad">EpisodeStarted</a><code> [get, set]</code></td></tr>
+<tr class="separator:ae89aa6ffa692c1219d3cf9a0a8bbc6ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7c9e8642eacee1c4a16a91c1ec7592f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#ad7c9e8642eacee1c4a16a91c1ec7592f">EatTimer</a><code> [get, set]</code></td></tr>
+<tr class="separator:ad7c9e8642eacee1c4a16a91c1ec7592f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a592b9f7cd1c161744b3b5de9514ebea4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a592b9f7cd1c161744b3b5de9514ebea4">MaxHungryTime</a><code> [get, set]</code></td></tr>
+<tr class="separator:a592b9f7cd1c161744b3b5de9514ebea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3af8a6c012e51df6653fe47dc04fd09a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a3af8a6c012e51df6653fe47dc04fd09a">TotalScore</a><code> [get, set]</code></td></tr>
+<tr class="separator:a3af8a6c012e51df6653fe47dc04fd09a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a021bef9e0000ea722f8c68308b7aef1b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a021bef9e0000ea722f8c68308b7aef1b">TotalReward</a><code> [get, set]</code></td></tr>
+<tr class="separator:a021bef9e0000ea722f8c68308b7aef1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a2ee3971c9d44dc0a5f9fbafd6a0469"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a6a2ee3971c9d44dc0a5f9fbafd6a0469">AverageScore</a><code> [get, set]</code></td></tr>
+<tr class="separator:a6a2ee3971c9d44dc0a5f9fbafd6a0469"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd41e78908c5467061f8929bc9ce31f8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#abd41e78908c5467061f8929bc9ce31f8">EpisodeCount</a><code> [get, set]</code></td></tr>
+<tr class="separator:abd41e78908c5467061f8929bc9ce31f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2ab7ce8fe2174362cf5e7086a919a2a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#aa2ab7ce8fe2174362cf5e7086a919a2a">AverageReward</a><code> [get, set]</code></td></tr>
+<tr class="separator:aa2ab7ce8fe2174362cf5e7086a919a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a498a3e662e6bbb31ad36d4e9116bcdb7"><td class="memItemLeft" align="right" valign="top">TMP_Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a498a3e662e6bbb31ad36d4e9116bcdb7">CurrentRewardText</a><code> [get, set]</code></td></tr>
+<tr class="separator:a498a3e662e6bbb31ad36d4e9116bcdb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b1226c448786996803d410b4b0c1748"><td class="memItemLeft" align="right" valign="top">TMP_Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a2b1226c448786996803d410b4b0c1748">AverageRewardText</a><code> [get, set]</code></td></tr>
+<tr class="separator:a2b1226c448786996803d410b4b0c1748"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac00745cce6fbc8fe9370d7b4f95cf817"><td class="memItemLeft" align="right" valign="top">TMP_Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#ac00745cce6fbc8fe9370d7b4f95cf817">AverageScoreText</a><code> [get, set]</code></td></tr>
+<tr class="separator:ac00745cce6fbc8fe9370d7b4f95cf817"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8c26a71f5f2eb40b815fc2ec6b7de35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html">Board</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#ad8c26a71f5f2eb40b815fc2ec6b7de35">Board1</a><code> [get, set]</code></td></tr>
+<tr class="separator:ad8c26a71f5f2eb40b815fc2ec6b7de35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cfc8cb310008b59da44df770e422aa6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a8cfc8cb310008b59da44df770e422aa6">EatTimer1</a><code> [get, set]</code></td></tr>
+<tr class="separator:a8cfc8cb310008b59da44df770e422aa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e74b5b5396b90b083c4638e3aa95234"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a5e74b5b5396b90b083c4638e3aa95234">Height</a><code> [get, set]</code></td></tr>
+<tr class="separator:a5e74b5b5396b90b083c4638e3aa95234"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc09c9e7e848f5615b1036f45d7a3c6b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#acc09c9e7e848f5615b1036f45d7a3c6b">Width</a><code> [get, set]</code></td></tr>
+<tr class="separator:acc09c9e7e848f5615b1036f45d7a3c6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ac05666eaff6a5a4f29406d02c4f2e8d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#ac05666eaff6a5a4f29406d02c4f2e8d7">RandomizeBoardSize</a> ()</td></tr>
+<tr class="separator:ac05666eaff6a5a4f29406d02c4f2e8d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac96afa393f26b1ea2886df6955a0fc18"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#ac96afa393f26b1ea2886df6955a0fc18">BreadthFirstSearch</a> (Vector2Int position, HashSet&lt; Vector2Int &gt; visitedPositions, int maxLength, List&lt; Vector2Int &gt; currentPath, int currentLength=0)</td></tr>
+<tr class="memdesc:ac96afa393f26b1ea2886df6955a0fc18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recursively finds the longest path from the given position, without visiting any position more than once.  <br /></td></tr>
+<tr class="separator:ac96afa393f26b1ea2886df6955a0fc18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9588abe759161b0d18cea8ca67dde89"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#ac9588abe759161b0d18cea8ca67dde89">CalculateLongestPaths</a> (List&lt; Vector2Int &gt; currentVisitedPath, HashSet&lt; Vector2Int &gt; currentVisitedPositions)</td></tr>
+<tr class="memdesc:ac9588abe759161b0d18cea8ca67dde89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the longest paths for all possible directions the snake can move in.  <br /></td></tr>
+<tr class="separator:ac9588abe759161b0d18cea8ca67dde89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dc71c5ae2fdf50381cd346900b3f705"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a1dc71c5ae2fdf50381cd346900b3f705">CountOpenSpaces</a> (HashSet&lt; Vector2Int &gt; visitedPositions, int openSpaceCount)</td></tr>
+<tr class="separator:a1dc71c5ae2fdf50381cd346900b3f705"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2eefba07fec2ac24105dc17ff9211b81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a2eefba07fec2ac24105dc17ff9211b81">SetEnclosedSpacesAsBlocked</a> (HashSet&lt; Vector2Int &gt; visitedPositions)</td></tr>
+<tr class="separator:a2eefba07fec2ac24105dc17ff9211b81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74fc48b5f6d0cbb690d43b6d3fe31dcb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a74fc48b5f6d0cbb690d43b6d3fe31dcb">UpdateGridWithPath</a> (List&lt; Vector2Int &gt; currentPath)</td></tr>
+<tr class="separator:a74fc48b5f6d0cbb690d43b6d3fe31dcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a1397b0cac1c0dff0551755beb4ddb78f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html">Board</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a1397b0cac1c0dff0551755beb4ddb78f">board</a></td></tr>
+<tr class="separator:a1397b0cac1c0dff0551755beb4ddb78f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0820cfd7a6c4bb1ae10c5f8e73ccfd97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_snake_game_1_1_scripts_1_1_board_display.html">BoardDisplay</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a0820cfd7a6c4bb1ae10c5f8e73ccfd97">boardDisplay</a></td></tr>
+<tr class="separator:a0820cfd7a6c4bb1ae10c5f8e73ccfd97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9691992456d8bbdbb26379e2f080d8f2"><td class="memItemLeft" align="right" valign="top">TMP_Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a9691992456d8bbdbb26379e2f080d8f2">highScoreText</a></td></tr>
+<tr class="separator:a9691992456d8bbdbb26379e2f080d8f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa17d7d3210c7c410dd6a71e0624be32f"><td class="memItemLeft" align="right" valign="top">TMP_Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#aa17d7d3210c7c410dd6a71e0624be32f">averageScoreText</a></td></tr>
+<tr class="separator:aa17d7d3210c7c410dd6a71e0624be32f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09cc79f21e62f25097de16ffb3b2e4ee"><td class="memItemLeft" align="right" valign="top">TMP_Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a09cc79f21e62f25097de16ffb3b2e4ee">currentRewardText</a></td></tr>
+<tr class="separator:a09cc79f21e62f25097de16ffb3b2e4ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8776d1dd211337d0241868da72294a4e"><td class="memItemLeft" align="right" valign="top">TMP_Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a8776d1dd211337d0241868da72294a4e">averageRewardText</a></td></tr>
+<tr class="separator:a8776d1dd211337d0241868da72294a4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacd7a79e3d716124b110850057d72931"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#aacd7a79e3d716124b110850057d72931">isDisplayOn</a></td></tr>
+<tr class="separator:aacd7a79e3d716124b110850057d72931"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9beb6aa0d362ba1627fc952a042d3c08"><td class="memItemLeft" align="right" valign="top">TMP_Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a9beb6aa0d362ba1627fc952a042d3c08">scoreText</a></td></tr>
+<tr class="separator:a9beb6aa0d362ba1627fc952a042d3c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb4d77ff5d4cd23b28d18623016c7e30"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#afb4d77ff5d4cd23b28d18623016c7e30">foodCount</a></td></tr>
+<tr class="separator:afb4d77ff5d4cd23b28d18623016c7e30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99cce29ced29c593d01d2150c8213aa5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a99cce29ced29c593d01d2150c8213aa5">width</a></td></tr>
+<tr class="separator:a99cce29ced29c593d01d2150c8213aa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58a12c506f83ce87a85a7fd2b05bc07c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a58a12c506f83ce87a85a7fd2b05bc07c">height</a></td></tr>
+<tr class="separator:a58a12c506f83ce87a85a7fd2b05bc07c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a912580d229ee526fbb6cdb059090d7bf"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a912580d229ee526fbb6cdb059090d7bf">maxPathLength</a></td></tr>
+<tr class="separator:a912580d229ee526fbb6cdb059090d7bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfbb18382964980c8820a08449774c5e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#abfbb18382964980c8820a08449774c5e">numberOfSnakes</a></td></tr>
+<tr class="separator:abfbb18382964980c8820a08449774c5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5befd510315d6ac0c67c0f3eedc4aea"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#ac5befd510315d6ac0c67c0f3eedc4aea">startSize</a></td></tr>
+<tr class="separator:ac5befd510315d6ac0c67c0f3eedc4aea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb9c42862332143c452f92c63d89c949"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#afb9c42862332143c452f92c63d89c949">maxHungryTime</a> = 64</td></tr>
+<tr class="separator:afb9c42862332143c452f92c63d89c949"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a760ea979a885a97710db2118be031f6d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a760ea979a885a97710db2118be031f6d">resetAverageCount</a> = 250</td></tr>
+<tr class="separator:a760ea979a885a97710db2118be031f6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a296ece21b8bdc36e75a355ee72db51e5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a296ece21b8bdc36e75a355ee72db51e5">eatTimer</a></td></tr>
+<tr class="separator:a296ece21b8bdc36e75a355ee72db51e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9311066f99ba34e55926ec57d73f3eca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a9311066f99ba34e55926ec57d73f3eca">episodeCount</a></td></tr>
+<tr class="separator:a9311066f99ba34e55926ec57d73f3eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a623385c03bcf4ff63eeb9645703afa41"><td class="memItemLeft" align="right" valign="top">readonly Vector2Int[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a623385c03bcf4ff63eeb9645703afa41">_directions</a></td></tr>
+<tr class="separator:a623385c03bcf4ff63eeb9645703afa41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e99846a5569aa8e80a2fa8a3600e549"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a0e99846a5569aa8e80a2fa8a3600e549">_currentTimer</a></td></tr>
+<tr class="separator:a0e99846a5569aa8e80a2fa8a3600e549"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74eb5b7c251c2a3ee2feb4687af92a4b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a74eb5b7c251c2a3ee2feb4687af92a4b">_highScore</a></td></tr>
+<tr class="separator:a74eb5b7c251c2a3ee2feb4687af92a4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade0bae653b0ac08bec016c7f9f146b76"><td class="memItemLeft" align="right" valign="top">Vector2Int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#ade0bae653b0ac08bec016c7f9f146b76">_inputDirection</a> = Vector2Int.up</td></tr>
+<tr class="separator:ade0bae653b0ac08bec016c7f9f146b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae44fca948afb6c4a26a0c62e1bb21135"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#ae44fca948afb6c4a26a0c62e1bb21135">_longestPath</a></td></tr>
+<tr class="separator:ae44fca948afb6c4a26a0c62e1bb21135"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f3223326567fba064ba1985d46fb665"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_controller.html">SnakeController</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a9f3223326567fba064ba1985d46fb665">_snakeController</a></td></tr>
+<tr class="separator:a9f3223326567fba064ba1985d46fb665"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a529faa5a3e518e8ff5d7f269ef6a0fd4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a529faa5a3e518e8ff5d7f269ef6a0fd4">_averageReward</a></td></tr>
+<tr class="separator:a529faa5a3e518e8ff5d7f269ef6a0fd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e78a1409d8364456bc417f478654ca2"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a1e78a1409d8364456bc417f478654ca2">_averageScore</a></td></tr>
+<tr class="separator:a1e78a1409d8364456bc417f478654ca2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59800bcbb58151a90a543db67cd02b8b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a59800bcbb58151a90a543db67cd02b8b">_currentDistance</a></td></tr>
+<tr class="separator:a59800bcbb58151a90a543db67cd02b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40a2739c8db830a93773e79ca0ef7fe9"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a40a2739c8db830a93773e79ca0ef7fe9">_currentReward</a></td></tr>
+<tr class="separator:a40a2739c8db830a93773e79ca0ef7fe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2d3dcc069acc51b87c9babf15fb9639"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#ad2d3dcc069acc51b87c9babf15fb9639">_totalReward</a></td></tr>
+<tr class="separator:ad2d3dcc069acc51b87c9babf15fb9639"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3cffa15df72dc3cf4e1c91437b76ca1"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#af3cffa15df72dc3cf4e1c91437b76ca1">_totalScore</a></td></tr>
+<tr class="separator:af3cffa15df72dc3cf4e1c91437b76ca1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6090fa1e3bfca7a2be86a08c76b8853f"><td class="memItemLeft" align="right" valign="top">StatsRecorder&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a6090fa1e3bfca7a2be86a08c76b8853f">stats</a></td></tr>
+<tr class="separator:a6090fa1e3bfca7a2be86a08c76b8853f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39e81dc903227efc060709dfd6d8a162"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html#a39e81dc903227efc060709dfd6d8a162">_episodeStarted</a></td></tr>
+<tr class="separator:a39e81dc903227efc060709dfd6d8a162"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a92dac0d503b6486827a9cee233fc142e" name="a92dac0d503b6486827a9cee233fc142e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a92dac0d503b6486827a9cee233fc142e">&#9670;&#160;</a></span>SnakeAgent()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The SnakeAgent class is responsible for controlling the behavior of the Snake in the game. It contains methods for finding the longest path, getting the relative direction of the input direction relative to the current direction, handling the snake's direction based on the given action, initializing the game by creating snakes, resetting the Scripts.Board, and spawning food, determining if a given position on the game Scripts.Board is safe, processing snake movement, and rotating the snake's direction clockwise and counterclockwise. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac96afa393f26b1ea2886df6955a0fc18" name="ac96afa393f26b1ea2886df6955a0fc18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac96afa393f26b1ea2886df6955a0fc18">&#9670;&#160;</a></span>BreadthFirstSearch()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">SnakeGame.Scripts.SnakeAgent.SnakeAgent </td>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent.BreadthFirstSearch </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">Vector2Int&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">HashSet&lt; Vector2Int &gt;&#160;</td>
+          <td class="paramname"><em>visitedPositions</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>maxLength</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; Vector2Int &gt;&#160;</td>
+          <td class="paramname"><em>currentPath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>currentLength</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+
+<p>Recursively finds the longest path from the given position, without visiting any position more than once. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>The starting position.</td></tr>
+    <tr><td class="paramname">visitedPositions</td><td>The set of visited positions.</td></tr>
+    <tr><td class="paramname">maxLength</td><td>The maximum length of the path.</td></tr>
+    <tr><td class="paramname">currentPath</td><td></td></tr>
+    <tr><td class="paramname">currentLength</td><td>The current length of the path.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The length of the longest path.</dd></dl>
 
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac9588abe759161b0d18cea8ca67dde89" name="ac9588abe759161b0d18cea8ca67dde89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9588abe759161b0d18cea8ca67dde89">&#9670;&#160;</a></span>CalculateLongestPaths()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SnakeGame.Scripts.SnakeAgent.CalculateLongestPaths </td>
+          <td>(</td>
+          <td class="paramtype">List&lt; Vector2Int &gt;&#160;</td>
+          <td class="paramname"><em>currentVisitedPath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">HashSet&lt; Vector2Int &gt;&#160;</td>
+          <td class="paramname"><em>currentVisitedPositions</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculates the longest paths for all possible directions the snake can move in. </p>
+<p>Calculates the longest paths for all possible directions the snake can move in. </p>
+
+</div>
+</div>
 <a id="a126a554938c430f125f2bc95e5e02fb6" name="a126a554938c430f125f2bc95e5e02fb6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a126a554938c430f125f2bc95e5e02fb6">&#9670;&#160;</a></span>CollectObservations()</h2>
 
@@ -181,6 +419,51 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Updates the input direction based on the user's keyboard input. Recalculates the longest paths for all directions if needed. </p>
+<p>Collects observations for the agent based on the current state of the game board.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sensor</td><td>The sensor used to collect observations.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1dc71c5ae2fdf50381cd346900b3f705" name="a1dc71c5ae2fdf50381cd346900b3f705"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dc71c5ae2fdf50381cd346900b3f705">&#9670;&#160;</a></span>CountOpenSpaces()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent.CountOpenSpaces </td>
+          <td>(</td>
+          <td class="paramtype">HashSet&lt; Vector2Int &gt;&#160;</td>
+          <td class="paramname"><em>visitedPositions</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>openSpaceCount</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
 </div>
 </div>
 <a id="a04ad166aee61042938f71f6bbba0e893" name="a04ad166aee61042938f71f6bbba0e893"></a>
@@ -194,6 +477,50 @@ Properties</h2></td></tr>
           <td>(</td>
           <td class="paramtype">in ActionBuffers&#160;</td>
           <td class="paramname"><em>actionsOut</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generates an action based on the user's input direction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actionsOut</td><td>The generated actions.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afa1eee2bf7761f1d67d5ac258ccf418b" name="afa1eee2bf7761f1d67d5ac258ccf418b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa1eee2bf7761f1d67d5ac258ccf418b">&#9670;&#160;</a></span>Initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void SnakeGame.Scripts.SnakeAgent.Initialize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initializes the game and sets up the necessary variables. </p>
+
+</div>
+</div>
+<a id="a1684e3ba3bf8a6dc7a58b3f081b7c8da" name="a1684e3ba3bf8a6dc7a58b3f081b7c8da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1684e3ba3bf8a6dc7a58b3f081b7c8da">&#9670;&#160;</a></span>InitializeGame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SnakeGame.Scripts.SnakeAgent.InitializeGame </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -217,6 +544,14 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Called when the agent receives an action. Handles the snake's movement and direction based on the received action. Clears the board, draws the food and snake, and checks for a new high score. Calculates the distance to the food and applies a reward or punishment based on the distance. Checks the snake's status and sets the flag to recalculate paths. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actions</td><td>The received actions.</td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="ac48fcb72958f7c2ad6a97b07edcdfa40" name="ac48fcb72958f7c2ad6a97b07edcdfa40"></a>
@@ -234,9 +569,1166 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Called when the agent starts a new episode. Resets the game and initializes the current reward to 0. If the number of episodes exceeds the reset average count, the total score and reward are reset. </p>
+
+</div>
+</div>
+<a id="ac05666eaff6a5a4f29406d02c4f2e8d7" name="ac05666eaff6a5a4f29406d02c4f2e8d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac05666eaff6a5a4f29406d02c4f2e8d7">&#9670;&#160;</a></span>RandomizeBoardSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SnakeGame.Scripts.SnakeAgent.RandomizeBoardSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a60093a1dd16a1ee38e936c1810555989" name="a60093a1dd16a1ee38e936c1810555989"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60093a1dd16a1ee38e936c1810555989">&#9670;&#160;</a></span>RotateClockwise()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector2Int SnakeGame.Scripts.SnakeAgent.RotateClockwise </td>
+          <td>(</td>
+          <td class="paramtype">Vector2Int&#160;</td>
+          <td class="paramname"><em>direction</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a587ac3eccfbc84676232575bdc261523" name="a587ac3eccfbc84676232575bdc261523"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a587ac3eccfbc84676232575bdc261523">&#9670;&#160;</a></span>RotateCounterClockwise()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector2Int SnakeGame.Scripts.SnakeAgent.RotateCounterClockwise </td>
+          <td>(</td>
+          <td class="paramtype">Vector2Int&#160;</td>
+          <td class="paramname"><em>direction</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2eefba07fec2ac24105dc17ff9211b81" name="a2eefba07fec2ac24105dc17ff9211b81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2eefba07fec2ac24105dc17ff9211b81">&#9670;&#160;</a></span>SetEnclosedSpacesAsBlocked()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SnakeGame.Scripts.SnakeAgent.SetEnclosedSpacesAsBlocked </td>
+          <td>(</td>
+          <td class="paramtype">HashSet&lt; Vector2Int &gt;&#160;</td>
+          <td class="paramname"><em>visitedPositions</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a74fc48b5f6d0cbb690d43b6d3fe31dcb" name="a74fc48b5f6d0cbb690d43b6d3fe31dcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74fc48b5f6d0cbb690d43b6d3fe31dcb">&#9670;&#160;</a></span>UpdateGridWithPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SnakeGame.Scripts.SnakeAgent.UpdateGridWithPath </td>
+          <td>(</td>
+          <td class="paramtype">List&lt; Vector2Int &gt;&#160;</td>
+          <td class="paramname"><em>currentPath</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a529faa5a3e518e8ff5d7f269ef6a0fd4" name="a529faa5a3e518e8ff5d7f269ef6a0fd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a529faa5a3e518e8ff5d7f269ef6a0fd4">&#9670;&#160;</a></span>_averageReward</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double SnakeGame.Scripts.SnakeAgent._averageReward</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1e78a1409d8364456bc417f478654ca2" name="a1e78a1409d8364456bc417f478654ca2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e78a1409d8364456bc417f478654ca2">&#9670;&#160;</a></span>_averageScore</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double SnakeGame.Scripts.SnakeAgent._averageScore</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a59800bcbb58151a90a543db67cd02b8b" name="a59800bcbb58151a90a543db67cd02b8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59800bcbb58151a90a543db67cd02b8b">&#9670;&#160;</a></span>_currentDistance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SnakeGame.Scripts.SnakeAgent._currentDistance</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a40a2739c8db830a93773e79ca0ef7fe9" name="a40a2739c8db830a93773e79ca0ef7fe9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40a2739c8db830a93773e79ca0ef7fe9">&#9670;&#160;</a></span>_currentReward</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double SnakeGame.Scripts.SnakeAgent._currentReward</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0e99846a5569aa8e80a2fa8a3600e549" name="a0e99846a5569aa8e80a2fa8a3600e549"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e99846a5569aa8e80a2fa8a3600e549">&#9670;&#160;</a></span>_currentTimer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SnakeGame.Scripts.SnakeAgent._currentTimer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a623385c03bcf4ff63eeb9645703afa41" name="a623385c03bcf4ff63eeb9645703afa41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a623385c03bcf4ff63eeb9645703afa41">&#9670;&#160;</a></span>_directions</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">readonly Vector2Int [] SnakeGame.Scripts.SnakeAgent._directions</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">        {</div>
+<div class="line">            <span class="keyword">new</span>(0, 1),  </div>
+<div class="line">            <span class="keyword">new</span>(1, 0),  </div>
+<div class="line">            <span class="keyword">new</span>(0, -1), </div>
+<div class="line">            <span class="keyword">new</span>(-1, 0), </div>
+<div class="line">        }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a39e81dc903227efc060709dfd6d8a162" name="a39e81dc903227efc060709dfd6d8a162"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39e81dc903227efc060709dfd6d8a162">&#9670;&#160;</a></span>_episodeStarted</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SnakeGame.Scripts.SnakeAgent._episodeStarted</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a74eb5b7c251c2a3ee2feb4687af92a4b" name="a74eb5b7c251c2a3ee2feb4687af92a4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74eb5b7c251c2a3ee2feb4687af92a4b">&#9670;&#160;</a></span>_highScore</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent._highScore</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ade0bae653b0ac08bec016c7f9f146b76" name="ade0bae653b0ac08bec016c7f9f146b76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade0bae653b0ac08bec016c7f9f146b76">&#9670;&#160;</a></span>_inputDirection</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector2Int SnakeGame.Scripts.SnakeAgent._inputDirection = Vector2Int.up</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae44fca948afb6c4a26a0c62e1bb21135" name="ae44fca948afb6c4a26a0c62e1bb21135"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae44fca948afb6c4a26a0c62e1bb21135">&#9670;&#160;</a></span>_longestPath</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent._longestPath</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9f3223326567fba064ba1985d46fb665" name="a9f3223326567fba064ba1985d46fb665"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f3223326567fba064ba1985d46fb665">&#9670;&#160;</a></span>_snakeController</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_controller.html">SnakeController</a> SnakeGame.Scripts.SnakeAgent._snakeController</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad2d3dcc069acc51b87c9babf15fb9639" name="ad2d3dcc069acc51b87c9babf15fb9639"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2d3dcc069acc51b87c9babf15fb9639">&#9670;&#160;</a></span>_totalReward</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double SnakeGame.Scripts.SnakeAgent._totalReward</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af3cffa15df72dc3cf4e1c91437b76ca1" name="af3cffa15df72dc3cf4e1c91437b76ca1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3cffa15df72dc3cf4e1c91437b76ca1">&#9670;&#160;</a></span>_totalScore</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double SnakeGame.Scripts.SnakeAgent._totalScore</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8776d1dd211337d0241868da72294a4e" name="a8776d1dd211337d0241868da72294a4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8776d1dd211337d0241868da72294a4e">&#9670;&#160;</a></span>averageRewardText</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TMP_Text SnakeGame.Scripts.SnakeAgent.averageRewardText</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa17d7d3210c7c410dd6a71e0624be32f" name="aa17d7d3210c7c410dd6a71e0624be32f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa17d7d3210c7c410dd6a71e0624be32f">&#9670;&#160;</a></span>averageScoreText</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TMP_Text SnakeGame.Scripts.SnakeAgent.averageScoreText</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1397b0cac1c0dff0551755beb4ddb78f" name="a1397b0cac1c0dff0551755beb4ddb78f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1397b0cac1c0dff0551755beb4ddb78f">&#9670;&#160;</a></span>board</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html">Board</a> SnakeGame.Scripts.SnakeAgent.board</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0820cfd7a6c4bb1ae10c5f8e73ccfd97" name="a0820cfd7a6c4bb1ae10c5f8e73ccfd97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0820cfd7a6c4bb1ae10c5f8e73ccfd97">&#9670;&#160;</a></span>boardDisplay</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_snake_game_1_1_scripts_1_1_board_display.html">BoardDisplay</a> SnakeGame.Scripts.SnakeAgent.boardDisplay</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a09cc79f21e62f25097de16ffb3b2e4ee" name="a09cc79f21e62f25097de16ffb3b2e4ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09cc79f21e62f25097de16ffb3b2e4ee">&#9670;&#160;</a></span>currentRewardText</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TMP_Text SnakeGame.Scripts.SnakeAgent.currentRewardText</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a296ece21b8bdc36e75a355ee72db51e5" name="a296ece21b8bdc36e75a355ee72db51e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a296ece21b8bdc36e75a355ee72db51e5">&#9670;&#160;</a></span>eatTimer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent.eatTimer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9311066f99ba34e55926ec57d73f3eca" name="a9311066f99ba34e55926ec57d73f3eca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9311066f99ba34e55926ec57d73f3eca">&#9670;&#160;</a></span>episodeCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent.episodeCount</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afb4d77ff5d4cd23b28d18623016c7e30" name="afb4d77ff5d4cd23b28d18623016c7e30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb4d77ff5d4cd23b28d18623016c7e30">&#9670;&#160;</a></span>foodCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent.foodCount</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a58a12c506f83ce87a85a7fd2b05bc07c" name="a58a12c506f83ce87a85a7fd2b05bc07c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58a12c506f83ce87a85a7fd2b05bc07c">&#9670;&#160;</a></span>height</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent.height</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9691992456d8bbdbb26379e2f080d8f2" name="a9691992456d8bbdbb26379e2f080d8f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9691992456d8bbdbb26379e2f080d8f2">&#9670;&#160;</a></span>highScoreText</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TMP_Text SnakeGame.Scripts.SnakeAgent.highScoreText</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aacd7a79e3d716124b110850057d72931" name="aacd7a79e3d716124b110850057d72931"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacd7a79e3d716124b110850057d72931">&#9670;&#160;</a></span>isDisplayOn</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SnakeGame.Scripts.SnakeAgent.isDisplayOn</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afb9c42862332143c452f92c63d89c949" name="afb9c42862332143c452f92c63d89c949"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb9c42862332143c452f92c63d89c949">&#9670;&#160;</a></span>maxHungryTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent.maxHungryTime = 64</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a912580d229ee526fbb6cdb059090d7bf" name="a912580d229ee526fbb6cdb059090d7bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a912580d229ee526fbb6cdb059090d7bf">&#9670;&#160;</a></span>maxPathLength</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent.maxPathLength</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abfbb18382964980c8820a08449774c5e" name="abfbb18382964980c8820a08449774c5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfbb18382964980c8820a08449774c5e">&#9670;&#160;</a></span>numberOfSnakes</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent.numberOfSnakes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a760ea979a885a97710db2118be031f6d" name="a760ea979a885a97710db2118be031f6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a760ea979a885a97710db2118be031f6d">&#9670;&#160;</a></span>resetAverageCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent.resetAverageCount = 250</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9beb6aa0d362ba1627fc952a042d3c08" name="a9beb6aa0d362ba1627fc952a042d3c08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9beb6aa0d362ba1627fc952a042d3c08">&#9670;&#160;</a></span>scoreText</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TMP_Text SnakeGame.Scripts.SnakeAgent.scoreText</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac5befd510315d6ac0c67c0f3eedc4aea" name="ac5befd510315d6ac0c67c0f3eedc4aea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5befd510315d6ac0c67c0f3eedc4aea">&#9670;&#160;</a></span>startSize</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent.startSize</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6090fa1e3bfca7a2be86a08c76b8853f" name="a6090fa1e3bfca7a2be86a08c76b8853f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6090fa1e3bfca7a2be86a08c76b8853f">&#9670;&#160;</a></span>stats</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">StatsRecorder SnakeGame.Scripts.SnakeAgent.stats</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a99cce29ced29c593d01d2150c8213aa5" name="a99cce29ced29c593d01d2150c8213aa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99cce29ced29c593d01d2150c8213aa5">&#9670;&#160;</a></span>width</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent.width</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
 </div>
 </div>
 <h2 class="groupheader">Property Documentation</h2>
+<a id="aa2ab7ce8fe2174362cf5e7086a919a2a" name="aa2ab7ce8fe2174362cf5e7086a919a2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2ab7ce8fe2174362cf5e7086a919a2a">&#9670;&#160;</a></span>AverageReward</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double SnakeGame.Scripts.SnakeAgent.AverageReward</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2b1226c448786996803d410b4b0c1748" name="a2b1226c448786996803d410b4b0c1748"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b1226c448786996803d410b4b0c1748">&#9670;&#160;</a></span>AverageRewardText</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TMP_Text SnakeGame.Scripts.SnakeAgent.AverageRewardText</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6a2ee3971c9d44dc0a5f9fbafd6a0469" name="a6a2ee3971c9d44dc0a5f9fbafd6a0469"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a2ee3971c9d44dc0a5f9fbafd6a0469">&#9670;&#160;</a></span>AverageScore</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double SnakeGame.Scripts.SnakeAgent.AverageScore</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac00745cce6fbc8fe9370d7b4f95cf817" name="ac00745cce6fbc8fe9370d7b4f95cf817"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac00745cce6fbc8fe9370d7b4f95cf817">&#9670;&#160;</a></span>AverageScoreText</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TMP_Text SnakeGame.Scripts.SnakeAgent.AverageScoreText</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2faee018810be772fea05240628fc3f3" name="a2faee018810be772fea05240628fc3f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2faee018810be772fea05240628fc3f3">&#9670;&#160;</a></span>Board</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html">Board</a> SnakeGame.Scripts.SnakeAgent.Board</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad8c26a71f5f2eb40b815fc2ec6b7de35" name="ad8c26a71f5f2eb40b815fc2ec6b7de35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8c26a71f5f2eb40b815fc2ec6b7de35">&#9670;&#160;</a></span>Board1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html">Board</a> SnakeGame.Scripts.SnakeAgent.Board1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab62dc988c9deacc0ae76c7b9f1413b58" name="ab62dc988c9deacc0ae76c7b9f1413b58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab62dc988c9deacc0ae76c7b9f1413b58">&#9670;&#160;</a></span>CurrentReward</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double SnakeGame.Scripts.SnakeAgent.CurrentReward</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a498a3e662e6bbb31ad36d4e9116bcdb7" name="a498a3e662e6bbb31ad36d4e9116bcdb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a498a3e662e6bbb31ad36d4e9116bcdb7">&#9670;&#160;</a></span>CurrentRewardText</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TMP_Text SnakeGame.Scripts.SnakeAgent.CurrentRewardText</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad7c9e8642eacee1c4a16a91c1ec7592f" name="ad7c9e8642eacee1c4a16a91c1ec7592f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7c9e8642eacee1c4a16a91c1ec7592f">&#9670;&#160;</a></span>EatTimer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent.EatTimer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8cfc8cb310008b59da44df770e422aa6" name="a8cfc8cb310008b59da44df770e422aa6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cfc8cb310008b59da44df770e422aa6">&#9670;&#160;</a></span>EatTimer1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent.EatTimer1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abd41e78908c5467061f8929bc9ce31f8" name="abd41e78908c5467061f8929bc9ce31f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd41e78908c5467061f8929bc9ce31f8">&#9670;&#160;</a></span>EpisodeCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent.EpisodeCount</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae89aa6ffa692c1219d3cf9a0a8bbc6ad" name="ae89aa6ffa692c1219d3cf9a0a8bbc6ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae89aa6ffa692c1219d3cf9a0a8bbc6ad">&#9670;&#160;</a></span>EpisodeStarted</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SnakeGame.Scripts.SnakeAgent.EpisodeStarted</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5e74b5b5396b90b083c4638e3aa95234" name="a5e74b5b5396b90b083c4638e3aa95234"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e74b5b5396b90b083c4638e3aa95234">&#9670;&#160;</a></span>Height</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent.Height</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae5bbe650d06222347599d793e09b0704" name="ae5bbe650d06222347599d793e09b0704"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5bbe650d06222347599d793e09b0704">&#9670;&#160;</a></span>HighScore</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent.HighScore</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad06c018f67cc27db3bc341dd1d25e82e" name="ad06c018f67cc27db3bc341dd1d25e82e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad06c018f67cc27db3bc341dd1d25e82e">&#9670;&#160;</a></span>HighScoreText</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TMP_Text SnakeGame.Scripts.SnakeAgent.HighScoreText</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a22d7dc89b4254e431cdeb00a31787c7d" name="a22d7dc89b4254e431cdeb00a31787c7d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a22d7dc89b4254e431cdeb00a31787c7d">&#9670;&#160;</a></span>MaxDistance</h2>
 
@@ -248,6 +1740,204 @@ Properties</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">float SnakeGame.Scripts.SnakeAgent.MaxDistance</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a592b9f7cd1c161744b3b5de9514ebea4" name="a592b9f7cd1c161744b3b5de9514ebea4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a592b9f7cd1c161744b3b5de9514ebea4">&#9670;&#160;</a></span>MaxHungryTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent.MaxHungryTime</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2a92f3fb6c48921f816435a503beaa7e" name="a2a92f3fb6c48921f816435a503beaa7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a92f3fb6c48921f816435a503beaa7e">&#9670;&#160;</a></span>MaxPathLength</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent.MaxPathLength</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a65d41c975a8284be7055853d4fb4b506" name="a65d41c975a8284be7055853d4fb4b506"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65d41c975a8284be7055853d4fb4b506">&#9670;&#160;</a></span>PreviousDistance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SnakeGame.Scripts.SnakeAgent.PreviousDistance</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5f56323e4ac91e1c8460af23ce7d4d2b" name="a5f56323e4ac91e1c8460af23ce7d4d2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f56323e4ac91e1c8460af23ce7d4d2b">&#9670;&#160;</a></span>ScoreText</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TMP_Text SnakeGame.Scripts.SnakeAgent.ScoreText</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2cd42ae7c09c13b80451aacec76acaea" name="a2cd42ae7c09c13b80451aacec76acaea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cd42ae7c09c13b80451aacec76acaea">&#9670;&#160;</a></span>Stats</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">StatsRecorder SnakeGame.Scripts.SnakeAgent.Stats</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4f13da3d3602a013bb498dd5cfc2dfbb" name="a4f13da3d3602a013bb498dd5cfc2dfbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f13da3d3602a013bb498dd5cfc2dfbb">&#9670;&#160;</a></span>Stats1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">StatsRecorder SnakeGame.Scripts.SnakeAgent.Stats1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a021bef9e0000ea722f8c68308b7aef1b" name="a021bef9e0000ea722f8c68308b7aef1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a021bef9e0000ea722f8c68308b7aef1b">&#9670;&#160;</a></span>TotalReward</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double SnakeGame.Scripts.SnakeAgent.TotalReward</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3af8a6c012e51df6653fe47dc04fd09a" name="a3af8a6c012e51df6653fe47dc04fd09a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3af8a6c012e51df6653fe47dc04fd09a">&#9670;&#160;</a></span>TotalScore</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double SnakeGame.Scripts.SnakeAgent.TotalScore</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acc09c9e7e848f5615b1036f45d7a3c6b" name="acc09c9e7e848f5615b1036f45d7a3c6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc09c9e7e848f5615b1036f45d7a3c6b">&#9670;&#160;</a></span>Width</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeAgent.Width</td>
         </tr>
       </table>
   </td>

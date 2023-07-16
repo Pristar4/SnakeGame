@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['redmaterial_0',['redMaterial',['../class_snake_game_1_1_scripts_1_1_color_changer.html#a2286267a5e33c36da34e113d0744241f',1,'SnakeGame::Scripts::ColorChanger']]]
+  ['direction_0',['direction',['../class_snake_game_1_1_scripts_1_1_snake.html#a3aa83184c3e99a5f5feb6dcaeb62f6be',1,'SnakeGame::Scripts::Snake']]],
+  ['downkey_1',['downKey',['../class_snake_game_1_1_scripts_1_1_input_schemer.html#a9ccb33f724431175ed855cd2ed0e6bd9',1,'SnakeGame::Scripts::InputSchemer']]]
 ];

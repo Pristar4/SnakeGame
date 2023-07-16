@@ -38,7 +38,8 @@ namespace Tests.EditMode
         [Test]
         public void TestFoodSpawn()
         {
-            var foodPosition = _board.SpawnFood();
+            _board.SpawnFood();
+            var foodPosition = _board.FoodPositions[0];
 
             Assert.IsTrue(foodPosition.x >= 0);
             Assert.IsTrue(foodPosition.x < _board.Width);

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['rightkey_0',['RightKey',['../class_snake_game_1_1_scripts_1_1_input_schemer.html#ac1197a67daad3c2f2ca5801797bf4db0',1,'SnakeGame::Scripts::InputSchemer']]]
+  ['position_0',['Position',['../class_snake_game_1_1_scripts_1_1_snake.html#ac00fafa62ff22405bad16c477c5cd79e',1,'SnakeGame::Scripts::Snake']]],
+  ['previousdistance_1',['PreviousDistance',['../class_snake_game_1_1_scripts_1_1_snake_agent.html#a65d41c975a8284be7055853d4fb4b506',1,'SnakeGame::Scripts::SnakeAgent']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['position_0',['Position',['../class_snake_game_1_1_scripts_1_1_snake.html#ac00fafa62ff22405bad16c477c5cd79e',1,'SnakeGame::Scripts::Snake']]]
+  ['nextdirection_0',['NextDirection',['../class_snake_game_1_1_scripts_1_1_snake.html#a5e1f7e7a7601994cc9952a57d4ac8d36',1,'SnakeGame::Scripts::Snake']]]
 ];

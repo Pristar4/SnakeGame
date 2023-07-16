@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['left_0',['Left',['../namespace_snake_game_1_1_scripts.html#a950b53731a12289a3f1f4539c71576baa945d5e233cf7d6240f6b783b36a374ff',1,'SnakeGame::Scripts']]]
+  ['green_0',['Green',['../class_snake_game_1_1_scripts_1_1_color_changer.html#aa92da33133a221a449da7108e021c319ad382816a3cbeed082c9e216e7392eed1',1,'SnakeGame::Scripts::ColorChanger']]]
 ];

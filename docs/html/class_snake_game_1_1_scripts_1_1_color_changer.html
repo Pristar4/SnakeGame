@@ -119,10 +119,15 @@ $(document).ready(function(){initNavTree('class_snake_game_1_1_scripts_1_1_color
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_snake_game_1_1_scripts_1_1_color_changer-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">SnakeGame.Scripts.ColorChanger Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Changes the color of a sprite renderer based on a selected color option.  
+ <a href="class_snake_game_1_1_scripts_1_1_color_changer.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for SnakeGame.Scripts.ColorChanger:</div>
 <div class="dyncontent">
@@ -140,6 +145,7 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a50638b560513829cb4d25b0205943d4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_color_changer.html#a50638b560513829cb4d25b0205943d4d">ChangeColor</a> ()</td></tr>
+<tr class="memdesc:a50638b560513829cb4d25b0205943d4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the color of the sprite renderer based on the selected color option.  <br /></td></tr>
 <tr class="separator:a50638b560513829cb4d25b0205943d4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -152,8 +158,22 @@ Public Attributes</h2></td></tr>
 <tr class="separator:abb416663cde6d5311ec406c834f94062"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad844fdc8833f61c003d5612532b0ff37"><td class="memItemLeft" align="right" valign="top">Material&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_color_changer.html#ad844fdc8833f61c003d5612532b0ff37">blueMaterial</a></td></tr>
 <tr class="separator:ad844fdc8833f61c003d5612532b0ff37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:afc74ffd07ead9b4412fba305c756b5c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_color_changer.html#afc74ffd07ead9b4412fba305c756b5c0">Start</a> ()</td></tr>
+<tr class="separator:afc74ffd07ead9b4412fba305c756b5c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af63b85a3d4f1972b60ec532f4500d6b5"><td class="memItemLeft" align="right" valign="top">Material&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_color_changer.html#af63b85a3d4f1972b60ec532f4500d6b5">GetMaterialFromColorOption</a> (<a class="el" href="class_snake_game_1_1_scripts_1_1_color_changer.html#aa92da33133a221a449da7108e021c319">ColorOption</a> color)</td></tr>
+<tr class="separator:af63b85a3d4f1972b60ec532f4500d6b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ab91c16fc2c44aef05a14b4b9622d91f4"><td class="memItemLeft" align="right" valign="top">SpriteRenderer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_color_changer.html#ab91c16fc2c44aef05a14b4b9622d91f4">_spriteRenderer</a></td></tr>
+<tr class="separator:ab91c16fc2c44aef05a14b4b9622d91f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Changes the color of a sprite renderer based on a selected color option. </p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="aa92da33133a221a449da7108e021c319" name="aa92da33133a221a449da7108e021c319"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa92da33133a221a449da7108e021c319">&#9670;&#160;</a></span>ColorOption</h2>
 
@@ -189,9 +209,84 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Changes the color of the sprite renderer based on the selected color option. </p>
+
+</div>
+</div>
+<a id="af63b85a3d4f1972b60ec532f4500d6b5" name="af63b85a3d4f1972b60ec532f4500d6b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af63b85a3d4f1972b60ec532f4500d6b5">&#9670;&#160;</a></span>GetMaterialFromColorOption()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Material SnakeGame.Scripts.ColorChanger.GetMaterialFromColorOption </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_snake_game_1_1_scripts_1_1_color_changer.html#aa92da33133a221a449da7108e021c319">ColorOption</a>&#160;</td>
+          <td class="paramname"><em>color</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afc74ffd07ead9b4412fba305c756b5c0" name="afc74ffd07ead9b4412fba305c756b5c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc74ffd07ead9b4412fba305c756b5c0">&#9670;&#160;</a></span>Start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SnakeGame.Scripts.ColorChanger.Start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="ab91c16fc2c44aef05a14b4b9622d91f4" name="ab91c16fc2c44aef05a14b4b9622d91f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab91c16fc2c44aef05a14b4b9622d91f4">&#9670;&#160;</a></span>_spriteRenderer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SpriteRenderer SnakeGame.Scripts.ColorChanger._spriteRenderer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ad844fdc8833f61c003d5612532b0ff37" name="ad844fdc8833f61c003d5612532b0ff37"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad844fdc8833f61c003d5612532b0ff37">&#9670;&#160;</a></span>blueMaterial</h2>
 

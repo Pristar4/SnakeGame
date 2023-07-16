@@ -118,6 +118,7 @@ $(document).ready(function(){initNavTree('class_snake_game_1_1_scripts_1_1_snake
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="class_snake_game_1_1_scripts_1_1_snake_controller-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">SnakeGame.Scripts.SnakeController Class Reference</div></div>
 </div><!--header-->
@@ -125,38 +126,137 @@ $(document).ready(function(){initNavTree('class_snake_game_1_1_scripts_1_1_snake
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6d7d8714b286eb85dbfa2cae187c563d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_controller.html#a6d7d8714b286eb85dbfa2cae187c563d">CreateSnake</a> (Vector2Int position, Vector2Int direction, int length, int id)</td></tr>
-<tr class="separator:a6d7d8714b286eb85dbfa2cae187c563d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2c2ad512b45d30efbadb087e2640930"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_controller.html#aa2c2ad512b45d30efbadb087e2640930">FinalizeDirection</a> (<a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a> snake)</td></tr>
 <tr class="separator:aa2c2ad512b45d30efbadb087e2640930"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24ecedd7f1e91deaa6c717a32bde3ebb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_controller.html#a24ecedd7f1e91deaa6c717a32bde3ebb">Move</a> (<a class="el" href="class_snake_game_1_1_scripts_1_1_board.html">Board</a> board, <a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a> snake, bool wrapIsEnabled)</td></tr>
 <tr class="separator:a24ecedd7f1e91deaa6c717a32bde3ebb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada9cfb76b0222dcd9f0aa4ceeb49c215"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_controller.html#ada9cfb76b0222dcd9f0aa4ceeb49c215">CheckCollisions</a> (<a class="el" href="class_snake_game_1_1_scripts_1_1_board.html">Board</a> board)</td></tr>
-<tr class="separator:ada9cfb76b0222dcd9f0aa4ceeb49c215"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3b713ef5b9032478c2d230b566a7a54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_snake_game_1_1_scripts.html#a17f90812441fe7911e589bbb135cf509">TileType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_controller.html#ad3b713ef5b9032478c2d230b566a7a54">CheckCollisions</a> (<a class="el" href="class_snake_game_1_1_scripts_1_1_board.html">Board</a> board, <a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a> snake)</td></tr>
+<tr class="separator:ad3b713ef5b9032478c2d230b566a7a54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7e49b0ba82443fcb0efac4434ae4bd2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_controller.html#af7e49b0ba82443fcb0efac4434ae4bd2">CreateSnakes</a> (int width, int height, int numberOfSnakes, int startSize)</td></tr>
 <tr class="separator:af7e49b0ba82443fcb0efac4434ae4bd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d4ae9540c6154fed2288c23efe56034"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_controller.html#a3d4ae9540c6154fed2288c23efe56034">HandleSnakeDirection</a> (int action, <a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a> snake, <a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html">SnakeAgent</a> snakeAgent)</td></tr>
+<tr class="memdesc:a3d4ae9540c6154fed2288c23efe56034"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the snake's direction based on the given action.  <br /></td></tr>
+<tr class="separator:a3d4ae9540c6154fed2288c23efe56034"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a23b59d489316210e7bf0c52243b64c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_controller.html#a2a23b59d489316210e7bf0c52243b64c">GetRelativeDirection</a> (Vector2Int currentDirection, Vector2Int inputDirection, <a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html">SnakeAgent</a> snakeAgent)</td></tr>
+<tr class="memdesc:a2a23b59d489316210e7bf0c52243b64c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the relative direction of the input direction relative to the current direction.  <br /></td></tr>
+<tr class="separator:a2a23b59d489316210e7bf0c52243b64c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0fed5494158388a577de9ae74e0d3ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_controller.html#ac0fed5494158388a577de9ae74e0d3ec">CheckForNewHighScore</a> (<a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a> snake, <a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html">SnakeAgent</a> snakeAgent)</td></tr>
+<tr class="memdesc:ac0fed5494158388a577de9ae74e0d3ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the current score is higher than the high score and updates it if necessary.  <br /></td></tr>
+<tr class="separator:ac0fed5494158388a577de9ae74e0d3ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a708fa24d35ca62ab32618991d7f5c5b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_controller.html#a708fa24d35ca62ab32618991d7f5c5b9">CheckSnakeStatus</a> (<a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a> snake, <a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html">SnakeAgent</a> snakeAgent)</td></tr>
+<tr class="memdesc:a708fa24d35ca62ab32618991d7f5c5b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the status of the given snake and updates the reward accordingly.  <br /></td></tr>
+<tr class="separator:a708fa24d35ca62ab32618991d7f5c5b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5045a423b30fc3f2d15309331cf0a74"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_controller.html#ab5045a423b30fc3f2d15309331cf0a74">ProcessSnakeMovement</a> (<a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a> snake, <a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html">SnakeAgent</a> snakeAgent)</td></tr>
+<tr class="separator:ab5045a423b30fc3f2d15309331cf0a74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a838c807f0156a6b90b9889332f148cb0"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_controller.html#a838c807f0156a6b90b9889332f148cb0">InitializeSnakeBody</a> (<a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a> snake, Vector2Int position, Vector2Int direction, int length)</td></tr>
 <tr class="separator:a838c807f0156a6b90b9889332f148cb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a6d7d8714b286eb85dbfa2cae187c563d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_controller.html#a6d7d8714b286eb85dbfa2cae187c563d">CreateSnake</a> (Vector2Int position, Vector2Int direction, int length, int id)</td></tr>
+<tr class="separator:a6d7d8714b286eb85dbfa2cae187c563d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ada9cfb76b0222dcd9f0aa4ceeb49c215" name="ada9cfb76b0222dcd9f0aa4ceeb49c215"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada9cfb76b0222dcd9f0aa4ceeb49c215">&#9670;&#160;</a></span>CheckCollisions()</h2>
+<a id="ad3b713ef5b9032478c2d230b566a7a54" name="ad3b713ef5b9032478c2d230b566a7a54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3b713ef5b9032478c2d230b566a7a54">&#9670;&#160;</a></span>CheckCollisions()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SnakeGame.Scripts.SnakeController.CheckCollisions </td>
+          <td class="memname"><a class="el" href="namespace_snake_game_1_1_scripts.html#a17f90812441fe7911e589bbb135cf509">TileType</a> SnakeGame.Scripts.SnakeController.CheckCollisions </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_snake_game_1_1_scripts_1_1_board.html">Board</a>&#160;</td>
-          <td class="paramname"><em>board</em></td><td>)</td>
+          <td class="paramname"><em>board</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a>&#160;</td>
+          <td class="paramname"><em>snake</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac0fed5494158388a577de9ae74e0d3ec" name="ac0fed5494158388a577de9ae74e0d3ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0fed5494158388a577de9ae74e0d3ec">&#9670;&#160;</a></span>CheckForNewHighScore()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SnakeGame.Scripts.SnakeController.CheckForNewHighScore </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a>&#160;</td>
+          <td class="paramname"><em>snake</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html">SnakeAgent</a>&#160;</td>
+          <td class="paramname"><em>snakeAgent</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the current score is higher than the high score and updates it if necessary. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">snake</td><td>The snake to check the score for.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a708fa24d35ca62ab32618991d7f5c5b9" name="a708fa24d35ca62ab32618991d7f5c5b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a708fa24d35ca62ab32618991d7f5c5b9">&#9670;&#160;</a></span>CheckSnakeStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SnakeGame.Scripts.SnakeController.CheckSnakeStatus </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a>&#160;</td>
+          <td class="paramname"><em>snake</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html">SnakeAgent</a>&#160;</td>
+          <td class="paramname"><em>snakeAgent</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks the status of the given snake and updates the reward accordingly. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">snake</td><td>The snake to check.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -165,6 +265,9 @@ Static Public Member Functions</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a> SnakeGame.Scripts.SnakeController.CreateSnake </td>
@@ -196,6 +299,11 @@ Static Public Member Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
@@ -255,6 +363,93 @@ Static Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2a23b59d489316210e7bf0c52243b64c" name="a2a23b59d489316210e7bf0c52243b64c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a23b59d489316210e7bf0c52243b64c">&#9670;&#160;</a></span>GetRelativeDirection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.SnakeController.GetRelativeDirection </td>
+          <td>(</td>
+          <td class="paramtype">Vector2Int&#160;</td>
+          <td class="paramname"><em>currentDirection</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector2Int&#160;</td>
+          <td class="paramname"><em>inputDirection</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html">SnakeAgent</a>&#160;</td>
+          <td class="paramname"><em>snakeAgent</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the relative direction of the input direction relative to the current direction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">currentDirection</td><td>The current direction.</td></tr>
+    <tr><td class="paramname">inputDirection</td><td>The input direction.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The relative direction of the input direction relative to the current direction.</dd></dl>
+
+</div>
+</div>
+<a id="a3d4ae9540c6154fed2288c23efe56034" name="a3d4ae9540c6154fed2288c23efe56034"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d4ae9540c6154fed2288c23efe56034">&#9670;&#160;</a></span>HandleSnakeDirection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SnakeGame.Scripts.SnakeController.HandleSnakeDirection </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>action</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a>&#160;</td>
+          <td class="paramname"><em>snake</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html">SnakeAgent</a>&#160;</td>
+          <td class="paramname"><em>snakeAgent</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Handles the snake's direction based on the given action. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">action</td><td>The action to take.</td></tr>
+    <tr><td class="paramname">snake</td><td>The snake to handle.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -329,6 +524,34 @@ Static Public Member Functions</h2></td></tr>
           <td></td>
           <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>wrapIsEnabled</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab5045a423b30fc3f2d15309331cf0a74" name="ab5045a423b30fc3f2d15309331cf0a74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5045a423b30fc3f2d15309331cf0a74">&#9670;&#160;</a></span>ProcessSnakeMovement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SnakeGame.Scripts.SnakeController.ProcessSnakeMovement </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html">Snake</a>&#160;</td>
+          <td class="paramname"><em>snake</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake_agent.html">SnakeAgent</a>&#160;</td>
+          <td class="paramname"><em>snakeAgent</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

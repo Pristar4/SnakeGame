@@ -9,10 +9,8 @@ var hierarchy =
         [ "SnakeGame.Scripts.BoardArray", "class_snake_game_1_1_scripts_1_1_board_array.html", null ]
       ] ],
       [ "SnakeGame.Scripts.ColorChanger", "class_snake_game_1_1_scripts_1_1_color_changer.html", null ],
-      [ "SnakeGame.Scripts.GameManager", "class_snake_game_1_1_scripts_1_1_game_manager.html", null ],
       [ "SnakeGame.Scripts.TileDisplay", "class_snake_game_1_1_scripts_1_1_tile_display.html", null ]
     ] ],
-    [ "SnakeGame.Scripts.Player", "struct_snake_game_1_1_scripts_1_1_player.html", null ],
     [ "ScriptableObject", null, [
       [ "SnakeGame.Scripts.InputSchemer", "class_snake_game_1_1_scripts_1_1_input_schemer.html", null ]
     ] ],

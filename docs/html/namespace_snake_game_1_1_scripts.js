@@ -4,9 +4,7 @@ var namespace_snake_game_1_1_scripts =
     [ "BoardArray", "class_snake_game_1_1_scripts_1_1_board_array.html", "class_snake_game_1_1_scripts_1_1_board_array" ],
     [ "BoardDisplay", "class_snake_game_1_1_scripts_1_1_board_display.html", "class_snake_game_1_1_scripts_1_1_board_display" ],
     [ "ColorChanger", "class_snake_game_1_1_scripts_1_1_color_changer.html", "class_snake_game_1_1_scripts_1_1_color_changer" ],
-    [ "GameManager", "class_snake_game_1_1_scripts_1_1_game_manager.html", null ],
     [ "InputSchemer", "class_snake_game_1_1_scripts_1_1_input_schemer.html", "class_snake_game_1_1_scripts_1_1_input_schemer" ],
-    [ "Player", "struct_snake_game_1_1_scripts_1_1_player.html", "struct_snake_game_1_1_scripts_1_1_player" ],
     [ "Snake", "class_snake_game_1_1_scripts_1_1_snake.html", "class_snake_game_1_1_scripts_1_1_snake" ],
     [ "SnakeAgent", "class_snake_game_1_1_scripts_1_1_snake_agent.html", "class_snake_game_1_1_scripts_1_1_snake_agent" ],
     [ "SnakeController", "class_snake_game_1_1_scripts_1_1_snake_controller.html", "class_snake_game_1_1_scripts_1_1_snake_controller" ],
@@ -31,9 +29,11 @@ var namespace_snake_game_1_1_scripts =
       [ "Right", "namespace_snake_game_1_1_scripts.html#a950b53731a12289a3f1f4539c71576baa92b09c7c48c520c3c55e497875da437c", null ]
     ] ],
     [ "TileType", "namespace_snake_game_1_1_scripts.html#a17f90812441fe7911e589bbb135cf509", [
-      [ "None", "namespace_snake_game_1_1_scripts.html#a17f90812441fe7911e589bbb135cf509a6adf97f83acf6453d4a6a4b1070f3754", null ],
+      [ "Empty", "namespace_snake_game_1_1_scripts.html#a17f90812441fe7911e589bbb135cf509ace2c8aed9c2fa0cfbed56cbda4d8bf07", null ],
       [ "Food", "namespace_snake_game_1_1_scripts.html#a17f90812441fe7911e589bbb135cf509a0a38e7286ebbb560354992b3ce62be67", null ],
       [ "Snake", "namespace_snake_game_1_1_scripts.html#a17f90812441fe7911e589bbb135cf509adfa90f1b4eb3affbd3b46af34ed2477c", null ],
+      [ "Path", "namespace_snake_game_1_1_scripts.html#a17f90812441fe7911e589bbb135cf509aac70412e939d72a9234cdebb1af5867b", null ],
+      [ "Blocked", "namespace_snake_game_1_1_scripts.html#a17f90812441fe7911e589bbb135cf509a4ecc0d90eec1cea3e9db96583a1bb9c2", null ],
       [ "Wall", "namespace_snake_game_1_1_scripts.html#a17f90812441fe7911e589bbb135cf509a94e8a499539d1a472f3b5dbbb85508c0", null ]
     ] ]
 ];

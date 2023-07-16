@@ -136,7 +136,7 @@ Perform the following steps to set up and run the project:
     ```
 5. Install torch:
     ```
-    pip install torch -f https://download.pytorch.org/whl/torch_stable.html
+    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
     ```
 6. Install Tensorflow
     ```

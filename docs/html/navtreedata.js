@@ -109,7 +109,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_board_8cs.html",
-"md_docs_2tricks.html#tricks-sidebar"
+"class_snake_game_1_1_scripts_1_1_snake_agent.html#a592b9f7cd1c161744b3b5de9514ebea4"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

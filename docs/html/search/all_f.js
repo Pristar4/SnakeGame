@@ -1,19 +1,15 @@
 var searchData=
 [
-  ['score_0',['Score',['../class_snake_game_1_1_scripts_1_1_snake.html#a2e592a8380fb813d951395051c500654',1,'SnakeGame::Scripts::Snake']]],
-  ['scripts_1',['Scripts',['../namespace_snake_game_1_1_scripts.html',1,'SnakeGame']]],
-  ['setcolor_2',['SetColor',['../class_snake_game_1_1_scripts_1_1_tile_display.html#adc58c4d193f8ef6dd24e2ea212fa9f15',1,'SnakeGame::Scripts::TileDisplay']]],
-  ['snake_3',['Snake',['../class_snake_game_1_1_scripts_1_1_tile.html#a8c1a629c15b0f4e787254cf21dee0b11',1,'SnakeGame.Scripts.Tile.Snake'],['../class_snake_game_1_1_scripts_1_1_snake.html#a0309749be0b8dd6fb95099395187de4a',1,'SnakeGame.Scripts.Snake.Snake()'],['../namespace_snake_game_1_1_scripts.html#a17f90812441fe7911e589bbb135cf509adfa90f1b4eb3affbd3b46af34ed2477c',1,'SnakeGame.Scripts.Snake'],['../class_snake_game_1_1_scripts_1_1_snake.html',1,'SnakeGame.Scripts.Snake']]],
-  ['snake_2ecs_4',['Snake.cs',['../_snake_8cs.html',1,'']]],
-  ['snakeagent_5',['SnakeAgent',['../class_snake_game_1_1_scripts_1_1_snake_agent.html#a92dac0d503b6486827a9cee233fc142e',1,'SnakeGame.Scripts.SnakeAgent.SnakeAgent()'],['../class_snake_game_1_1_scripts_1_1_snake_agent.html',1,'SnakeGame.Scripts.SnakeAgent']]],
-  ['snakeagent_2ecs_6',['SnakeAgent.cs',['../_snake_agent_8cs.html',1,'']]],
-  ['snakecolor_7',['SnakeColor',['../namespace_snake_game_1_1_scripts.html#a4b0cbd6c4b84620b237597f7beefc9f9',1,'SnakeGame::Scripts']]],
-  ['snakecontroller_8',['SnakeController',['../class_snake_game_1_1_scripts_1_1_snake_controller.html',1,'SnakeGame::Scripts']]],
-  ['snakecontroller_2ecs_9',['SnakeController.cs',['../_snake_controller_8cs.html',1,'']]],
-  ['snakedirection_10',['SnakeDirection',['../namespace_snake_game_1_1_scripts.html#a950b53731a12289a3f1f4539c71576ba',1,'SnakeGame::Scripts']]],
-  ['snakegame_11',['SnakeGame',['../index.html',1,'(Global Namespace)'],['../namespace_snake_game.html',1,'SnakeGame']]],
-  ['snakeid_12',['snakeId',['../struct_snake_game_1_1_scripts_1_1_player.html#ab0ae832e4cb900c2e8fe0ba3ee812450',1,'SnakeGame::Scripts::Player']]],
-  ['snakes_13',['Snakes',['../class_snake_game_1_1_scripts_1_1_board.html#a26a1c5e21a7499ffd601a9d03ec9172c',1,'SnakeGame::Scripts::Board']]],
-  ['spawnfood_14',['SpawnFood',['../class_snake_game_1_1_scripts_1_1_board.html#add8d6d7cb840d70e348c1dca171c763a',1,'SnakeGame::Scripts::Board']]],
-  ['spriteboarddisplay_2ecs_15',['SpriteBoardDisplay.cs',['../_sprite_board_display_8cs.html',1,'']]]
+  ['random_0',['Random',['../_board_8cs.html#a832e8f52fca5a678819ec96269dcb532',1,'Board.cs']]],
+  ['randomizeboardsize_1',['RandomizeBoardSize',['../class_snake_game_1_1_scripts_1_1_snake_agent.html#ac05666eaff6a5a4f29406d02c4f2e8d7',1,'SnakeGame::Scripts::SnakeAgent']]],
+  ['readme_2emd_2',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
+  ['red_3',['Red',['../class_snake_game_1_1_scripts_1_1_color_changer.html#aa92da33133a221a449da7108e021c319aee38e4d5dd68c4e440825018d549cb47',1,'SnakeGame::Scripts::ColorChanger']]],
+  ['redmaterial_4',['redMaterial',['../class_snake_game_1_1_scripts_1_1_color_changer.html#a2286267a5e33c36da34e113d0744241f',1,'SnakeGame::Scripts::ColorChanger']]],
+  ['reset_5',['Reset',['../class_snake_game_1_1_scripts_1_1_board.html#ae388b42c0337124268ef4356c61b8d34',1,'SnakeGame.Scripts.Board.Reset()'],['../class_snake_game_1_1_scripts_1_1_board_array.html#afe3fa956793a0af610f871248ae54655',1,'SnakeGame.Scripts.BoardArray.Reset()'],['../class_snake_game_1_1_scripts_1_1_board_display.html#a53cc71dd05a75839cc45b1e2af9bfa6c',1,'SnakeGame.Scripts.BoardDisplay.Reset()']]],
+  ['resetaveragecount_6',['resetAverageCount',['../class_snake_game_1_1_scripts_1_1_snake_agent.html#a760ea979a885a97710db2118be031f6d',1,'SnakeGame::Scripts::SnakeAgent']]],
+  ['right_7',['Right',['../namespace_snake_game_1_1_scripts.html#a950b53731a12289a3f1f4539c71576baa92b09c7c48c520c3c55e497875da437c',1,'SnakeGame::Scripts']]],
+  ['rightkey_8',['rightKey',['../class_snake_game_1_1_scripts_1_1_input_schemer.html#aeac1a55d4fee2e85ab3acc6c36fd6095',1,'SnakeGame::Scripts::InputSchemer']]],
+  ['rightkey_9',['RightKey',['../class_snake_game_1_1_scripts_1_1_input_schemer.html#ac1197a67daad3c2f2ca5801797bf4db0',1,'SnakeGame::Scripts::InputSchemer']]],
+  ['rotateclockwise_10',['RotateClockwise',['../class_snake_game_1_1_scripts_1_1_snake_agent.html#a60093a1dd16a1ee38e936c1810555989',1,'SnakeGame::Scripts::SnakeAgent']]],
+  ['rotatecounterclockwise_11',['RotateCounterClockwise',['../class_snake_game_1_1_scripts_1_1_snake_agent.html#a587ac3eccfbc84676232575bdc261523',1,'SnakeGame::Scripts::SnakeAgent']]]
 ];

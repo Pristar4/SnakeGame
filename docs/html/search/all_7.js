@@ -1,6 +1,12 @@
 var searchData=
 [
-  ['head_0',['Head',['../class_snake_game_1_1_scripts_1_1_snake.html#a8be63c61b8c48c26bbbbdb94ca7c03ba',1,'SnakeGame::Scripts::Snake']]],
-  ['height_1',['Height',['../class_snake_game_1_1_scripts_1_1_board.html#a692e92fd627a96362937962231c608ec',1,'SnakeGame::Scripts::Board']]],
-  ['heuristic_2',['Heuristic',['../class_snake_game_1_1_scripts_1_1_snake_agent.html#a04ad166aee61042938f71f6bbba0e893',1,'SnakeGame::Scripts::SnakeAgent']]]
+  ['getboardasarray_0',['GetBoardAsArray',['../class_snake_game_1_1_scripts_1_1_board.html#a7242096bdb6acd1be79d78f7dc8011af',1,'SnakeGame::Scripts::Board']]],
+  ['getboardasmatrix_1',['GetBoardAsMatrix',['../class_snake_game_1_1_scripts_1_1_board.html#af11fc38190bd809bf978e7461d2bcd51',1,'SnakeGame::Scripts::Board']]],
+  ['getmaterialfromcoloroption_2',['GetMaterialFromColorOption',['../class_snake_game_1_1_scripts_1_1_color_changer.html#af63b85a3d4f1972b60ec532f4500d6b5',1,'SnakeGame::Scripts::ColorChanger']]],
+  ['getrelativedirection_3',['GetRelativeDirection',['../class_snake_game_1_1_scripts_1_1_snake_controller.html#a2a23b59d489316210e7bf0c52243b64c',1,'SnakeGame::Scripts::SnakeController']]],
+  ['getsnake_4',['GetSnake',['../class_snake_game_1_1_scripts_1_1_board.html#a0f32f3ba24cb9cfcfb24dc987bd4fd50',1,'SnakeGame::Scripts::Board']]],
+  ['gettile_5',['GetTile',['../class_snake_game_1_1_scripts_1_1_board.html#a3254f713a7b1676317dcbc2c78a2dd9b',1,'SnakeGame::Scripts::Board']]],
+  ['green_6',['Green',['../class_snake_game_1_1_scripts_1_1_color_changer.html#aa92da33133a221a449da7108e021c319ad382816a3cbeed082c9e216e7392eed1',1,'SnakeGame::Scripts::ColorChanger']]],
+  ['greenmaterial_7',['greenMaterial',['../class_snake_game_1_1_scripts_1_1_color_changer.html#abb416663cde6d5311ec406c834f94062',1,'SnakeGame::Scripts::ColorChanger']]],
+  ['grow_8',['Grow',['../class_snake_game_1_1_scripts_1_1_snake.html#a3a08855b834636888f52880d010ad069',1,'SnakeGame::Scripts::Snake']]]
 ];

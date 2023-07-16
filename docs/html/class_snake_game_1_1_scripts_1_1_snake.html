@@ -118,20 +118,28 @@ $(document).ready(function(){initNavTree('class_snake_game_1_1_scripts_1_1_snake
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#properties">Properties</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_snake_game_1_1_scripts_1_1_snake-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">SnakeGame.Scripts.Snake Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents a snake in the game.  
+ <a href="class_snake_game_1_1_scripts_1_1_snake.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0309749be0b8dd6fb95099395187de4a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html#a0309749be0b8dd6fb95099395187de4a">Snake</a> (Vector2Int position, Vector2Int direction, int length, int id, Vector2Int[] body, <a class="el" href="namespace_snake_game_1_1_scripts.html#a4b0cbd6c4b84620b237597f7beefc9f9">SnakeColor</a> color)</td></tr>
+<tr class="memitem:a0309749be0b8dd6fb95099395187de4a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html#a0309749be0b8dd6fb95099395187de4a">Snake</a> (Vector2Int <a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html#aae4d15df18f95a63aa5cb23fe0474e50">position</a>, Vector2Int <a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html#a3aa83184c3e99a5f5feb6dcaeb62f6be">direction</a>, int <a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html#a15314446aef8c52602375b3e61eb8ce5">length</a>, int <a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html#a4c64dbd36fc1d2edf6300f05ceb247e1">id</a>, Vector2Int[] <a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html#a5b50eaba5b9cb0ede71d8765c7099bb2">body</a>, <a class="el" href="namespace_snake_game_1_1_scripts.html#a4b0cbd6c4b84620b237597f7beefc9f9">SnakeColor</a> <a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html#ad8e4ce1af22848c2c108159f222ca5c2">color</a>)</td></tr>
+<tr class="memdesc:a0309749be0b8dd6fb95099395187de4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new instance of the Snake class.  <br /></td></tr>
 <tr class="separator:a0309749be0b8dd6fb95099395187de4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab666177e354aac439691665a2d841778"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html#ab666177e354aac439691665a2d841778">ContainsPosition</a> (Vector2Int vector2Int)</td></tr>
+<tr class="memdesc:ab666177e354aac439691665a2d841778"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the snake's body contains a given position.  <br /></td></tr>
 <tr class="separator:ab666177e354aac439691665a2d841778"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03a799da86318d6739a554bfeb0722da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html#a03a799da86318d6739a554bfeb0722da">Die</a> ()</td></tr>
+<tr class="memdesc:a03a799da86318d6739a554bfeb0722da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kills the snake.  <br /></td></tr>
 <tr class="separator:a03a799da86318d6739a554bfeb0722da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a08855b834636888f52880d010ad069"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html#a3a08855b834636888f52880d010ad069">Grow</a> ()</td></tr>
+<tr class="memdesc:a3a08855b834636888f52880d010ad069"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increases the length of the snake by one.  <br /></td></tr>
 <tr class="separator:a3a08855b834636888f52880d010ad069"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
@@ -160,8 +168,27 @@ Properties</h2></td></tr>
 <tr class="separator:a8be63c61b8c48c26bbbbdb94ca7c03ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e1f7e7a7601994cc9952a57d4ac8d36"><td class="memItemLeft" align="right" valign="top">Vector2Int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html#a5e1f7e7a7601994cc9952a57d4ac8d36">NextDirection</a><code> [get, set]</code></td></tr>
 <tr class="separator:a5e1f7e7a7601994cc9952a57d4ac8d36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aae4d15df18f95a63aa5cb23fe0474e50"><td class="memItemLeft" align="right" valign="top">Vector2Int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html#aae4d15df18f95a63aa5cb23fe0474e50">position</a></td></tr>
+<tr class="separator:aae4d15df18f95a63aa5cb23fe0474e50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3aa83184c3e99a5f5feb6dcaeb62f6be"><td class="memItemLeft" align="right" valign="top">Vector2Int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html#a3aa83184c3e99a5f5feb6dcaeb62f6be">direction</a></td></tr>
+<tr class="separator:a3aa83184c3e99a5f5feb6dcaeb62f6be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a643bfd2dfdf20b6ae12ec6fed17c98fa"><td class="memItemLeft" align="right" valign="top">Vector2Int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html#a643bfd2dfdf20b6ae12ec6fed17c98fa">nextDirection</a></td></tr>
+<tr class="separator:a643bfd2dfdf20b6ae12ec6fed17c98fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15314446aef8c52602375b3e61eb8ce5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html#a15314446aef8c52602375b3e61eb8ce5">length</a></td></tr>
+<tr class="separator:a15314446aef8c52602375b3e61eb8ce5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c64dbd36fc1d2edf6300f05ceb247e1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html#a4c64dbd36fc1d2edf6300f05ceb247e1">id</a></td></tr>
+<tr class="separator:a4c64dbd36fc1d2edf6300f05ceb247e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b50eaba5b9cb0ede71d8765c7099bb2"><td class="memItemLeft" align="right" valign="top">Vector2Int[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html#a5b50eaba5b9cb0ede71d8765c7099bb2">body</a></td></tr>
+<tr class="separator:a5b50eaba5b9cb0ede71d8765c7099bb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8e4ce1af22848c2c108159f222ca5c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespace_snake_game_1_1_scripts.html#a4b0cbd6c4b84620b237597f7beefc9f9">SnakeColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_snake_game_1_1_scripts_1_1_snake.html#ad8e4ce1af22848c2c108159f222ca5c2">color</a></td></tr>
+<tr class="separator:ad8e4ce1af22848c2c108159f222ca5c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a snake in the game. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0309749be0b8dd6fb95099395187de4a" name="a0309749be0b8dd6fb95099395187de4a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0309749be0b8dd6fb95099395187de4a">&#9670;&#160;</a></span>Snake()</h2>
 
@@ -212,6 +239,19 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Initializes a new instance of the Snake class. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>The starting position of the snake.</td></tr>
+    <tr><td class="paramname">direction</td><td>The starting direction of the snake.</td></tr>
+    <tr><td class="paramname">length</td><td>The starting length of the snake.</td></tr>
+    <tr><td class="paramname">id</td><td>The ID of the snake.</td></tr>
+    <tr><td class="paramname">body</td><td>The body of the snake.</td></tr>
+    <tr><td class="paramname">color</td><td>The color of the snake.</td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -231,6 +271,15 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Checks if the snake's body contains a given position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vector2Int</td><td>The position to check.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the snake's body contains the position, false otherwise.</dd></dl>
+
 </div>
 </div>
 <a id="a03a799da86318d6739a554bfeb0722da" name="a03a799da86318d6739a554bfeb0722da"></a>
@@ -248,6 +297,8 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Kills the snake. </p>
+
 </div>
 </div>
 <a id="a3a08855b834636888f52880d010ad069" name="a3a08855b834636888f52880d010ad069"></a>
@@ -263,6 +314,163 @@ Properties</h2></td></tr>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+<p>Increases the length of the snake by one. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a5b50eaba5b9cb0ede71d8765c7099bb2" name="a5b50eaba5b9cb0ede71d8765c7099bb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b50eaba5b9cb0ede71d8765c7099bb2">&#9670;&#160;</a></span>body</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector2Int [] SnakeGame.Scripts.Snake.body</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad8e4ce1af22848c2c108159f222ca5c2" name="ad8e4ce1af22848c2c108159f222ca5c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8e4ce1af22848c2c108159f222ca5c2">&#9670;&#160;</a></span>color</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespace_snake_game_1_1_scripts.html#a4b0cbd6c4b84620b237597f7beefc9f9">SnakeColor</a> SnakeGame.Scripts.Snake.color</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3aa83184c3e99a5f5feb6dcaeb62f6be" name="a3aa83184c3e99a5f5feb6dcaeb62f6be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3aa83184c3e99a5f5feb6dcaeb62f6be">&#9670;&#160;</a></span>direction</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector2Int SnakeGame.Scripts.Snake.direction</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4c64dbd36fc1d2edf6300f05ceb247e1" name="a4c64dbd36fc1d2edf6300f05ceb247e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c64dbd36fc1d2edf6300f05ceb247e1">&#9670;&#160;</a></span>id</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.Snake.id</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a15314446aef8c52602375b3e61eb8ce5" name="a15314446aef8c52602375b3e61eb8ce5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15314446aef8c52602375b3e61eb8ce5">&#9670;&#160;</a></span>length</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int SnakeGame.Scripts.Snake.length</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a643bfd2dfdf20b6ae12ec6fed17c98fa" name="a643bfd2dfdf20b6ae12ec6fed17c98fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a643bfd2dfdf20b6ae12ec6fed17c98fa">&#9670;&#160;</a></span>nextDirection</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector2Int SnakeGame.Scripts.Snake.nextDirection</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aae4d15df18f95a63aa5cb23fe0474e50" name="aae4d15df18f95a63aa5cb23fe0474e50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae4d15df18f95a63aa5cb23fe0474e50">&#9670;&#160;</a></span>position</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector2Int SnakeGame.Scripts.Snake.position</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
